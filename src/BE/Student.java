@@ -7,8 +7,6 @@ package BE;
 
 import java.io.Serializable;
 import java.util.Date;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleBooleanProperty;
 
 
 /**
@@ -39,16 +37,13 @@ public class Student implements Serializable {
         this.attendance = attendance;
     }
 
-
-    
     public Student (String name, String currentClass, int absences, Date timeStamp){
         this.name = name;
         this.currentClass = currentClass;
         this.absences = absences;
         this.timeStamp = timeStamp;
-        
     }
-   
+  
     public String getName() {
         return name;
     }
@@ -67,7 +62,7 @@ public class Student implements Serializable {
 
     @Override
     public String toString() {
-        return name + currentClass + attendance;
+        return name + currentClass + attendance + absences + timeStamp;
     }
 
     /**

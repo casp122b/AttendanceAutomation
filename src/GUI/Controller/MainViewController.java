@@ -5,7 +5,6 @@ package GUI.Controller;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 import BE.Student;
 import GUI.Model.StudentModel;
 import java.io.File;
@@ -67,41 +66,35 @@ public class MainViewController implements Initializable {
     private Button btnLoad;
     @FXML
     private TableColumn<Student, Integer> colAbsence;
-    
-    
-    
-    
-    public MainViewController()
-    {
+
+    public MainViewController() {
         studentModel = StudentModel.getInstance();
     }
-    
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         dataBind();
     }
 
-/**
-     * Sets the value of the instance variables name and currentClass from the class Student to colPresent and colClass.
-     * Binds tblNames to the observable list Person through the method getAllPersons.
+    /**
+     * Sets the value of the instance variables name and currentClass from the
+     * class Student to colPresent and colClass. Binds tblNames to the
+     * observable list Person through the method getAllPersons.
      */
-    private void dataBind()
-    {
+    private void dataBind() {
         //I define the mapping of the table's columns to the objects that are added to it.
         colPresent.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
-        colClass.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getCurrentClass()));
+       colClass.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getCurrentClass()));
         testClass();
-        colTimeStamp.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getTimeStamp()));
-        colAbsence.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getAbsences()));
+      colTimeStamp.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getTimeStamp()));
+       colAbsence.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getAbsences()));
         tblPresent.setItems(studentModel.getAllStudents());
-    } 
-    
-    public void testClass()
-    {
-        
-        colAttendance.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Student, CheckBox>, ObservableValue<CheckBox>>() {
+    }
 
+    public void testClass() {
+
+        colAttendance.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Student, CheckBox>, ObservableValue<CheckBox>>() {
+            
             @Override
             public ObservableValue<CheckBox> call(
                     TableColumn.CellDataFeatures<Student, CheckBox> arg0) {
@@ -111,60 +104,49 @@ public class MainViewController implements Initializable {
 
                 checkBox.selectedProperty().setValue(s.isAttendance());
 
-
-
                 checkBox.selectedProperty().addListener(new ChangeListener<Boolean>() {
                     public void changed(ObservableValue<? extends Boolean> ov,
                             Boolean old_val, Boolean new_val) {
-
+                        
                         s.setAttendance(new_val);
-
                     }
                 });
-
                 return new SimpleObjectProperty<CheckBox>(checkBox);
-
             }
-
         });
     }
-    
-    
-    
+
     public void setModel(StudentModel studentModel) {
         this.studentModel = studentModel;
     }
-    
+
     @FXML
     private void handleAddAction(ActionEvent event) {
         //First I create a new Person:
         String name = txtName.getText().trim();
         String currentClass = txtCurrentClass.getText().trim();
-        Date date = new Date();
-        date.setYear(117);
-        studentModel.addNewStudent(name, currentClass, 0, date);
-
+        Date timeStamp = new Date();
+        timeStamp.setYear(117);
+        studentModel.addNewStudent(name, currentClass, 0, timeStamp);
+        
 
         //I reset the GUI for adding new persons
         txtName.clear();
         txtName.requestFocus();
         txtCurrentClass.clear();
         txtCurrentClass.requestFocus();
-       
+
     }
 
     @FXML
     private void handleSave(ActionEvent event) {
-        try
-        {
+        try {
             FileChooser fileChooser = new FileChooser();
             Window win = root.getScene().getWindow();
             File file = fileChooser.showSaveDialog(win);
             studentModel.SaveStudentsToFile(file);
 
-            
-        } catch (IOException ex)
-        {
+        } catch (IOException ex) {
             ex.printStackTrace();
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Save error");
@@ -176,19 +158,14 @@ public class MainViewController implements Initializable {
 
     @FXML
     private void handleLoad(ActionEvent event) {
-        try
-        {
+        try {
             FileChooser fileChooser = new FileChooser();
             Window win = root.getScene().getWindow();
             File file = fileChooser.showOpenDialog(win);
-        
+
             studentModel.LoadPersonsFromFile(file);
-           
-        
-            
-            
-        } catch (Exception ex)
-        {
+
+        } catch (Exception ex) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Load error");
             alert.setHeaderText("Error when loading students:");
@@ -198,26 +175,16 @@ public class MainViewController implements Initializable {
     }
 
     @FXML
-    private void btnTeacherLogin(ActionEvent event){
-        try{
-       
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/View/Login.fxml"));
-        Parent Login = loader.load();
-Stage stage = new Stage();
-stage.setScene(new Scene(Login));
-stage.show();
-    }
-    catch(Exception e){
+    private void btnTeacherLogin(ActionEvent event) {
+        try {
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/View/Login.fxml"));
+            Parent Login = loader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(Login));
+            stage.show();
+        } catch (Exception e) {
             System.out.println("Something went wrong");
-}
-}
-    
-
-
-//        LoginController LoginController  = loader.getController();
-
-        
-            
-    
-    
+        }
+    }
 }

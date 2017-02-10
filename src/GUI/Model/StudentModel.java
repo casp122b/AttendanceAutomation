@@ -67,11 +67,14 @@ public class StudentModel {
      * Adds name and lastname to the observable list Student.
      * @param name 
      * @param currentClass 
+     * @param absences 
+     * @param timeStamp 
      */
 
     public void addNewStudent(String name, String currentClass, int absences, Date timeStamp)
     {
         Student student = studentManager.createNewStudent(name, currentClass, absences, timeStamp);
+        allStudents.add(student);
 
     }
     /**

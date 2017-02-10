@@ -33,6 +33,9 @@ public class StudentManager {
     /**
      * Creates annd returns a new Student object.
      * @param name
+     * @param currentClass
+     * @param absences
+     * @param timeStamp
      * @return The new Student object.
      */
 
@@ -44,7 +47,7 @@ public class StudentManager {
     }
     /**
      * Saves an arraylist of the class object Student in a file.
-     * @param allPersons
+     * @param allStudents
      * @param file
      * @throws IOException 
      */
