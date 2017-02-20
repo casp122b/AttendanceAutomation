@@ -24,6 +24,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -66,16 +67,42 @@ public class MainViewController implements Initializable {
     private Button btnLoad;
     @FXML
     private TableColumn<Student, Integer> colAbsence;
+    @FXML
+    private Label lblStudent;
+    @FXML
+    private Label lblClass;
+    
+   boolean userLoggedIn = false;
+    
 
     public MainViewController() {
         studentModel = StudentModel.getInstance();
-    }
 
-    @Override
+//        lblStudent.setVisible(true);
+    }
+        @Override
     public void initialize(URL url, ResourceBundle rb) {
         dataBind();
-    }
 
+     
+//        btnAdd.setVisible(false);
+//        btnLoad.setVisible(false);
+//        btnSave.setVisible(false);
+//        txtName.setVisible(false);
+//        txtCurrentClass.setVisible(false);
+//        lblClass.setVisible(false);
+//        lblStudent.setVisible(false);
+    
+         btnAdd.setVisible(true);
+        btnLoad.setVisible(true);
+        btnSave.setVisible(true);
+        txtName.setVisible(true);
+        txtCurrentClass.setVisible(true);
+        lblClass.setVisible(true);
+        lblStudent.setVisible(true);
+        
+        
+    }
     /**
      * Sets the value of the instance variables name and currentClass from the
      * class Student to colPresent and colClass. Binds tblNames to the
@@ -91,6 +118,9 @@ public class MainViewController implements Initializable {
         tblPresent.setItems(studentModel.getAllStudents());
     }
 
+
+
+    
     public void testClass() {
 
         colAttendance.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Student, CheckBox>, ObservableValue<CheckBox>>() {
@@ -162,7 +192,7 @@ public class MainViewController implements Initializable {
             FileChooser fileChooser = new FileChooser();
             Window win = root.getScene().getWindow();
             File file = fileChooser.showOpenDialog(win);
-
+            
             studentModel.LoadPersonsFromFile(file);
 
         } catch (Exception ex) {
@@ -186,5 +216,18 @@ public class MainViewController implements Initializable {
         } catch (Exception e) {
             System.out.println("Something went wrong");
         }
+    }
+    public void teacherButtons(){
+       userLoggedIn = true;
+        System.out.println("ok");
+if(userLoggedIn = true){
+    btnAdd.setVisible(true);
+        btnLoad.setVisible(true);
+        btnSave.setVisible(true);
+        txtName.setVisible(true);
+        txtCurrentClass.setVisible(true);
+        lblClass.setVisible(true);
+        lblStudent.setVisible(true);
+}
     }
 }

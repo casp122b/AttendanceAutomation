@@ -15,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import java.io.IOException;
 
 
 /**
@@ -34,23 +35,37 @@ public class LoginController implements Initializable {
     private Label incorrect;
     @FXML
     private Button loginBtn;
+    
+    
+    public MainViewController mainView = new MainViewController(); 
+    
+
+    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+    
     }    
 
     @FXML
-    private void loginUser(ActionEvent event) {
+    private void loginUser(ActionEvent event) throws IOException {
       String username = user.getText();
+      
         String pass = password.getText();
+        
         if(username.equals("Peter@easv.dk")&& pass.equals("Wombat")){
-//            stage stage blabla bla åben vindue hvor lærer kan ændre i ting
+               
+        
+
 System.out.println("det virker");
+
+
+
                     }
         else{
+// mainView.teacherButtons();
             incorrect.setText("Incorrect Username or Password");
         }
     }
