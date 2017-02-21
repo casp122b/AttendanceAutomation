@@ -6,6 +6,7 @@
 package GUI.Model;
 
 import BE.Student;
+import BE.Absence;
 import BLL.StudentManager;
 import java.io.File;
 import java.io.IOException;
@@ -66,13 +67,12 @@ public class StudentModel {
      * Adds name and lastname to the observable list Student.
      * @param name 
      * @param currentClass 
-     * @param absences 
      * @param timeStamp 
      */
 
-    public void addNewStudent(String name, String currentClass, int absences, Date timeStamp)
+    public void addNewStudent(String name, String currentClass, Date timeStamp, Absence absence)
     {
-        Student student = studentManager.createNewStudent(name, currentClass, absences, timeStamp);
+        Student student = studentManager.createNewStudent(name, currentClass, timeStamp, absence);
         allStudents.add(student);
 
     }
@@ -102,8 +102,8 @@ public class StudentModel {
     
     public void prefixedStudentList()
     {
-        INSTANCE.addNewStudent("Casper", "SCO", 50, null);
-        INSTANCE.addNewStudent("IB", "SCO", 12, null);
-        INSTANCE.addNewStudent("Bent", "SCO", 20, null);
+        INSTANCE.addNewStudent("Casper", "SCO", null, new Absence(0,0,2,4,9));
+        INSTANCE.addNewStudent("IB", "SCO", null, new Absence(1,2,3,4,5));
+        INSTANCE.addNewStudent("Bent", "SCO", null, new Absence(1,0,0,1,3));
     }
 }

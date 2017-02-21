@@ -50,7 +50,6 @@ public class MainViewController implements Initializable {
     private TableColumn<Student, String> colClass;
     @FXML
     private TableColumn<Student, CheckBox> colAttendance;
-//lo@FXML
     @FXML
     private TableColumn<Student, Date> colTimeStamp;
 //    cal variable of StudentModel
@@ -73,6 +72,16 @@ public class MainViewController implements Initializable {
     private Label lblClass;
     
    boolean userLoggedIn = false;
+    @FXML
+    private TableColumn<?, ?> colMonday;
+    @FXML
+    private TableColumn<?, ?> colTuesday;
+    @FXML
+    private TableColumn<?, ?> colWednesday;
+    @FXML
+    private TableColumn<?, ?> colThursday;
+    @FXML
+    private TableColumn<?, ?> colFriday;
     
 
     public MainViewController() {
@@ -85,21 +94,21 @@ public class MainViewController implements Initializable {
         dataBind();
 
      
-//        btnAdd.setVisible(false);
-//        btnLoad.setVisible(false);
-//        btnSave.setVisible(false);
-//        txtName.setVisible(false);
-//        txtCurrentClass.setVisible(false);
-//        lblClass.setVisible(false);
-//        lblStudent.setVisible(false);
+        btnAdd.setVisible(false);
+        btnLoad.setVisible(false);
+        btnSave.setVisible(false);
+        txtName.setVisible(false);
+        txtCurrentClass.setVisible(false);
+        lblClass.setVisible(false);
+        lblStudent.setVisible(false);
     
-         btnAdd.setVisible(true);
-        btnLoad.setVisible(true);
-        btnSave.setVisible(true);
-        txtName.setVisible(true);
-        txtCurrentClass.setVisible(true);
-        lblClass.setVisible(true);
-        lblStudent.setVisible(true);
+//         btnAdd.setVisible(true);
+//        btnLoad.setVisible(true);
+//        btnSave.setVisible(true);
+//        txtName.setVisible(true);
+//        txtCurrentClass.setVisible(true);
+//        lblClass.setVisible(true);
+//        lblStudent.setVisible(true);
         studentModel.prefixedStudentList();
         
         
@@ -114,8 +123,7 @@ public class MainViewController implements Initializable {
         colPresent.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
        colClass.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getCurrentClass()));
         testClass();
-      colTimeStamp.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getTimeStamp()));
-       colAbsence.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getAbsences()));
+//      colTimeStamp.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getTimeStamp()));
         tblPresent.setItems(studentModel.getAllStudents());
     }
 
@@ -158,7 +166,7 @@ public class MainViewController implements Initializable {
         String currentClass = txtCurrentClass.getText().trim();
         Date timeStamp = new Date();
         timeStamp.setYear(117);
-        studentModel.addNewStudent(name, currentClass, 0, timeStamp);
+        studentModel.addNewStudent(name, currentClass, timeStamp, null);
         
 
         //I reset the GUI for adding new persons

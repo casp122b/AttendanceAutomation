@@ -16,6 +16,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import java.io.IOException;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 
 /**
@@ -55,7 +59,17 @@ public class LoginController implements Initializable {
       
         String pass = password.getText();
         
-        if(username.equals("Peter@easv.dk")&& pass.equals("Wombat")){
+        if(username.equals("P")&& pass.equals("1")){
+             try {
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/View/TeacherView.fxml"));
+            Parent Login = loader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(Login));
+            stage.show();
+        } catch (Exception e) {
+            System.out.println("Something went wrong");
+        }
                
         
 

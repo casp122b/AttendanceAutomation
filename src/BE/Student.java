@@ -18,7 +18,7 @@ public class Student implements Serializable {
     private String currentClass;
     private Boolean attendance = false;
     private Date timeStamp;
-    private int absences;
+    private Absence absences;
 
     /**
      * Get the value of attendance
@@ -37,11 +37,11 @@ public class Student implements Serializable {
         this.attendance = attendance;
     }
 
-    public Student (String name, String currentClass, int absences, Date timeStamp){
+    public Student (String name, String currentClass, Date timeStamp, Absence absence){
         this.name = name;
         this.currentClass = currentClass;
-        this.absences = absences;
         this.timeStamp = timeStamp;
+        this.absences = absence;
     }
   
     public String getName() {
@@ -62,7 +62,7 @@ public class Student implements Serializable {
 
     @Override
     public String toString() {
-        return name + currentClass + attendance + absences + timeStamp;
+        return name + currentClass + attendance + timeStamp;
     }
 
     /**
@@ -82,16 +82,13 @@ public class Student implements Serializable {
     /**
      * @return the absences
      */
-    public int getAbsences() {
+    public Absence getAbsences() {
         return absences;
     }
 
     /**
-     * @param absences the absences to set
+     * @return the absences
      */
-    public void setAbsences(int absences) {
-        this.absences = absences;
-    }
     
     
 

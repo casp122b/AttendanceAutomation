@@ -5,6 +5,7 @@
  */
 package BLL;
 
+import BE.Absence;
 import BE.Student;
 import DAL.StudentDAO;
 import java.io.File;
@@ -34,14 +35,13 @@ public class StudentManager {
      * Creates annd returns a new Student object.
      * @param name
      * @param currentClass
-     * @param absences
      * @param timeStamp
      * @return The new Student object.
      */
 
-    public Student createNewStudent(String name, String currentClass, int absences, Date timeStamp)
+    public Student createNewStudent(String name, String currentClass, Date timeStamp, Absence absence)
     {
-        return new Student(name, currentClass, absences, timeStamp);
+        return new Student(name, currentClass, timeStamp, absence);
 
    
     }
