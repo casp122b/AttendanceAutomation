@@ -100,4 +100,12 @@ public class StudentModel {
         allStudents.setAll(newAllStudents);
         
     }
+    
+    public void prefixedStudentList()
+    {
+        INSTANCE.addNewStudent("Casper", "SCO", 50, null);
+        INSTANCE.addNewStudent("IB", "SCO", 12, null);
+        INSTANCE.addNewStudent("Bent", "SCO", 20, null);
+        
+    }
 }

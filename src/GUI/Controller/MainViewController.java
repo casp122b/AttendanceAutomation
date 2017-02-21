@@ -100,6 +100,7 @@ public class MainViewController implements Initializable {
         txtCurrentClass.setVisible(true);
         lblClass.setVisible(true);
         lblStudent.setVisible(true);
+        studentModel.prefixedStudentList();
         
         
     }

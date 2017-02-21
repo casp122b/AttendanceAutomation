@@ -14,7 +14,7 @@
         <columns>
           <TableColumn fx:id="colPresent" prefWidth="67.0" text="Present" />
             <TableColumn fx:id="colClass" prefWidth="50.0" text="Class" />
-            <TableColumn fx:id="colAbsence" prefWidth="86.0" text="Absence" />
+            <TableColumn fx:id="colAbsence" prefWidth="86.0" sortType="DESCENDING" text="Absence" />
             <TableColumn fx:id="colAttendance" prefWidth="94.0" text="Attendance" />
             <TableColumn fx:id="colTimeStamp" prefWidth="97.0" text="Timestamp" />
         </columns>
