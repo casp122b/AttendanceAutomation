@@ -49,7 +49,6 @@ public class StudentModel {
     private StudentModel()
     {
         studentManager = new StudentManager();
-
         allStudents = FXCollections.observableArrayList();
     }
     
@@ -106,6 +105,5 @@ public class StudentModel {
         INSTANCE.addNewStudent("Casper", "SCO", 50, null);
         INSTANCE.addNewStudent("IB", "SCO", 12, null);
         INSTANCE.addNewStudent("Bent", "SCO", 20, null);
-        
     }
 }
