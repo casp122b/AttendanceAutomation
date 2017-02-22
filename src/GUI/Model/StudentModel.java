@@ -87,7 +87,7 @@ public class StudentModel {
     }
 
     /**
-     * Reads from the saved file on the computer. The saved file is specified through FileChooser in MainViewController.
+     * Reads from the saved file on the computer. The saved file is specified through FileChooser in TeacherViewController.
      * @param file
      * @throws IOException
      * @throws ClassNotFoundException 
@@ -99,6 +99,9 @@ public class StudentModel {
         
     }
     
+    /**
+     * Predefined data of all students in EASV2016A
+     */
     public void prefixedStudentList()
     {
         INSTANCE.addNewStudent("Adam", "SCO", new Absence(100,50,0,50,100));

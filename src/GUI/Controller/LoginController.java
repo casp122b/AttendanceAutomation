@@ -28,7 +28,6 @@ import javafx.stage.Stage;
  */
 public class LoginController implements Initializable 
 {
-    
     @FXML
     private TextField user;
     @FXML
@@ -37,8 +36,6 @@ public class LoginController implements Initializable
     private Label incorrect;
     @FXML
     private Button loginBtn;
-    
-//    public MainViewController mainView = new MainViewController(); 
     
     /**
      * Initializes the controller class.
@@ -49,8 +46,14 @@ public class LoginController implements Initializable
         
     }    
 
+    /**
+     * Handles the action event, when loginBtn is clicked. Hides Login.fxml and opens TeacherView.
+     * @param event
+     * @throws IOException 
+     */
     @FXML
-    private void loginUser(ActionEvent event) throws IOException {
+    private void loginUser(ActionEvent event) throws IOException 
+    {
         String username = user.getText();
         String pass = password.getText();
         

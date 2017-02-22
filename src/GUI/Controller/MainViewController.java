@@ -69,6 +69,9 @@ public class MainViewController implements Initializable
         tblPresent.setItems(studentModel.getAllStudents());
     }
 
+    /**
+     * Constructs a checkbox to be displayed in colAttendance.
+     */
     public void checkBoxMethod() 
     {
         colAttendance.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Student, CheckBox>, ObservableValue<CheckBox>>() {
@@ -96,6 +99,10 @@ public class MainViewController implements Initializable
         this.studentModel = studentModel;
     }
 
+    /**
+     * Hides MainView and opens Login.fxml
+     * @param event 
+     */
     @FXML
     private void btnTeacherLogin(ActionEvent event) 
     {

@@ -10,7 +10,6 @@
    <children>
       <Label alignment="CENTER" contentDisplay="CENTER" layoutY="12.0" text="Username:" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
       <Label alignment="CENTER" contentDisplay="CENTER" layoutY="80.0" text="Password:" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-
       <PasswordField fx:id="password" layoutY="102.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
       <TextField fx:id="user" layoutY="33.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
       <Button fx:id="loginBtn" layoutY="133.0" mnemonicParsing="false" onAction="#loginUser" text="Login" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />

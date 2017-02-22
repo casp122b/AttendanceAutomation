@@ -94,9 +94,8 @@ public class TeacherViewController implements Initializable
         dataBind();
     }
     /**
-     * Sets the value of the instance variables name and currentClass from the
-     * class Student to colPresent and colClass. Binds tblPresent to the
-     * observable list Student through the method getAllStudents.
+     * Sets instance variables from Student. Takes instance variables from Absence through Student.
+     * Runs the checkBoxMethod.
      */
     private void dataBind() {
       //I define the mapping of the table's columns to the objects that are added to it.
@@ -112,6 +111,9 @@ public class TeacherViewController implements Initializable
       checkBoxMethod();
     }
 
+    /**
+     * This method constructs the checkboxes in colAttendance. A listener is added to be able to register, when a checkbox is checked.
+     */
     public void checkBoxMethod() 
     {
         colAttendance.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Student, CheckBox>, ObservableValue<CheckBox>>() {
@@ -139,6 +141,10 @@ public class TeacherViewController implements Initializable
         this.studentModel = studentModel;
     }
 
+    /**
+     * Takes user input from txtName and txtCurrentClass. Adds the input to the observable arraylist Student through studentModel.
+     * @param event 
+     */
     @FXML
     private void handleAddAction(ActionEvent event) 
     {
@@ -154,6 +160,11 @@ public class TeacherViewController implements Initializable
         txtCurrentClass.requestFocus();
     }
 
+    /**
+     * Opens FileChooser to make it possible for teachers to save a file using a desired name.
+     * Data from Present, Class and Attendance are stored.
+     * @param event 
+     */
     @FXML
     private void handleSave(ActionEvent event) 
     {
@@ -174,6 +185,10 @@ public class TeacherViewController implements Initializable
         }
     }
 
+    /**
+     * Opens FileChooser and gives the posibility to choose a file. You can load data into tblPresent.
+     * @param event 
+     */
     @FXML
     private void handleLoad(ActionEvent event) 
     {
