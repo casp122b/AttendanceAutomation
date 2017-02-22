@@ -11,7 +11,6 @@ import DAL.StudentDAO;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -35,15 +34,12 @@ public class StudentManager {
      * Creates annd returns a new Student object.
      * @param name
      * @param currentClass
-     * @param timeStamp
+     * @param absence
      * @return The new Student object.
      */
-
-    public Student createNewStudent(String name, String currentClass, Date timeStamp, Absence absence)
+    public Student createNewStudent(String name, String currentClass, Absence absence)
     {
-        return new Student(name, currentClass, timeStamp, absence);
-
-   
+        return new Student(name, currentClass, null);
     }
     /**
      * Saves an arraylist of the class object Student in a file.

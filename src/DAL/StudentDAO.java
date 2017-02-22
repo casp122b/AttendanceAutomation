@@ -21,7 +21,6 @@ import java.util.List;
 public class StudentDAO {
     /**
      * Writes a list of students to the given file.
-     *
      * @param allStudents
      * @param file The file to save to.
      * @throws IOException

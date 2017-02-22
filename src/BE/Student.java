@@ -6,8 +6,6 @@
 package BE;
 
 import java.io.Serializable;
-import java.util.Date;
-
 
 /**
  *
@@ -17,7 +15,6 @@ public class Student implements Serializable {
     private String name;
     private String currentClass;
     private Boolean attendance = false;
-    private Date timeStamp;
     private Absence absences;
 
     /**
@@ -37,10 +34,9 @@ public class Student implements Serializable {
         this.attendance = attendance;
     }
 
-    public Student (String name, String currentClass, Date timeStamp, Absence absence){
+    public Student (String name, String currentClass, Absence absence){
         this.name = name;
         this.currentClass = currentClass;
-        this.timeStamp = timeStamp;
         this.absences = absence;
     }
   
@@ -62,21 +58,7 @@ public class Student implements Serializable {
 
     @Override
     public String toString() {
-        return name + currentClass + attendance + timeStamp;
-    }
-
-    /**
-     * @return the timeStamp
-     */
-    public Date getTimeStamp() {
-        return timeStamp;
-    }
-
-    /**
-     * @param timeStamp the timeStamp to set
-     */
-    public void setTimeStamp(Date timeStamp) {
-        this.timeStamp = timeStamp;
+        return name + currentClass + attendance;
     }
 
     /**
@@ -85,18 +67,4 @@ public class Student implements Serializable {
     public Absence getAbsences() {
         return absences;
     }
-
-    /**
-     * @return the absences
-     */
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
 }
