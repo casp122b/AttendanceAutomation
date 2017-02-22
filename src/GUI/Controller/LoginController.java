@@ -63,10 +63,12 @@ public class LoginController implements Initializable {
              try {
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/View/TeacherView.fxml"));
+            
             Parent Login = loader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(Login));
             stage.show();
+            
         } catch (Exception e) {
             System.out.println("Something went wrong");
         }

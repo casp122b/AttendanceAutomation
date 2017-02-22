@@ -91,6 +91,8 @@ public class TeacherViewController implements Initializable {
     private TableColumn<Student, Integer> colFriday;
     @FXML
     private TableColumn<Student, Integer> colTotalAbsence;
+    @FXML
+    private Label userNameLbl;
 
     public TeacherViewController() {
         studentModel = StudentModel.getInstance();
@@ -118,6 +120,7 @@ public class TeacherViewController implements Initializable {
         txtCurrentClass.setVisible(true);
         lblClass.setVisible(true);
         lblStudent.setVisible(true);
+        userNameLbl.getText();
         
         
         
@@ -131,14 +134,17 @@ public class TeacherViewController implements Initializable {
         //I define the mapping of the table's columns to the objects that are added to it.
         colPresent.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
        colClass.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getCurrentClass()));
-        testClass();
+       tblPresent.setItems(studentModel.getAllStudents()); 
+       testClass();
 //      colTimeStamp.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getTimeStamp()));
       colMonday.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getAbsences().getMonday()));
       colTuesday.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getAbsences().getTuesday()));
       colWednesday.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getAbsences().getWednesday()));
       colThursday.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getAbsences().getThursday()));
       colFriday.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getAbsences().getFriday()));
-        tblPresent.setItems(studentModel.getAllStudents());
+      colTotalAbsence.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getAbsences().getTotalAbsence()));
+        
+        tblSumAttendance.setItems(studentModel.getAllStudents());
     }
 
 
@@ -227,18 +233,8 @@ public class TeacherViewController implements Initializable {
         }
     }
 
-    @FXML
     private void btnTeacherLogin(ActionEvent event) {
-        try {
-
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/View/Login.fxml"));
-            Parent Login = loader.load();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(Login));
-            stage.show();
-        } catch (Exception e) {
-            System.out.println("Something went wrong");
-        }
+    
     }
     public void teacherButtons(){
 //        tblSumAttendance.setOnMouseClicked(MouseEvent e) {
@@ -253,19 +249,20 @@ public class TeacherViewController implements Initializable {
 
     @FXML
     private void populateTable(MouseEvent event) {
-    tblSumAttendance.getSelectionModel().clearSelection();
-    tblSumAttendance.refresh();
+//    tblSumAttendance.getSelectionModel().clearSelection();
+//    tblSumAttendance.refresh();
             Student s = tblSumAttendance.getSelectionModel().getSelectedItem();
            
 
             
-            colMonday.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Student, Integer>, ObservableValue<Integer>>() {
+      colMonday.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Student, Integer>, ObservableValue<Integer>>() {      
         @Override
         public ObservableValue<Integer> call(TableColumn.CellDataFeatures<Student, Integer> param) {
             throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         }
     });
-            colTuesday.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getAbsences().getTuesday()));
+          
+    colTuesday.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getAbsences().getTuesday()));
             colWednesday.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getAbsences().getWednesday()));
             colThursday.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getAbsences().getThursday()));
             colFriday.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getAbsences().getFriday()));
@@ -275,5 +272,19 @@ public class TeacherViewController implements Initializable {
             
 //        return null;
 //    });
+
+    @FXML
+    private void signOutBtn(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/View/MainView.fxml"));
+            Parent Main = loader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(Main));
+            
+            stage.show();
+        } catch (Exception e) {
+            System.out.println("Something went wrong");
+        }
+    }
     }
 
