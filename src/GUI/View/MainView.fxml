@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" fx:id="root" minWidth="-Infinity" prefHeight="603.0" prefWidth="272.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller.MainViewController">
+<AnchorPane id="AnchorPane" fx:id="root" minWidth="-Infinity" prefHeight="603.0" prefWidth="272.0" styleClass="darknes" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller.MainViewController">
    <children>
-      <Button alignment="CENTER" layoutX="76.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnTeacherLogin" prefHeight="31.0" prefWidth="123.0" text="Teacher login" AnchorPane.bottomAnchor="558.0" AnchorPane.leftAnchor="76.0" AnchorPane.rightAnchor="73.0" AnchorPane.topAnchor="14.0" />
-      <TableView fx:id="tblPresent" layoutX="31.0" layoutY="76.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="462.0" prefWidth="215.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="76.0">
+      <Button alignment="CENTER" layoutX="76.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnTeacherLogin" prefHeight="31.0" prefWidth="123.0" styleClass="color" text="Teacher login" AnchorPane.bottomAnchor="558.0" AnchorPane.leftAnchor="76.0" AnchorPane.rightAnchor="73.0" AnchorPane.topAnchor="14.0" />
+      <TableView fx:id="tblPresent" layoutX="31.0" layoutY="76.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="462.0" prefWidth="215.0" styleClass="color" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="76.0">
         <columns>
           <TableColumn fx:id="colPresent" prefWidth="98.0" text="Present" />
             <TableColumn fx:id="colClass" prefWidth="79.0" text="Class" />
@@ -19,6 +20,9 @@
              
          </columnResizePolicy>
       </TableView>
-      <Label alignment="CENTER" layoutX="96.0" layoutY="55.0" text="Attendance" />
+      <Label alignment="CENTER" layoutX="95.0" layoutY="55.0" prefHeight="21.0" prefWidth="82.0" styleClass="color" text="Attendance" />
    </children>
+      <stylesheets>
+       <URL value="@css/Style.css" />
+   </stylesheets>
 </AnchorPane>
