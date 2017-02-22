@@ -24,7 +24,6 @@
             <TableColumn fx:id="colTotalAbsence" prefWidth="116.0" text="Total absence" />
         </columns>
          <columnResizePolicy>
-             
          </columnResizePolicy>
       </TableView>
       <Button fx:id="btnSave" layoutY="714.0" mnemonicParsing="false" onAction="#handleSave" prefHeight="31.0" prefWidth="630.0" styleClass="color" text="Save" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="103.0" />
