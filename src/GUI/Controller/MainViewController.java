@@ -19,10 +19,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
@@ -44,6 +46,8 @@ public class MainViewController implements Initializable
     private TableColumn<Student, CheckBox> colAttendance;
 
     private StudentModel studentModel;
+    @FXML
+    private Button btnTeacher;
 
     public MainViewController() 
     {
@@ -107,12 +111,16 @@ public class MainViewController implements Initializable
     private void btnTeacherLogin(ActionEvent event) 
     {
         try {
-            ((Node)(event.getSource())).getScene().getWindow().hide();
+            
+            Stage mainViewStage = (Stage) btnTeacher.getScene().getWindow();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/View/Login.fxml"));
             Parent Login = loader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(Login));
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initOwner(mainViewStage);
             stage.show();
+
         } catch (Exception e) {
             System.out.println("Something went wrong");
         }

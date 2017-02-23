@@ -9,13 +9,9 @@
             <file>file:/D:/github/AttendanceAutomation/src/GUI/Controller/TeacherViewController.java</file>
             <file>file:/D:/github/AttendanceAutomation/src/GUI/Controller/LoginController.java</file>
             <file>file:/D:/github/AttendanceAutomation/src/BE/Student.java</file>
-            <file>file:/D:/github/AttendanceAutomation/src/GUI/View/TeacherView.fxml</file>
-            <file>file:/D:/github/AttendanceAutomation/src/BLL/StudentManager.java</file>
             <file>file:/D:/github/AttendanceAutomation/src/GUI/View/css/Style.css</file>
-            <file>file:/D:/github/AttendanceAutomation/src/GUI/View/MainView.fxml</file>
-            <file>file:/D:/github/AttendanceAutomation/src/GUI/View/Login.fxml</file>
             <file>file:/D:/github/AttendanceAutomation/src/BE/Absence.java</file>
-            <file>file:/D:/github/AttendanceAutomation/src/Main.java</file>
+            <file>file:/D:/github/AttendanceAutomation/src/BLL/StudentManager.java</file>
         </group>
     </open-files>
 </project-private>

@@ -215,12 +215,12 @@ public class TeacherViewController implements Initializable
     private void signOutBtn(ActionEvent event) {
         try {
             ((Node)(event.getSource())).getScene().getWindow().hide();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/View/MainView.fxml"));
-            Parent Main = loader.load();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(Main));
+//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/View/MainView.fxml"));
+//            Parent Main = loader.load();
+//            Stage stage = new Stage();
+//            stage.setScene(new Scene(Main));
             
-            stage.show();
+//            stage.show();
             
         } catch (Exception e) {
             System.out.println("Something went wrong");
