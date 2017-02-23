@@ -74,6 +74,7 @@ public class StudentModel {
         Student student = studentManager.createNewStudent(name, currentClass, absence);
         allStudents.add(student);
     }
+
     /**
      * Saves an arraylist of students into a file.
      * @param file
@@ -131,5 +132,9 @@ public class StudentModel {
         INSTANCE.addNewStudent("Stephan R", "SCO", new Absence(100,100,100,100,100));
         INSTANCE.addNewStudent("Stephan F", "SCO", new Absence(100,100,100,100,100));
         INSTANCE.addNewStudent("Thomas", "SCO", new Absence(100,100,100,100,100));
+    }
+
+    public void addNewStudent(String name, String currentClass, Object object, Object object0, Object object1, Object object2, Object object3) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

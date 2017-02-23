@@ -146,6 +146,7 @@ public class TeacherViewController implements Initializable
      * Takes user input from txtName and txtCurrentClass. Adds the input to the observable arraylist Student through studentModel.
      * @param event 
      */
+<<<<<<< HEAD
     @FXML
     private void handleAddAction(ActionEvent event) 
     {
@@ -160,6 +161,23 @@ public class TeacherViewController implements Initializable
         txtCurrentClass.clear();
         txtCurrentClass.requestFocus();
     }
+=======
+//    private void handleAddAction(ActionEvent event) 
+//    {
+//
+//       
+////        First I create a new Student:
+////        String name = txtName.getText().trim();
+////        String currentClass = txtCurrentClass.getText().trim();
+////        studentModel.addNewStudent(name, currentClass,null);
+//
+//        //I reset the GUI for adding new persons
+////        txtName.clear();
+////        txtName.requestFocus();
+////        txtCurrentClass.clear();
+////        txtCurrentClass.requestFocus();
+//    }
+>>>>>>> origin/master
 
     /**
      * Opens FileChooser to make it possible for teachers to save a file using a desired name.
@@ -222,6 +240,14 @@ public class TeacherViewController implements Initializable
         } catch (Exception e) {
             System.out.println("Something went wrong");
         }
+    }
+
+    @FXML
+    private void handleDeleteAction(ActionEvent event) 
+    {
+       Student selectedItem = tblPresent.getSelectionModel().getSelectedItem();
+       tblPresent.getItems().remove(selectedItem);
+       tblPresent.getSelectionModel().clearSelection();
     }
     }
 
