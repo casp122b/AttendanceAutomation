@@ -5,6 +5,7 @@
  */
 package GUI.Controller;
 
+import BE.Absence;
 import BE.Student;
 import GUI.Model.StudentModel;
 import java.io.File;
@@ -151,7 +152,7 @@ public class TeacherViewController implements Initializable
         //First I create a new Student:
         String name = txtName.getText().trim();
         String currentClass = txtCurrentClass.getText().trim();
-        studentModel.addNewStudent(name, currentClass, null);
+        studentModel.addNewStudent(name, currentClass, new Absence(0,0,0,0,0));
 
         //I reset the GUI for adding new persons
         txtName.clear();
