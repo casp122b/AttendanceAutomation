@@ -39,7 +39,7 @@ public class StudentManager {
      */
     public Student createNewStudent(String name, String currentClass, Absence absence)
     {
-        return new Student(name, currentClass, null);
+        return new Student(name, currentClass, absence);
     }
     /**
      * Saves an arraylist of the class object Student in a file.

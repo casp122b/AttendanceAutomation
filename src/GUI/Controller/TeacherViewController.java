@@ -77,12 +77,12 @@ public class TeacherViewController implements Initializable
     private Label lblStudent;
     @FXML
     private Label lblClass;
+    @FXML
+    private Button btnClose;
     
     boolean userLoggedIn = false;
     private StudentModel studentModel;
-    @FXML
-    private Button btnClose;
-
+    
     public TeacherViewController() 
     {
         studentModel = StudentModel.getInstance();
@@ -101,12 +101,12 @@ public class TeacherViewController implements Initializable
       //I define the mapping of the table's columns to the objects that are added to it.
       colPresent.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
       colClass.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getCurrentClass()));
-//      colMonday.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getAbsences().getMonday()));
-//      colTuesday.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getAbsences().getTuesday()));
-//      colWednesday.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getAbsences().getWednesday()));
-//      colThursday.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getAbsences().getThursday()));
-//      colFriday.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getAbsences().getFriday()));
-//      colTotalAbsence.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getAbsences().getTotalAbsence()));
+      colMonday.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getAbsences().getMonday()));
+      colTuesday.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getAbsences().getTuesday()));
+      colWednesday.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getAbsences().getWednesday()));
+      colThursday.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getAbsences().getThursday()));
+      colFriday.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getAbsences().getFriday()));
+      colTotalAbsence.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getAbsences().getTotalAbsence()));
       tblPresent.setItems(studentModel.getAllStudents()); 
       checkBoxMethod();
     }
