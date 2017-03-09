@@ -38,6 +38,7 @@ public class StudentDAO {
             while (rs.next())
             {
                 allStudents.add(getOneStudent(rs));
+              
             }
             return allStudents;
         }

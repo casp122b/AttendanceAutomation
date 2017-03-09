@@ -5,13 +5,13 @@
  */
 package BE;
 
-import java.io.Serializable;
+import java.util.Date;
 
 /**
  *
  * @author Casper
  */
-public class StudentCheckIn implements Serializable {
+public class StudentCheckIn{
     private int id;
     private String dateTime;
     private int studentId;

@@ -13,6 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -133,7 +134,7 @@ public class CheckInDAO
     private StudentCheckIn getOneCheckIn(ResultSet rs) throws SQLException
     {
         int id = rs.getInt("id");
-        String dateTime = rs.getString("dateTime");
+        String dateTime = rs.getString("studentCheckIn");
         int studentId = rs.getInt("studentId");
         
         return new StudentCheckIn(id, dateTime, studentId);

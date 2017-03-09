@@ -5,7 +5,6 @@
  */
 package GUI.Controller;
 
-import BE.Student;
 import BE.StudentCheckIn;
 import GUI.Model.CheckInModel;
 import GUI.Model.StudentModel;
@@ -24,6 +23,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.util.converter.DateTimeStringConverter;
 
 /**
  * FXML Controller class
