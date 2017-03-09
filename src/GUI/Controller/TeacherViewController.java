@@ -66,12 +66,15 @@ public class TeacherViewController implements Initializable {
 
     public TeacherViewController() throws IOException, SQLException {
         studentModel = StudentModel.getInstance();
+       
 
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         dataBind();
+        teacherTblClicked2();
+    
     }
 
     /**
@@ -150,7 +153,7 @@ public class TeacherViewController implements Initializable {
                     Student rowData = row.getItem();
                     try {
                         StudentModel.getInstance().setStudent(rowData);
-                        createInfoView();
+                        createInfoView(row);
                     } catch (IOException ex) {
                         Logger.getLogger(TeacherViewController.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (SQLException ex) {
@@ -162,11 +165,10 @@ public class TeacherViewController implements Initializable {
         });
     }
     
-    private void createInfoView()
+    private void createInfoView(TableRow row)
     {
         try {
-            
-            Stage mainViewStage = (Stage) root.getScene().getWindow();
+            Stage mainViewStage = (Stage) row.getScene().getWindow();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/View/StudentInfo.fxml"));
             Parent Login = loader.load();
             Stage stage = new Stage();

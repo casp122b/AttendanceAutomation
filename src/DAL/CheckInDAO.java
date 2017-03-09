@@ -19,12 +19,12 @@ import java.util.List;
  *
  * @author Casper
  */
-public class TimeStampDBManager
+public class CheckInDAO
 {
 
     private final ConnectionManager cm;
 
-    public TimeStampDBManager() throws IOException
+    public CheckInDAO() throws IOException
     {
         cm = new ConnectionManager();
     }
@@ -48,7 +48,7 @@ public class TimeStampDBManager
 
     public void update(StudentCheckIn ts) throws SQLException
     {
-        String sql = "UPDATE TimeStamp "
+        String sql = "UPDATE StudentCheckIn "
                 + "SET dateTime = ?, "
                 + "    studentId = ?, "
                 + "WHERE id = ?";
@@ -86,7 +86,7 @@ public class TimeStampDBManager
             ResultSet rs = st.executeQuery(sql);
             while (rs.next())
             {
-                allTimeStamps.add(getOneTimeStamp(rs));
+                allTimeStamps.add(getOneCheckIn(rs));
             }
             return allTimeStamps;
         }
@@ -103,7 +103,7 @@ public class TimeStampDBManager
             ResultSet rs = ps.executeQuery();
             if (rs.next())
             {
-                return getOneTimeStamp(rs);
+                return getOneCheckIn(rs);
             }
             else
             {
@@ -111,13 +111,47 @@ public class TimeStampDBManager
             }
         }
     }
+    
+    public List<StudentCheckIn> getByStudentId(int id) throws SQLException{
+        
+      List<StudentCheckIn> allTimeStamps = new ArrayList<>();
+      String sql = "SELECT * FROM StudentCheckIn WHERE studentId = ?";
+      try (Connection con = cm.getConnection())
+        {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next())
+            {
+                allTimeStamps.add(getOneCheckIn(rs));
+            }
+            return allTimeStamps;
+        }
+      
+    }
 
-    private StudentCheckIn getOneTimeStamp(ResultSet rs) throws SQLException
+    private StudentCheckIn getOneCheckIn(ResultSet rs) throws SQLException
     {
         int id = rs.getInt("id");
         String dateTime = rs.getString("dateTime");
         int studentId = rs.getInt("studentId");
         
         return new StudentCheckIn(id, dateTime, studentId);
+    }
+
+    public List<StudentCheckIn> getAllCheckIns() throws SQLException {
+        List<StudentCheckIn> allCheckIns = new ArrayList<>();
+
+        String sql = "SELECT * FROM StudentCheckIn";
+        try (Connection con = cm.getConnection())
+        {
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next())
+            {
+                allCheckIns.add(getOneCheckIn(rs));
+            }
+            return allCheckIns;
+        }
     }
 }

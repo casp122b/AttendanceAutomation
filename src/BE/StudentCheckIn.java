@@ -15,11 +15,17 @@ public class StudentCheckIn {
     private int studentId;
 
     public StudentCheckIn(int id, StudentCheckIn ts) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this(id, ts.getDateTime(), ts.getStudentId());
+    }
+    
+    public StudentCheckIn(String dateTime, int studentId){
+        this(-1, dateTime, studentId);
     }
 
     public StudentCheckIn(int id, String dateTime, int studentId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.id = id;
+        this.dateTime = dateTime;
+        this.studentId = studentId;
     }
 
     public int getId() {

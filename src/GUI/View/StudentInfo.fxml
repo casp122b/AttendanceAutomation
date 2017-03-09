@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller.StudentInfoController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller.StudentInfoController">
    <children>
-      <TableView layoutX="14.0" layoutY="14.0" prefHeight="200.0" prefWidth="240.0">
+      <TableView fx:id="tblStudentInfo" layoutX="14.0" layoutY="14.0" prefHeight="200.0" prefWidth="240.0">
         <columns>
           <TableColumn fx:id="colTimeStamp" prefWidth="75.0" text="TimeStamp" />
           <TableColumn fx:id="colAttendance" prefWidth="75.0" text="Attendance" />
