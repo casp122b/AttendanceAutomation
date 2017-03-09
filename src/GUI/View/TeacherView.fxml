@@ -8,33 +8,22 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" fx:id="root" prefHeight="804.0" prefWidth="733.0" styleClass="darknes" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller.TeacherViewController">
+<AnchorPane id="AnchorPane" fx:id="root" prefHeight="453.0" prefWidth="487.0" styleClass="darknes" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller.TeacherViewController">
    <children>
-      <Button fx:id="btnClose" layoutY="759.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#signOutBtn" prefHeight="31.0" prefWidth="630.0" styleClass="color" text="Sign out" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="103.0" />
-      <TableView fx:id="tblPresent" editable="true" layoutX="4.0" layoutY="39.0" prefHeight="543.0" prefWidth="735.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <Button fx:id="btnClose" layoutX="14.0" layoutY="408.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#signOutBtn" prefHeight="31.0" prefWidth="189.0" styleClass="color" text="Sign out" />
+      <TableView fx:id="tblPresent" editable="true" layoutX="205.0" layoutY="39.0" onMouseClicked="#TeacherTblClicked" prefHeight="400.0" prefWidth="269.0">
         <columns>
-          <TableColumn fx:id="colPresent" prefWidth="67.0" text="Present" />
-            <TableColumn fx:id="colClass" prefWidth="50.0" text="Class" />
-            <TableColumn fx:id="colAttendance" prefWidth="98.0" text="Attendance" />
-            <TableColumn fx:id="colMonday" prefWidth="75.0" text="Monday" />
-            <TableColumn fx:id="colTuesday" prefWidth="75.0" text="Tuesday" />
-            <TableColumn fx:id="colWednesday" prefWidth="98.0" text="Wednesday" />
-            <TableColumn fx:id="colThursday" prefWidth="83.0" text="Thursday" />
-            <TableColumn fx:id="colFriday" prefWidth="71.0" text="Friday" />
-            <TableColumn fx:id="colTotalAbsence" prefWidth="116.0" text="Total absence in %" />
+          <TableColumn fx:id="colPresent" prefWidth="112.0" text="Present" />
+            <TableColumn fx:id="colTotalAbsence" prefWidth="157.0" text="Total absence in %" />
         </columns>
          <columnResizePolicy>
          </columnResizePolicy>
       </TableView>
-      <Button fx:id="btnSave" layoutY="591.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleSave" prefHeight="31.0" prefWidth="630.0" styleClass="color" text="Save student table" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="103.0" />
-      <Button fx:id="btnDelete" layoutY="717.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleDeleteAction" prefHeight="31.0" prefWidth="630.0" styleClass="color" text="Delete student from table" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="103.0" />
-      <TextField fx:id="txtName" layoutX="633.0" layoutY="658.0" prefHeight="31.0" prefWidth="93.0" AnchorPane.rightAnchor="0.0" />
-      <TextField fx:id="txtCurrentClass" layoutX="633.0" layoutY="713.0" prefHeight="31.0" prefWidth="93.0" AnchorPane.rightAnchor="0.0" />
-      <Label fx:id="lblStudent" layoutX="632.0" layoutY="637.0" text="Student name" textFill="#f80000" AnchorPane.rightAnchor="0.0" />
-      <Label fx:id="lblClass" alignment="CENTER" contentDisplay="CENTER" layoutX="644.0" layoutY="695.0" prefHeight="10.0" prefWidth="85.0" text="Current class" textFill="#f50202" AnchorPane.rightAnchor="4.0" />
-      <Button fx:id="btnLoad" layoutY="632.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleLoad" prefHeight="31.0" prefWidth="630.0" styleClass="color" text="Load student table" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="103.0" />
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="457.0" layoutY="14.0" styleClass="color" text="Summerized attendance" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-      <Button fx:id="btnAdd" alignment="CENTER" contentDisplay="CENTER" layoutX="284.0" layoutY="674.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleAddAction" prefHeight="31.0" prefWidth="630.0" styleClass="color" text="Add student to table" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="103.0" />
+      <Button fx:id="btnDelete" layoutX="14.0" layoutY="77.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleDeleteAction" prefHeight="31.0" prefWidth="189.0" styleClass="color" text="Delete student from table" />
+      <TextField fx:id="txtName" layoutX="62.0" layoutY="137.0" prefHeight="31.0" prefWidth="93.0" />
+      <Label fx:id="lblStudent" layoutX="62.0" layoutY="116.0" text="Student name" textFill="#f80000" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="21.0" prefWidth="460.0" styleClass="color" text="Summerized attendance" />
+      <Button fx:id="btnAdd" alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="39.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleAddAction" prefHeight="31.0" prefWidth="189.0" styleClass="color" text="Add student to table" />
    </children>
    <stylesheets>
        <URL value="@css/Style.css" />

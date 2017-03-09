@@ -12,8 +12,7 @@
       <TableView fx:id="tblPresent" layoutX="31.0" layoutY="76.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="462.0" prefWidth="215.0" styleClass="color" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="76.0">
         <columns>
           <TableColumn fx:id="colPresent" prefWidth="98.0" text="Present" />
-            <TableColumn fx:id="colClass" prefWidth="79.0" text="Class" />
-            <TableColumn fx:id="colAttendance" minWidth="-Infinity" prefWidth="93.0" sortable="false" text="Attendance" />
+            <TableColumn fx:id="colTotalAbsence" minWidth="-Infinity" prefWidth="173.0" sortable="false" text="Total absence %" />
         </columns>
          <columnResizePolicy>
              

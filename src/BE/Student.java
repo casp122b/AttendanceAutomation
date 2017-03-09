@@ -6,44 +6,36 @@
 package BE;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  *
  * @author Jens, Patrick, Casper
  */
 public class Student implements Serializable {
+    private int id;
     private String name;
-    private String currentClass;
-    private Boolean attendance = false;
-    private Absence absences;
+    private int attendance = 0;
+    private ArrayList<TimeStamp> stamps;
 
     /**
      * Constructor for the Student class
-     * @param name
-     * @param currentClass
-     * @param absence 
+     * @param name 
+     * @param attendance 
      */
-    public Student (String name, String currentClass, Absence absence){
-        this.name = name;
-        this.currentClass = currentClass;
-        this.absences = absence;
+    public Student (String name, int attendance){
+        this(-1, name, attendance);
+    }
+
+    public Student(int id, Student s) {
+        this(id, s.getName(), s.getAttendance());
     }
     
-    /**
-     * Get the value of attendance
-     *
-     * @return the value of attendance
-     */
-    public Boolean isAttendance() {
-        return attendance;
-    }
-    /**
-     * Set the value of attendance
-     *
-     * @param attendance new value of attendance
-     */
-    public void setAttendance(Boolean attendance) {
+    public Student(int id, String name, int attendance){
+        this.id = id;
         this.attendance = attendance;
+        this.name = name;
+        this.stamps = new ArrayList<TimeStamp>();
     }
 
     /**
@@ -61,22 +53,6 @@ public class Student implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
-    
-    /**
-     * gets the currentClass
-     * @return 
-     */
-    public String getCurrentClass() {
-        return currentClass;
-    }
-
-    /**
-     * sets currentClass
-     * @param currentClass 
-     */
-    public void setCurrentClass(String currentClass) {
-        this.currentClass = currentClass;
-    }
 
     /**
      * returns name, currentClass and attendance as strings
@@ -84,13 +60,25 @@ public class Student implements Serializable {
      */
     @Override
     public String toString() {
-        return name + currentClass + attendance;
+        return name + attendance;
     }
 
-    /**
-     * @return the absences
-     */
-    public Absence getAbsences() {
-        return absences;
+    public int getAttendance() {
+        return attendance;
     }
+
+    public void setAttendance(int attendance) {
+        this.attendance = attendance;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
+    
+
 }
