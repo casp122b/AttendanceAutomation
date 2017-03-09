@@ -7,8 +7,12 @@ package GUI.Controller;
 
 import BE.Student;
 import GUI.Model.StudentModel;
+import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -55,7 +59,7 @@ public class TeacherViewController implements Initializable {
     private StudentModel studentModel;
     private Student tmpStudent;
 
-    public TeacherViewController() {
+    public TeacherViewController() throws IOException, SQLException {
         studentModel = StudentModel.getInstance();
 
     }
@@ -139,14 +143,20 @@ public class TeacherViewController implements Initializable {
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && (!row.isEmpty())) {
                     Student rowData = row.getItem();
-                    StudentModel.getInstance().setStudent(rowData);
+                    try {
+                        StudentModel.getInstance().setStudent(rowData);
+                    } catch (IOException ex) {
+                        Logger.getLogger(TeacherViewController.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(TeacherViewController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
             });
             return row;
         });
     }
     
-    private void setModel(Student s)
+    private void setModel(Student s) throws IOException, SQLException
     {
         StudentModel.getInstance().setStudent(tblPresent.getSelectionModel().getSelectedItem());
     }

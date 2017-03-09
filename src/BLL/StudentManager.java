@@ -7,6 +7,9 @@ package BLL;
 
 import BE.Student;
 import DAL.StudentDAO;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
 
 /**
  *
@@ -19,8 +22,9 @@ public class StudentManager {
     
     /**
      * Constructs StudentManager and creates a new StudentDAO object.
+     * @throws java.io.IOException
      */
-    public StudentManager()
+    public StudentManager() throws IOException
     {
         studentDAO = new StudentDAO();
     }
@@ -34,5 +38,9 @@ public class StudentManager {
     public Student createNewStudent(String name, int attendance)
     {
         return new Student(name, attendance);
+    }
+
+    public List<Student> getAllStudents() throws SQLException {
+        return studentDAO.getAllStudents();
     }
 }

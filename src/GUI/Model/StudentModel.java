@@ -7,6 +7,8 @@ package GUI.Model;
 
 import BE.Student;
 import BLL.StudentManager;
+import java.io.IOException;
+import java.sql.SQLException;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -53,7 +55,7 @@ public class StudentModel {
      *
      * @return
      */
-    public static synchronized StudentModel getInstance()
+    public static synchronized StudentModel getInstance() throws IOException, SQLException
     {
         if (INSTANCE == null)
         {
@@ -65,13 +67,15 @@ public class StudentModel {
     /**
      * Constructs a new StudentManager and creates an observable arraylist out  of the observable list Student.
      */
-    private StudentModel()
+    private StudentModel() throws IOException, SQLException
     {
         this.name = new SimpleStringProperty();
         
         
         studentManager = new StudentManager();
         allStudents = FXCollections.observableArrayList();
+        
+        allStudents.addAll(studentManager.getAllStudents());
     }
     
     /**
@@ -118,8 +122,4 @@ public class StudentModel {
 //        INSTANCE.addNewStudent("Stephan F", "SCO", new Absence(100,100,100,100,100));
 //        INSTANCE.addNewStudent("Thomas", "SCO", new Absence(100,100,100,100,100));
 //    }
-
-    public void addNewStudent(String name, String currentClass, Object object, Object object0, Object object1, Object object2, Object object3) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

@@ -6,12 +6,13 @@
 package DAL;
 
 import BE.Student;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,32 +20,102 @@ import java.util.List;
  * @author Jens, Patrick, Casper
  */
 public class StudentDAO {
-    /**
-     * Writes a list of students to the given file.
-     * @param allStudents
-     * @param file The file to save to.
-     * @throws IOException
-     */
-    public void saveStudentsToFile(List<Student> allStudents, File file) throws IOException
-    {
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file)))
+    
+    private final ConnectionManager cm;
+
+    public StudentDAO() throws IOException {
+        cm = new ConnectionManager();
+    }
+
+    public List<Student> getAllStudents() throws SQLException {
+        List<Student> allStudents = new ArrayList<>();
+
+        String sql = "SELECT * FROM Student";
+        try (Connection con = cm.getConnection())
         {
-            oos.writeObject(allStudents);
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next())
+            {
+                allStudents.add(getOneStudent(rs));
+            }
+            return allStudents;
+        }
+    }
+    
+    public Student add(Student s) throws SQLException
+    {
+        String sql = "INSERT INTO Student(name, attendance) VALUES(?, ?)";
+        try (Connection con = cm.getConnection())
+        {
+            PreparedStatement ps = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
+            ps.setString(1, s.getName());
+            ps.setInt(2, s.getAttendance());
+
+            ps.executeUpdate();
+            ResultSet generatedKey = ps.getGeneratedKeys();
+            generatedKey.next();
+            int id = generatedKey.getInt(1);
+            return new Student(id, s);
         }
     }
 
-    /**
-     * Reads a list of students from the given file.
-     * @param file
-     * @return
-     * @throws IOException
-     * @throws ClassNotFoundException 
-     */
-    public List<Student> loadStudentsFromFile(File file) throws IOException, ClassNotFoundException
+    public void update(Student s) throws SQLException
     {
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file)))
+        String sql = "UPDATE Student "
+                + "SET name = ?, "
+                + "    attendance = ?, "
+                + "WHERE id = ?";
+        try (Connection con = cm.getConnection())
         {
-            return (List<Student>) ois.readObject();
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, s.getName());
+            ps.setInt(2, s.getAttendance());
+            ps.setInt(3, s.getId());
+
+            ps.executeUpdate();
         }
     }
+
+    public void delete(Student s) throws SQLException
+    {
+        String sql = "DELETE FROM Student where id = ?";
+        try (Connection con = cm.getConnection())
+        {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, s.getId());
+
+            ps.executeUpdate();
+        }
+    }
+
+    public Student getById(int id) throws SQLException
+    {
+        String sql = "SELECT * FROM Student WHERE id = ?";
+        try (Connection con = cm.getConnection())
+        {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+
+            ResultSet rs = ps.executeQuery();
+            if (rs.next())
+            {
+                return getOneStudent(rs);
+            }
+            else
+            {
+                return null;
+            }
+        }
+    }
+
+    private Student getOneStudent(ResultSet rs) throws SQLException
+    {
+        int id = rs.getInt("id");
+        String name = rs.getString("name");
+        int attendance = rs.getInt("attendance");
+        
+        return new Student(id, name, attendance);
+    }
 }
+

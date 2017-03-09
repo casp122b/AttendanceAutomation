@@ -7,7 +7,9 @@ package GUI.Controller;
  */
 import BE.Student;
 import GUI.Model.StudentModel;
+import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.ActionEvent;
@@ -38,11 +40,11 @@ public class MainViewController implements Initializable
     @FXML
     private Button btnTeacher;
     @FXML
-    private TableColumn<?, ?> colTotalAbsence;
+    private TableColumn<Student, Integer> colTotalAbsence;
     
     private StudentModel studentModel;
 
-    public MainViewController() 
+    public MainViewController() throws IOException, SQLException 
     {
         studentModel = StudentModel.getInstance();
     }
