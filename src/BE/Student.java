@@ -6,7 +6,6 @@
 package BE;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 /**
  *
@@ -15,27 +14,22 @@ import java.util.ArrayList;
 public class Student implements Serializable {
     private int id;
     private String name;
-    private int attendance = 0;
-    private ArrayList<StudentCheckIn> stamps;
 
     /**
      * Constructor for the Student class
      * @param name 
-     * @param attendance 
      */
-    public Student (String name, int attendance){
-        this(-1, name, attendance);
+    public Student (String name){
+        this(-1, name);
     }
 
     public Student(int id, Student s) {
-        this(id, s.getName(), s.getAttendance());
+        this(id, s.getName());
     }
     
-    public Student(int id, String name, int attendance){
+    public Student(int id, String name){
         this.id = id;
-        this.attendance = attendance;
         this.name = name;
-        this.stamps = new ArrayList<StudentCheckIn>();
     }
 
     /**
@@ -60,25 +54,10 @@ public class Student implements Serializable {
      */
     @Override
     public String toString() {
-        return name + attendance;
-    }
-
-    public int getAttendance() {
-        return attendance;
-    }
-
-    public void setAttendance(int attendance) {
-        this.attendance = attendance;
+        return name;
     }
 
     public int getId() {
         return id;
     }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-    
-    
-
 }

@@ -37,7 +37,7 @@ public class StudentManager {
      */
     public Student createNewStudent(String name, int attendance)
     {
-        return new Student(name, attendance);
+        return new Student(name);
     }
 
     public List<Student> getAllStudents() throws SQLException {

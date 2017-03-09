@@ -6,6 +6,7 @@
 package GUI.Model;
 
 import BE.StudentCheckIn;
+import BLL.CheckInManager;
 import java.io.IOException;
 import java.sql.SQLException;
 import javafx.collections.FXCollections;
@@ -19,6 +20,8 @@ public class CheckInModel {
     
     private static CheckInModel INSTANCE;
     private ObservableList<StudentCheckIn> studentCheckIn;
+    
+    private final CheckInManager checkInMgr;
 
     
     
@@ -27,7 +30,7 @@ public class CheckInModel {
      */
     private CheckInModel()
     {
-        studentCheckIn = FXCollections.observableArrayList();
+        checkInMgr = new CheckInManager();
     }
     
     /**
@@ -50,5 +53,11 @@ public class CheckInModel {
 
     public void setStudentCheckIn(ObservableList<StudentCheckIn> studentCheckIn) {
         this.studentCheckIn = studentCheckIn;
+    }
+    
+    public void SetCheckInListById(int id) throws SQLException{
+                
+        studentCheckIn = FXCollections.observableArrayList();
+        studentCheckIn.addAll(checkInMgr.getAllCheckInsById(id));
     }
 }

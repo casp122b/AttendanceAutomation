@@ -31,7 +31,7 @@ public class CheckInDAO
 
     public StudentCheckIn add(StudentCheckIn ts) throws SQLException
     {
-        String sql = "INSERT INTO TimeStamp(dateTime, studentId) VALUES(?, ?)";
+        String sql = "INSERT INTO StudentCheckIn(dateTime, studentId) VALUES(?, ?)";
         try (Connection con = cm.getConnection())
         {
             PreparedStatement ps = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
@@ -65,7 +65,7 @@ public class CheckInDAO
 
     public void delete(StudentCheckIn ts) throws SQLException
     {
-        String sql = "DELETE FROM TimeStamp where id = ?";
+        String sql = "DELETE FROM StudentCheckIn where id = ?";
         try (Connection con = cm.getConnection())
         {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -79,7 +79,7 @@ public class CheckInDAO
     {
         List<StudentCheckIn> allTimeStamps = new ArrayList<>();
 
-        String sql = "SELECT * FROM TimeStamp";
+        String sql = "SELECT * FROM StudentCheckIn";
         try (Connection con = cm.getConnection())
         {
             Statement st = con.createStatement();
@@ -94,7 +94,7 @@ public class CheckInDAO
 
     public StudentCheckIn getById(int id) throws SQLException
     {
-        String sql = "SELECT * FROM TimeStamp WHERE id = ?";
+        String sql = "SELECT * FROM StudentCheckIn WHERE id = ?";
         try (Connection con = cm.getConnection())
         {
             PreparedStatement ps = con.prepareStatement(sql);

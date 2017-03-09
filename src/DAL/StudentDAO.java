@@ -45,12 +45,11 @@ public class StudentDAO {
     
     public Student add(Student s) throws SQLException
     {
-        String sql = "INSERT INTO Student(name, attendance) VALUES(?, ?)";
+        String sql = "INSERT INTO Student(name) VALUES(?)";
         try (Connection con = cm.getConnection())
         {
             PreparedStatement ps = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
             ps.setString(1, s.getName());
-            ps.setInt(2, s.getAttendance());
 
             ps.executeUpdate();
             ResultSet generatedKey = ps.getGeneratedKeys();
@@ -64,13 +63,11 @@ public class StudentDAO {
     {
         String sql = "UPDATE Student "
                 + "SET name = ?, "
-                + "    attendance = ?, "
                 + "WHERE id = ?";
         try (Connection con = cm.getConnection())
         {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, s.getName());
-            ps.setInt(2, s.getAttendance());
             ps.setInt(3, s.getId());
 
             ps.executeUpdate();
@@ -113,9 +110,8 @@ public class StudentDAO {
     {
         int id = rs.getInt("id");
         String name = rs.getString("name");
-        int attendance = rs.getInt("attendance");
         
-        return new Student(id, name, attendance);
+        return new Student(id, name);
     }
 }
 

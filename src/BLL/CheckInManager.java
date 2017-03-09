@@ -16,8 +16,10 @@ import java.util.List;
  */
 public class CheckInManager {
     
+    
     private CheckInDAO checkInDAO;
-    public List<StudentCheckIn> getAllStudents() throws SQLException {
-        return checkInDAO.getAllCheckIns();
+    
+    public List<StudentCheckIn> getAllCheckInsById(int id) throws SQLException {
+        return checkInDAO.getByStudentId(id);
     }
 }

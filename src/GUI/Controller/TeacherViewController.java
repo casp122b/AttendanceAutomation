@@ -6,6 +6,7 @@
 package GUI.Controller;
 
 import BE.Student;
+import GUI.Model.CheckInModel;
 import GUI.Model.StudentModel;
 import java.io.IOException;
 import java.net.URL;
@@ -63,10 +64,11 @@ public class TeacherViewController implements Initializable {
     boolean userLoggedIn = false;
     private StudentModel studentModel;
     private Student tmpStudent;
+    private CheckInModel checkInModel;
 
     public TeacherViewController() throws IOException, SQLException {
         studentModel = StudentModel.getInstance();
-       
+        checkInModel = CheckInModel.getInstance();
 
     }
 
@@ -74,7 +76,7 @@ public class TeacherViewController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         dataBind();
         teacherTblClicked2();
-    
+
     }
 
     /**
@@ -144,7 +146,6 @@ public class TeacherViewController implements Initializable {
 //            }
 //        });
 //    }
-
     private void teacherTblClicked2() {
         tblPresent.setRowFactory(tv -> {
             TableRow<Student> row = new TableRow<>();
@@ -152,21 +153,19 @@ public class TeacherViewController implements Initializable {
                 if (event.getClickCount() == 2 && (!row.isEmpty())) {
                     Student rowData = row.getItem();
                     try {
-                        StudentModel.getInstance().setStudent(rowData);
+                        checkInModel.SetCheckInListById(rowData.getId());
                         createInfoView(row);
-                    } catch (IOException ex) {
-                        Logger.getLogger(TeacherViewController.class.getName()).log(Level.SEVERE, null, ex);
+
                     } catch (SQLException ex) {
-                        
+                        Logger.getLogger(TeacherViewController.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
             });
             return row;
         });
     }
-    
-    private void createInfoView(TableRow row)
-    {
+
+    private void createInfoView(TableRow row) {
         try {
             Stage mainViewStage = (Stage) row.getScene().getWindow();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/View/StudentInfo.fxml"));
