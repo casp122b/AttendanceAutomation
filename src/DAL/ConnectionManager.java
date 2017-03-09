@@ -18,7 +18,7 @@ import java.util.Properties;
  */
 public class ConnectionManager
 {
-    private static final String CONFIG_FILE_NAME = "CompanyDB.cfg";
+    private static final String CONFIG_FILE_NAME = "AttendanceAutomation.cfg";
     private final SQLServerDataSource ds;
     
     public ConnectionManager() throws IOException
