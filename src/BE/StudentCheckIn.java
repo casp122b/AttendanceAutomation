@@ -9,16 +9,16 @@ package BE;
  *
  * @author Casper
  */
-public class TimeStamp {
+public class StudentCheckIn {
     private int id;
     private String dateTime;
     private int studentId;
 
-    public TimeStamp(int id, TimeStamp ts) {
+    public StudentCheckIn(int id, StudentCheckIn ts) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public TimeStamp(int id, String dateTime, int studentId) {
+    public StudentCheckIn(int id, String dateTime, int studentId) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

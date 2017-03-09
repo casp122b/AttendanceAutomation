@@ -5,7 +5,7 @@
  */
 package DAL;
 
-import BE.TimeStamp;
+import BE.StudentCheckIn;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -29,7 +29,7 @@ public class TimeStampDBManager
         cm = new ConnectionManager();
     }
 
-    public TimeStamp add(TimeStamp ts) throws SQLException
+    public StudentCheckIn add(StudentCheckIn ts) throws SQLException
     {
         String sql = "INSERT INTO TimeStamp(dateTime, studentId) VALUES(?, ?)";
         try (Connection con = cm.getConnection())
@@ -42,11 +42,11 @@ public class TimeStampDBManager
             ResultSet generatedKey = ps.getGeneratedKeys();
             generatedKey.next();
             int id = generatedKey.getInt(1);
-            return new TimeStamp(id, ts);
+            return new StudentCheckIn(id, ts);
         }
     }
 
-    public void update(TimeStamp ts) throws SQLException
+    public void update(StudentCheckIn ts) throws SQLException
     {
         String sql = "UPDATE TimeStamp "
                 + "SET dateTime = ?, "
@@ -63,7 +63,7 @@ public class TimeStampDBManager
         }
     }
 
-    public void delete(TimeStamp ts) throws SQLException
+    public void delete(StudentCheckIn ts) throws SQLException
     {
         String sql = "DELETE FROM TimeStamp where id = ?";
         try (Connection con = cm.getConnection())
@@ -75,9 +75,9 @@ public class TimeStampDBManager
         }
     }
 
-    public List<TimeStamp> getAll() throws SQLException
+    public List<StudentCheckIn> getAll() throws SQLException
     {
-        List<TimeStamp> allTimeStamps = new ArrayList<>();
+        List<StudentCheckIn> allTimeStamps = new ArrayList<>();
 
         String sql = "SELECT * FROM TimeStamp";
         try (Connection con = cm.getConnection())
@@ -92,7 +92,7 @@ public class TimeStampDBManager
         }
     }
 
-    public TimeStamp getById(int id) throws SQLException
+    public StudentCheckIn getById(int id) throws SQLException
     {
         String sql = "SELECT * FROM TimeStamp WHERE id = ?";
         try (Connection con = cm.getConnection())
@@ -112,12 +112,12 @@ public class TimeStampDBManager
         }
     }
 
-    private TimeStamp getOneTimeStamp(ResultSet rs) throws SQLException
+    private StudentCheckIn getOneTimeStamp(ResultSet rs) throws SQLException
     {
         int id = rs.getInt("id");
         String dateTime = rs.getString("dateTime");
         int studentId = rs.getInt("studentId");
         
-        return new TimeStamp(id, dateTime, studentId);
+        return new StudentCheckIn(id, dateTime, studentId);
     }
 }

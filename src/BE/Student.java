@@ -16,7 +16,7 @@ public class Student implements Serializable {
     private int id;
     private String name;
     private int attendance = 0;
-    private ArrayList<TimeStamp> stamps;
+    private ArrayList<StudentCheckIn> stamps;
 
     /**
      * Constructor for the Student class
@@ -35,7 +35,7 @@ public class Student implements Serializable {
         this.id = id;
         this.attendance = attendance;
         this.name = name;
-        this.stamps = new ArrayList<TimeStamp>();
+        this.stamps = new ArrayList<StudentCheckIn>();
     }
 
     /**
