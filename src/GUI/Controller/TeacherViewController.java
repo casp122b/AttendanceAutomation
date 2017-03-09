@@ -17,8 +17,11 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -28,6 +31,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -122,20 +127,20 @@ public class TeacherViewController implements Initializable {
         tblPresent.getSelectionModel().clearSelection();
     }
 
-    private void teacherTblClicked() {
-
-        tblPresent.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
-                    if (mouseEvent.getClickCount() == 2) {
-
-                    }
-                }
-
-            }
-        });
-    }
+//    private void teacherTblClicked() {
+//
+//        tblPresent.setOnMouseClicked(new EventHandler<MouseEvent>() {
+//            @Override
+//            public void handle(MouseEvent mouseEvent) {
+//                if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
+//                    if (mouseEvent.getClickCount() == 2) {
+//
+//                    }
+//                }
+//
+//            }
+//        });
+//    }
 
     private void teacherTblClicked2() {
         tblPresent.setRowFactory(tv -> {
@@ -145,10 +150,11 @@ public class TeacherViewController implements Initializable {
                     Student rowData = row.getItem();
                     try {
                         StudentModel.getInstance().setStudent(rowData);
+                        createInfoView();
                     } catch (IOException ex) {
                         Logger.getLogger(TeacherViewController.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (SQLException ex) {
-                        Logger.getLogger(TeacherViewController.class.getName()).log(Level.SEVERE, null, ex);
+                        
                     }
                 }
             });
@@ -156,9 +162,24 @@ public class TeacherViewController implements Initializable {
         });
     }
     
-    private void setModel(Student s) throws IOException, SQLException
+    private void createInfoView()
     {
-        StudentModel.getInstance().setStudent(tblPresent.getSelectionModel().getSelectedItem());
+        try {
+            
+            Stage mainViewStage = (Stage) root.getScene().getWindow();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/View/StudentInfo.fxml"));
+            Parent Login = loader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(Login));
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initOwner(mainViewStage);
+            stage.show();
+
+        } catch (Exception e) {
+            System.out.println("Something went wrong");
+        }
+
+        //StudentModel.getInstance().setStudent(tblPresent.getSelectionModel().getSelectedItem());
     }
 
 }

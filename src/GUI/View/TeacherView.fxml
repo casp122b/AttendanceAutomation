@@ -11,7 +11,7 @@
 <AnchorPane id="AnchorPane" fx:id="root" prefHeight="453.0" prefWidth="487.0" styleClass="darknes" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller.TeacherViewController">
    <children>
       <Button fx:id="btnClose" layoutX="14.0" layoutY="408.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#signOutBtn" prefHeight="31.0" prefWidth="189.0" styleClass="color" text="Sign out" />
-      <TableView fx:id="tblPresent" editable="true" layoutX="205.0" layoutY="39.0" onMouseClicked="#TeacherTblClicked" prefHeight="400.0" prefWidth="269.0">
+      <TableView fx:id="tblPresent" editable="true" layoutX="205.0" layoutY="39.0" prefHeight="400.0" prefWidth="269.0">
         <columns>
           <TableColumn fx:id="colPresent" prefWidth="112.0" text="Present" />
             <TableColumn fx:id="colTotalAbsence" prefWidth="157.0" text="Total absence in %" />
