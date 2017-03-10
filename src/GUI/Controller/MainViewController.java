@@ -63,7 +63,7 @@ public class MainViewController implements Initializable
         dataBind();
         teacherTblClicked2();
 //        studentModel.prefixedStudentList();
-colTotalAbsence.setVisible(false);
+
     }
     /**
      * Sets the value of the instance variables name and currentClass from the

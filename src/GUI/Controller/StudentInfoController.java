@@ -68,9 +68,7 @@ public class StudentInfoController implements Initializable {
             Logger.getLogger(StudentInfoController.class.getName()).log(Level.SEVERE, null, ex);
         }
         DataBind();
-     btnDidAttend.setVisible(false);
-     btnDidNotAttend.setVisible(false);
-     colAttendance.setVisible(false);
+     
     } 
 
     private void DataBind() {
