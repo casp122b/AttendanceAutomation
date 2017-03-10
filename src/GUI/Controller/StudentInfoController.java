@@ -33,7 +33,7 @@ import javafx.util.converter.DateTimeStringConverter;
 public class StudentInfoController implements Initializable {
 
     @FXML
-    private TableColumn<StudentCheckIn, String> colTimeStamp;
+    private TableColumn<StudentCheckIn, String > colTimeStamp;
     @FXML
     private TableColumn<StudentCheckIn, Integer> colAttendance;
     @FXML
@@ -68,7 +68,9 @@ public class StudentInfoController implements Initializable {
             Logger.getLogger(StudentInfoController.class.getName()).log(Level.SEVERE, null, ex);
         }
         DataBind();
-        
+     btnDidAttend.setVisible(false);
+     btnDidNotAttend.setVisible(false);
+     colAttendance.setVisible(false);
     } 
 
     private void DataBind() {

@@ -6,11 +6,14 @@ package GUI.Controller;
  * and open the template in the editor.
  */
 import BE.Student;
+import GUI.Model.CheckInModel;
 import GUI.Model.StudentModel;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,6 +23,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
@@ -43,17 +47,23 @@ public class MainViewController implements Initializable
     private TableColumn<Student, Integer> colTotalAbsence;
     
     private StudentModel studentModel;
+    
+    private CheckInModel checkInModel;
 
     public MainViewController() throws IOException, SQLException 
     {
         studentModel = StudentModel.getInstance();
+         
+        checkInModel = CheckInModel.getInstance();
     }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
         dataBind();
+        teacherTblClicked2();
 //        studentModel.prefixedStudentList();
+colTotalAbsence.setVisible(false);
     }
     /**
      * Sets the value of the instance variables name and currentClass from the
@@ -93,4 +103,38 @@ public class MainViewController implements Initializable
             System.out.println("Something went wrong");
         }
     }
+       private void teacherTblClicked2() {
+        tblPresent.setRowFactory(tv -> {
+            TableRow<Student> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && (!row.isEmpty())) {
+                    Student rowData = row.getItem();
+                    try {
+                        checkInModel.SetCheckInListById(rowData.getId());
+                        createInfoView(row);
+
+                    } catch (SQLException ex) {
+                        Logger.getLogger(TeacherViewController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            });
+            return row;
+        });
+    }
+
+    private void createInfoView(TableRow row) {
+        try {
+            Stage mainViewStage = (Stage) row.getScene().getWindow();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/View/StudentInfo.fxml"));
+            Parent Login = loader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(Login));
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initOwner(mainViewStage);
+            stage.show();
+
+        } catch (Exception e) {
+            System.out.println("Something went wrong");
+        }
+}
 }

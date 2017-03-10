@@ -28,7 +28,7 @@ public class CheckInModel {
     /**
      * Constructs a new StudentManager and creates an observable arraylist out  of the observable list Student.
      */
-    private CheckInModel()
+    private CheckInModel() throws IOException
     {
         checkInMgr = new CheckInManager();
     }
