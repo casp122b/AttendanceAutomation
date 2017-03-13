@@ -38,7 +38,7 @@ public class CheckInDAO
             PreparedStatement ps = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
             ps.setString(1, ts.getDateTime());
             ps.setInt(2, ts.getStudentId());
-            ps.setBoolean(3, ts.getIsAttendance());
+            ps.setString(3, ts.getIsAttendance());
 
             ps.executeUpdate();
             ResultSet generatedKey = ps.getGeneratedKeys();
@@ -138,7 +138,7 @@ public class CheckInDAO
         int id = rs.getInt("id");
         String dateTime = rs.getString("studentCheckIn");
         int studentId = rs.getInt("studentId");
-        boolean isAttendance = rs.getBoolean("isAttendance");
+        String isAttendance = rs.getString("isAttendance");
         
         return new StudentCheckIn(id, dateTime, studentId, isAttendance);
     }
