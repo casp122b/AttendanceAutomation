@@ -15,8 +15,10 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -35,7 +37,7 @@ public class StudentInfoController implements Initializable {
     @FXML
     private TableColumn<StudentCheckIn, String > colTimeStamp;
     @FXML
-    private TableColumn<StudentCheckIn, Integer> colAttendance;
+    private TableColumn<StudentCheckIn, String> colAttendance;
     @FXML
     private Button btnDidAttend;
     @FXML
@@ -48,6 +50,8 @@ public class StudentInfoController implements Initializable {
     private TableView<StudentCheckIn> tblStudentInfo;
     
     private StudentModel studentModel;
+    
+    private SimpleStringProperty attendString;
 
     public StudentInfoController() throws IOException, SQLException {
         studentModel = StudentModel.getInstance();
@@ -73,7 +77,21 @@ public class StudentInfoController implements Initializable {
 
     private void DataBind() {
         colTimeStamp.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getDateTime()));
+        if(checkIn.get(0).getIsAttendance()){
+            attendString = new SimpleStringProperty ("Attended");
+        
+                
+        }else{
+            attendString = new SimpleStringProperty("did not attend");
+        }
+               
         tblStudentInfo.setItems(checkIn);
+          colAttendance.getColumns().get(0);
+    }
+
+    @FXML
+    private void handleAttendance(ActionEvent event) {
+    
     }
     
 }

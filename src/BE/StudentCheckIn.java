@@ -15,19 +15,29 @@ public class StudentCheckIn{
     private int id;
     private String dateTime;
     private int studentId;
+    private boolean isAttendance;
+
+    public boolean getIsAttendance() {
+        return isAttendance;
+    }
+
+    public void setIsAttendance(boolean isAttendance) {
+        this.isAttendance = isAttendance;
+    }
 
     public StudentCheckIn(int id, StudentCheckIn ts) {
-        this(id, ts.getDateTime(), ts.getStudentId());
+        this(id, ts.getDateTime(), ts.getStudentId(), ts.isAttendance);
     }
     
-    public StudentCheckIn(String dateTime, int studentId){
-        this(-1, dateTime, studentId);
+    public StudentCheckIn(String dateTime, int studentId, boolean isAttendance){
+        this(-1, dateTime, studentId, isAttendance);
     }
 
-    public StudentCheckIn(int id, String dateTime, int studentId) {
+    public StudentCheckIn(int id, String dateTime, int studentId, boolean isAttendance) {
         this.id = id;
         this.dateTime = dateTime;
         this.studentId = studentId;
+        this.isAttendance = isAttendance;
     }
 
     public int getId() {

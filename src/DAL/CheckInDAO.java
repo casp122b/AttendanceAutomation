@@ -32,18 +32,20 @@ public class CheckInDAO
 
     public StudentCheckIn add(StudentCheckIn ts) throws SQLException
     {
-        String sql = "INSERT INTO StudentCheckIn(dateTime, studentId) VALUES(?, ?)";
+        String sql = "INSERT INTO StudentCheckIn(studentCheckIn, studentId, isAttendance) VALUES(?, ?, ?)";
         try (Connection con = cm.getConnection())
         {
             PreparedStatement ps = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
             ps.setString(1, ts.getDateTime());
             ps.setInt(2, ts.getStudentId());
+            ps.setBoolean(3, ts.getIsAttendance());
 
             ps.executeUpdate();
             ResultSet generatedKey = ps.getGeneratedKeys();
             generatedKey.next();
             int id = generatedKey.getInt(1);
             return new StudentCheckIn(id, ts);
+            
         }
     }
 
@@ -136,8 +138,9 @@ public class CheckInDAO
         int id = rs.getInt("id");
         String dateTime = rs.getString("studentCheckIn");
         int studentId = rs.getInt("studentId");
+        boolean isAttendance = rs.getBoolean("isAttendance");
         
-        return new StudentCheckIn(id, dateTime, studentId);
+        return new StudentCheckIn(id, dateTime, studentId, isAttendance);
     }
 
     public List<StudentCheckIn> getAllCheckIns() throws SQLException {
