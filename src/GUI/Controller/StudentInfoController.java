@@ -15,8 +15,6 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -26,8 +24,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.util.Callback;
-import javafx.util.converter.DateTimeStringConverter;
 
 /**
  * FXML Controller class
@@ -53,6 +49,8 @@ public class StudentInfoController implements Initializable {
     private TableView<StudentCheckIn> tblStudentInfo;
     
     private StudentModel studentModel;
+    
+    private StudentCheckIn studCheckIn;
 
     public StudentInfoController() throws IOException, SQLException {
         studentModel = StudentModel.getInstance();
@@ -87,13 +85,16 @@ public class StudentInfoController implements Initializable {
     @FXML
     private void handleAttendance(ActionEvent event) {
       
-        try {
-            checkIn.addAll(CheckInModel.getInstance().getStudentCheckIn());
-        } catch (IOException | SQLException ex) {
-            Logger.getLogger(StudentInfoController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        tblStudentInfo.setItems(checkIn);
-        colAttendance.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getIsAttendance()));
+        StudentCheckIn studCheckIn = new StudentCheckIn("røv", 0, "true");    
+        studCheckIn.setDateTime(datePicker.getValue().toString());
+            checkIn.add(studCheckIn);
+//        try {
+//            checkIn.addAll(CheckInModel.getInstance().getStudentCheckIn());
+//        } catch (IOException | SQLException ex) {
+//            Logger.getLogger(StudentInfoController.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        tblStudentInfo.setItems(checkIn);
+//        colAttendance.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getIsAttendance()));
        
     }
     
