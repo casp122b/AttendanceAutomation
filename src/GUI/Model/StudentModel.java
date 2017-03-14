@@ -77,39 +77,4 @@ public class StudentModel {
         studentManager.delete(s);
         allStudents.remove(s);
     }
-    
-    /**
-     * Predefined data of all students in EASV2016A
-     */
-//    public void prefixedStudentList()
-//    {
-//        INSTANCE.addNewStudent("Adam", "SCO", new Absence(100,50,0,50,100));
-//        INSTANCE.addNewStudent("Bo", "SCO", new Absence(50,0,0,0,0));
-//        INSTANCE.addNewStudent("Casper", "SCO", new Absence(0,100,50,0,0));
-//        INSTANCE.addNewStudent("Casper R", "SCO", new Absence(0,50,50,50,0));
-//        INSTANCE.addNewStudent("Emil", "SCO", new Absence(100,50,0,0,0));
-//        INSTANCE.addNewStudent("Frederik", "SCO", new Absence(0,0,0,0,0));
-//        INSTANCE.addNewStudent("Jacob", "SCO", new Absence(0,0,0,0,0));
-//        INSTANCE.addNewStudent("Jens", "SCO", new Absence(0,0,0,0,0));
-//        INSTANCE.addNewStudent("Jesper", "SCO", new Absence(0,0,0,0,0));
-//        INSTANCE.addNewStudent("Joan", "SCO", new Absence(0,0,0,0,0));
-//        INSTANCE.addNewStudent("Kenneth", "SCO", new Absence(0,0,0,0,0));
-//        INSTANCE.addNewStudent("Kenni", "SCO", new Absence(0,0,0,0,0));
-//        INSTANCE.addNewStudent("Lucas", "SCO", new Absence(0,0,0,0,0));
-//        INSTANCE.addNewStudent("Mads", "SCO", new Absence(0,0,0,0,0));
-//        INSTANCE.addNewStudent("Mathias P", "SCO", new Absence(0,0,0,0,0));
-//        INSTANCE.addNewStudent("Mathias R", "SCO", new Absence(0,0,0,0,0));
-//        INSTANCE.addNewStudent("Michael", "SCO", new Absence(0,0,0,0,0));
-//        INSTANCE.addNewStudent("Mickaei", "SCO", new Absence(0,0,0,0,0));
-//        INSTANCE.addNewStudent("Miklas", "SCO", new Absence(0,0,0,0,0));
-//        INSTANCE.addNewStudent("Nicolai", "SCO", new Absence(0,0,0,0,0));
-//        INSTANCE.addNewStudent("Patrick", "SCO",  new Absence(0,0,0,0,0));
-//        INSTANCE.addNewStudent("Rasmus", "SCO", new Absence(0,0,0,0,0));
-//        INSTANCE.addNewStudent("Simon B", "SCO", new Absence(0,0,0,0,0));
-//        INSTANCE.addNewStudent("Simon H", "SCO", new Absence(0,0,0,0,0));
-//        INSTANCE.addNewStudent("Stefan O", "SCO", new Absence(100,100,100,100,100));
-//        INSTANCE.addNewStudent("Stephan R", "SCO", new Absence(100,100,100,100,100));
-//        INSTANCE.addNewStudent("Stephan F", "SCO", new Absence(100,100,100,100,100));
-//        INSTANCE.addNewStudent("Thomas", "SCO", new Absence(100,100,100,100,100));
-//    }
 }

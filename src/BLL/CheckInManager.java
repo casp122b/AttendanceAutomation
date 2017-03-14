@@ -29,4 +29,8 @@ public class CheckInManager {
     public List<StudentCheckIn> getAllCheckInsById(int id) throws SQLException {
         return checkInDAO.getByStudentId(id);
     }
+
+    public StudentCheckIn add(StudentCheckIn sCheckIn) throws SQLException {
+        return checkInDAO.add(sCheckIn);
+    }
 }

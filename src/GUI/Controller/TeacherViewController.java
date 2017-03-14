@@ -16,7 +16,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -29,8 +28,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -132,23 +129,8 @@ public class TeacherViewController implements Initializable {
         tblPresent.getItems().remove(selectedItem);
         
         tblPresent.getSelectionModel().clearSelection();
-        
     }
 
-//    private void teacherTblClicked() {
-//
-//        tblPresent.setOnMouseClicked(new EventHandler<MouseEvent>() {
-//            @Override
-//            public void handle(MouseEvent mouseEvent) {
-//                if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
-//                    if (mouseEvent.getClickCount() == 2) {
-//
-//                    }
-//                }
-//
-//            }
-//        });
-//    }
     private void teacherTblClicked2() {
         tblPresent.setRowFactory(tv -> {
             TableRow<Student> row = new TableRow<>();
@@ -182,8 +164,5 @@ public class TeacherViewController implements Initializable {
         } catch (Exception e) {
             System.out.println("Something went wrong");
         }
-
-        //StudentModel.getInstance().setStudent(tblPresent.getSelectionModel().getSelectedItem());
     }
-
 }

@@ -39,6 +39,11 @@ public class StudentCheckIn{
         this.studentId = studentId;
         this.isAttendance = isAttendance;
     }
+    
+    public StudentCheckIn(String dateTime, String isAttendance)
+    {
+        this(-1, dateTime, -1, isAttendance);
+    }
 
     public int getId() {
         return id;

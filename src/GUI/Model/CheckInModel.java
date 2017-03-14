@@ -22,6 +22,7 @@ public class CheckInModel {
     private ObservableList<StudentCheckIn> studentCheckIn;
     
     private final CheckInManager checkInMgr;
+    private StudentCheckIn studentId;
 
     
     
@@ -59,5 +60,10 @@ public class CheckInModel {
                 
         studentCheckIn = FXCollections.observableArrayList();
         studentCheckIn.addAll(checkInMgr.getAllCheckInsById(id));
+    }
+
+    public void addStudentCheckIn(StudentCheckIn sCheckIn) throws SQLException {
+        StudentCheckIn studCheckIn = checkInMgr.add(sCheckIn);
+        studentCheckIn.add(studCheckIn);
     }
 }

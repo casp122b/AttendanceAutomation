@@ -51,9 +51,12 @@ public class StudentInfoController implements Initializable {
     private StudentModel studentModel;
     
     private StudentCheckIn studCheckIn;
+    
+    private CheckInModel checkInModel;
 
     public StudentInfoController() throws IOException, SQLException {
         studentModel = StudentModel.getInstance();
+        checkInModel = CheckInModel.getInstance();
         checkIn = FXCollections.observableArrayList();
     }
     
@@ -83,11 +86,18 @@ public class StudentInfoController implements Initializable {
                 }
 
     @FXML
-    private void handleAttendance(ActionEvent event) {
+    private void handleAttendance(ActionEvent event) throws SQLException {
       
-        StudentCheckIn studCheckIn = new StudentCheckIn("røv", 0, "true");    
-        studCheckIn.setDateTime(datePicker.getValue().toString());
-            checkIn.add(studCheckIn);
+         
+        String dateTime = datePicker.getValue().toString();
+        String isAttendance = "Did attend";
+        StudentCheckIn studCheckIn = new StudentCheckIn(dateTime, isAttendance);  
+        checkInModel.addStudentCheckIn(new StudentCheckIn(dateTime, isAttendance));
+        checkIn.add(studCheckIn);
+        
+         
+//        studCheckIn.setDateTime(datePicker.getValue().toString());
+            
 //        try {
 //            checkIn.addAll(CheckInModel.getInstance().getStudentCheckIn());
 //        } catch (IOException | SQLException ex) {
