@@ -99,10 +99,10 @@ public class TeacherViewController implements Initializable {
      * @param event
      */
     @FXML
-    private void handleAddAction(ActionEvent event) {
+    private void handleAddAction(ActionEvent event) throws SQLException {
         //First I create a new Student:
         String name = txtName.getText().trim();
-//        studentModel.addNewStudent(name, null);
+        studentModel.addStudent(new Student(name));
 
         //I reset the GUI for adding new persons
         txtName.clear();
@@ -125,9 +125,12 @@ public class TeacherViewController implements Initializable {
     }
 
     @FXML
-    private void handleDeleteAction(ActionEvent event) {
+    private void handleDeleteAction(ActionEvent event) throws SQLException {
         Student selectedItem = tblPresent.getSelectionModel().getSelectedItem();
+        tmpStudent = selectedItem;
+        studentModel.deleteStudent(tmpStudent);
         tblPresent.getItems().remove(selectedItem);
+        
         tblPresent.getSelectionModel().clearSelection();
         
     }

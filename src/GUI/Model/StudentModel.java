@@ -17,29 +17,6 @@ import javafx.collections.ObservableList;
  * @author Jens, Patrick, Casper
  */
 public class StudentModel {
-
-    private Student student;
-    private SimpleStringProperty name;
-
-    public SimpleStringProperty getName() 
-    {
-        return name;
-    }
-
-    public void setName(SimpleStringProperty name) 
-    {
-        this.name = name;
-    }
-    
-    public void setStudent(Student s)
-    {
-        this.student = s;
-    }
-    
-    public Student getStudent()
-    {
-        return student;
-    }
     
     //local variables for StudentManager and StudentModel.
     private static StudentModel INSTANCE;
@@ -69,7 +46,7 @@ public class StudentModel {
      */
     private StudentModel() throws IOException, SQLException
     {
-        this.name = new SimpleStringProperty();
+        
         
         
         studentManager = new StudentManager();
@@ -86,6 +63,19 @@ public class StudentModel {
     public ObservableList<Student> getAllStudents()
     {
         return allStudents;
+    }
+    
+    public void addStudent(Student s) throws SQLException
+    {
+        
+        Student stud = studentManager.add(s);
+        allStudents.add(stud);
+    }
+    
+    public void deleteStudent(Student s) throws SQLException
+    {
+        studentManager.delete(s);
+        allStudents.remove(s);
     }
     
     /**

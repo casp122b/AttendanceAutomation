@@ -43,4 +43,14 @@ public class StudentManager {
     public List<Student> getAllStudents() throws SQLException {
         return studentDAO.getAllStudents();
     }
+    
+    public Student add(Student s) throws SQLException
+    {
+        return studentDAO.add(s);
+    }
+    
+    public void delete(Student s) throws SQLException
+    {
+        studentDAO.delete(s);
+    }
 }

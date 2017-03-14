@@ -86,6 +86,7 @@ public class StudentDAO {
 
             ps.executeUpdate();
         }
+//        System.out.println(s);
     }
 
     public Student getById(int id) throws SQLException
