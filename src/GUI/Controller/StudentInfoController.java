@@ -88,11 +88,12 @@ public class StudentInfoController implements Initializable {
     @FXML
     private void handleAttendance(ActionEvent event) throws SQLException {
       
-         
         String dateTime = datePicker.getValue().toString();
         String isAttendance = "Did attend";
-        StudentCheckIn studCheckIn = new StudentCheckIn(dateTime, isAttendance);  
-        checkInModel.addStudentCheckIn(new StudentCheckIn(dateTime, isAttendance));
+        int studentId = checkInModel.getStudentIdFromModel();
+
+        StudentCheckIn studCheckIn = new StudentCheckIn(dateTime, studentId, isAttendance);  
+        checkInModel.addStudentCheckIn(new StudentCheckIn(dateTime, studentId, isAttendance));
         checkIn.add(studCheckIn);
         
          

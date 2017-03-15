@@ -20,12 +20,8 @@ public class CheckInModel {
     
     private static CheckInModel INSTANCE;
     private ObservableList<StudentCheckIn> studentCheckIn;
-    
     private final CheckInManager checkInMgr;
-    private StudentCheckIn studentId;
 
-    
-    
     /**
      * Constructs a new StudentManager and creates an observable arraylist out  of the observable list Student.
      */
@@ -38,6 +34,8 @@ public class CheckInModel {
      * The method to get a reference to this Singleton:
      *
      * @return
+     * @throws java.io.IOException
+     * @throws java.sql.SQLException
      */
     public static synchronized CheckInModel getInstance() throws IOException, SQLException
     {
@@ -65,5 +63,10 @@ public class CheckInModel {
     public void addStudentCheckIn(StudentCheckIn sCheckIn) throws SQLException {
         StudentCheckIn studCheckIn = checkInMgr.add(sCheckIn);
         studentCheckIn.add(studCheckIn);
+    }
+    
+    public int getStudentIdFromModel()
+    {
+        return checkInMgr.getStudentIdFromManager();
     }
 }

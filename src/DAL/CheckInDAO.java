@@ -24,6 +24,7 @@ public class CheckInDAO
 {
 
     private final ConnectionManager cm;
+    private int studentId;
 
     public CheckInDAO() throws IOException
     {
@@ -132,12 +133,12 @@ public class CheckInDAO
         }
       
     }
-
-    private StudentCheckIn getOneCheckIn(ResultSet rs) throws SQLException
+    
+    public StudentCheckIn getOneCheckIn(ResultSet rs) throws SQLException
     {
         int id = rs.getInt("id");
         String dateTime = rs.getString("studentCheckIn");
-        int studentId = rs.getInt("studentId");
+        studentId = rs.getInt("studentId");
         String isAttendance = rs.getString("isAttendance");
         
         return new StudentCheckIn(id, dateTime, studentId, isAttendance);
@@ -157,5 +158,10 @@ public class CheckInDAO
             }
             return allCheckIns;
         }
+    }
+    
+    public int getStudentId()
+    {
+        return studentId;
     }
 }
