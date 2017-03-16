@@ -5,6 +5,7 @@
  */
 package GUI.Controller;
 
+import BE.Student;
 import BE.StudentCheckIn;
 import GUI.Model.CheckInModel;
 import GUI.Model.StudentModel;
@@ -57,6 +58,7 @@ public class StudentInfoController implements Initializable {
     private StudentCheckIn studCheckIn;
     
     private CheckInModel checkInModel;
+    private Student student;
 
     public StudentInfoController() throws IOException, SQLException {
         studentModel = StudentModel.getInstance();
@@ -94,7 +96,7 @@ public class StudentInfoController implements Initializable {
       
         LocalDate dateTime = datePicker.getValue();
         java.sql.Date sqlDate = java.sql.Date.valueOf(dateTime);
-        int studentId = checkInModel.getStudentIdFromModel();
+        int studentId = student.getId();
         String isAttendance = "Did attend";
         
 
@@ -113,6 +115,10 @@ public class StudentInfoController implements Initializable {
 //        tblStudentInfo.setItems(checkIn);
 //        colAttendance.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getIsAttendance()));
        
+    }
+
+    void setStudent(Student student) {
+        this.student = student;
     }
     
 }
