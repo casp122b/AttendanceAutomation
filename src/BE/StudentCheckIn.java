@@ -5,7 +5,11 @@
  */
 package BE;
 
-import java.util.Date;
+import java.sql.Date;
+
+
+
+
 
 /**
  *
@@ -13,7 +17,7 @@ import java.util.Date;
  */
 public class StudentCheckIn{
     private int id;
-    private String dateTime;
+    private Date dateTime;
     private int studentId;
     private String isAttendance;
 
@@ -29,18 +33,18 @@ public class StudentCheckIn{
         this(id, ts.getDateTime(), ts.getStudentId(), ts.isAttendance);
     }
     
-    public StudentCheckIn(String dateTime, int studentId, String isAttendance){
+    public StudentCheckIn(Date dateTime, int studentId, String isAttendance){
         this(-1, dateTime, studentId, isAttendance);
     }
 
-    public StudentCheckIn(int id, String dateTime, int studentId, String isAttendance) {
+    public StudentCheckIn(int id, Date dateTime, int studentId, String isAttendance) {
         this.id = id;
         this.dateTime = dateTime;
         this.studentId = studentId;
         this.isAttendance = isAttendance;
     }
     
-    public StudentCheckIn(String dateTime, String isAttendance)
+    public StudentCheckIn(Date dateTime, String isAttendance)
     {
         this(-1, dateTime, -1, isAttendance);
     }
@@ -53,11 +57,11 @@ public class StudentCheckIn{
         this.id = id;
     }
 
-    public String getDateTime() {
+    public Date getDateTime() {
         return dateTime;
     }
 
-    public void setDateTime(String dateTime) {
+    public void setDateTime(Date dateTime) {
         this.dateTime = dateTime;
     }
 

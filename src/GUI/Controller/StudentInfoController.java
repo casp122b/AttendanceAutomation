@@ -10,7 +10,11 @@ import GUI.Model.CheckInModel;
 import GUI.Model.StudentModel;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
 import java.sql.SQLException;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -34,7 +38,7 @@ public class StudentInfoController implements Initializable {
 
     
     @FXML
-    private TableColumn<StudentCheckIn, String > colTimeStamp;
+    private TableColumn<StudentCheckIn, Date > colTimeStamp;
     @FXML
     private TableColumn<StudentCheckIn, String> colAttendance;
     @FXML
@@ -88,12 +92,14 @@ public class StudentInfoController implements Initializable {
     @FXML
     private void handleAttendance(ActionEvent event) throws SQLException {
       
-        String dateTime = datePicker.getValue().toString();
-        String isAttendance = "Did attend";
+        LocalDate dateTime = datePicker.getValue();
+        java.sql.Date sqlDate = java.sql.Date.valueOf(dateTime);
         int studentId = checkInModel.getStudentIdFromModel();
+        String isAttendance = "Did attend";
+        
 
-        StudentCheckIn studCheckIn = new StudentCheckIn(dateTime, studentId, isAttendance);  
-        checkInModel.addStudentCheckIn(new StudentCheckIn(dateTime, studentId, isAttendance));
+        StudentCheckIn studCheckIn = new StudentCheckIn(sqlDate, studentId, isAttendance);  
+        checkInModel.addStudentCheckIn(new StudentCheckIn(sqlDate, studentId, isAttendance));
         checkIn.add(studCheckIn);
         
          

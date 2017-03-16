@@ -8,12 +8,12 @@ package DAL;
 import BE.StudentCheckIn;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -37,7 +37,7 @@ public class CheckInDAO
         try (Connection con = cm.getConnection())
         {
             PreparedStatement ps = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
-            ps.setString(1, ts.getDateTime());
+            ps.setDate(1, ts.getDateTime());
             ps.setInt(2, ts.getStudentId());
             ps.setString(3, ts.getIsAttendance());
 
@@ -59,7 +59,7 @@ public class CheckInDAO
         try (Connection con = cm.getConnection())
         {
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setString(1, ts.getDateTime());
+            ps.setDate(1, ts.getDateTime());
             ps.setInt(2, ts.getStudentId());
             ps.setInt(3, ts.getId());
 
@@ -137,7 +137,7 @@ public class CheckInDAO
     public StudentCheckIn getOneCheckIn(ResultSet rs) throws SQLException
     {
         int id = rs.getInt("id");
-        String dateTime = rs.getString("studentCheckIn");
+        Date dateTime = rs.getDate("studentCheckIn");
         studentId = rs.getInt("studentId");
         String isAttendance = rs.getString("isAttendance");
         
