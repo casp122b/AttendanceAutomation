@@ -19,7 +19,8 @@ import java.util.List;
  *
  * @author Jens, Patrick, Casper
  */
-public class StudentDAO {
+public class StudentDAO
+{
     
     private final ConnectionManager cm;
 
@@ -60,7 +61,6 @@ public class StudentDAO {
         }
     }
     
-
     public void update(Student s) throws SQLException
     {
         String sql = "UPDATE Student "
@@ -86,28 +86,27 @@ public class StudentDAO {
 
             ps.executeUpdate();
         }
-//        System.out.println(s);
     }
 
-    public Student getById(int id) throws SQLException
-    {
-        String sql = "SELECT * FROM Student WHERE id = ?";
-        try (Connection con = cm.getConnection())
-        {
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, id);
-
-            ResultSet rs = ps.executeQuery();
-            if (rs.next())
-            {
-                return getOneStudent(rs);
-            }
-            else
-            {
-                return null;
-            }
-        }
-    }
+//    public Student getById(int id) throws SQLException
+//    {
+//        String sql = "SELECT * FROM Student WHERE id = ?";
+//        try (Connection con = cm.getConnection())
+//        {
+//            PreparedStatement ps = con.prepareStatement(sql);
+//            ps.setInt(1, id);
+//
+//            ResultSet rs = ps.executeQuery();
+//            if (rs.next())
+//            {
+//                return getOneStudent(rs);
+//            }
+//            else
+//            {
+//                return null;
+//            }
+//        }
+//    }
 
     private Student getOneStudent(ResultSet rs) throws SQLException
     {
@@ -116,5 +115,6 @@ public class StudentDAO {
         
         return new Student(id, name);
     }
+
 }
 

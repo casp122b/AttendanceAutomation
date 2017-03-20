@@ -42,10 +42,6 @@ public class TeacherViewController implements Initializable {
     @FXML
     private AnchorPane root;
     @FXML
-    private TableView<Student> tblPresent;
-    @FXML
-    private TableColumn<Student, String> colPresent;
-    @FXML
     private TableColumn<Student, Integer> colTotalAbsence;
     @FXML
     private Button btnAdd;
@@ -58,10 +54,13 @@ public class TeacherViewController implements Initializable {
     @FXML
     private Button btnDelete;
 
-    boolean userLoggedIn = false;
     private StudentModel studentModel;
     private Student tmpStudent;
     private CheckInModel checkInModel;
+    @FXML
+    private TableView<Student> tblStudents;
+    @FXML
+    private TableColumn<Student, String> colStudents;
 
     public TeacherViewController() throws IOException, SQLException {
         studentModel = StudentModel.getInstance();
@@ -81,8 +80,8 @@ public class TeacherViewController implements Initializable {
      */
     private void dataBind() {
         //I define the mapping of the table's columns to the objects that are added to it.
-        colPresent.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
-        tblPresent.setItems(studentModel.getAllStudents());
+        colStudents.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
+        tblStudents.setItems(studentModel.getAllStudents());
     }
 
     public void setModel(StudentModel studentModel) {
@@ -123,16 +122,16 @@ public class TeacherViewController implements Initializable {
 
     @FXML
     private void handleDeleteAction(ActionEvent event) throws SQLException {
-        Student selectedItem = tblPresent.getSelectionModel().getSelectedItem();
+        Student selectedItem = tblStudents.getSelectionModel().getSelectedItem();
         tmpStudent = selectedItem;
         studentModel.deleteStudent(tmpStudent);
-        tblPresent.getItems().remove(selectedItem);
+        tblStudents.getItems().remove(selectedItem);
         
-        tblPresent.getSelectionModel().clearSelection();
+        tblStudents.getSelectionModel().clearSelection();
     }
 
     private void teacherTblClicked2() {
-        tblPresent.setRowFactory(tv -> {
+        tblStudents.setRowFactory(tv -> {
             TableRow<Student> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && (!row.isEmpty())) {

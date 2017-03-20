@@ -7,10 +7,6 @@ package BE;
 
 import java.sql.Date;
 
-
-
-
-
 /**
  *
  * @author Casper

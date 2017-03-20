@@ -5,13 +5,12 @@
  */
 package BE;
 
-import java.io.Serializable;
-
 /**
  *
  * @author Jens, Patrick, Casper
  */
-public class Student implements Serializable {
+public class Student 
+{
     private int id;
     private String name;
 

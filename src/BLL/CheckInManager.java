@@ -8,7 +8,6 @@ package BLL;
 import BE.StudentCheckIn;
 import DAL.CheckInDAO;
 import java.io.IOException;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -35,8 +34,8 @@ public class CheckInManager {
         return checkInDAO.add(sCheckIn);
     }
     
-    public int getStudentIdFromManager()
-    {
-        return checkInDAO.getStudentId();
-    }
+//    public int getStudentIdFromManager()
+//    {
+//        return checkInDAO.getStudentId();
+//    }
 }

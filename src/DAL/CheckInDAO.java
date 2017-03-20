@@ -24,7 +24,7 @@ public class CheckInDAO
 {
 
     private final ConnectionManager cm;
-    private int studentId;
+//    private int studentId;
 
     public CheckInDAO() throws IOException
     {
@@ -138,7 +138,7 @@ public class CheckInDAO
     {
         int id = rs.getInt("id");
         Date dateTime = rs.getDate("studentCheckIn");
-        studentId = rs.getInt("studentId");
+        int studentId = rs.getInt("studentId");
         String isAttendance = rs.getString("isAttendance");
         
         return new StudentCheckIn(id, dateTime, studentId, isAttendance);
@@ -160,8 +160,8 @@ public class CheckInDAO
         }
     }
     
-    public int getStudentId()
-    {
-        return studentId;
-    }
+//    public int getStudentId()
+//    {
+//        return studentId;
+//    }
 }

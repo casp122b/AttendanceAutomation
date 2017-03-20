@@ -38,9 +38,9 @@ public class MainViewController implements Initializable
     @FXML
     private AnchorPane root;
     @FXML
-    private TableView<Student> tblPresent;
+    private TableView<Student> tblStudents;
     @FXML
-    private TableColumn<Student, String> colPresent;
+    private TableColumn<Student, String> colStudents;
     @FXML
     private Button btnTeacher;
     @FXML
@@ -72,8 +72,8 @@ public class MainViewController implements Initializable
      */
     private void dataBind() {
        //I define the mapping of the table's columns to the objects that are added to it.
-        colPresent.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
-        tblPresent.setItems(studentModel.getAllStudents());
+        colStudents.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
+        tblStudents.setItems(studentModel.getAllStudents());
     }
 
     public void setModel(StudentModel studentModel) 
@@ -104,7 +104,7 @@ public class MainViewController implements Initializable
         }
     }
        private void teacherTblClicked2() {
-        tblPresent.setRowFactory(tv -> {
+        tblStudents.setRowFactory(tv -> {
             TableRow<Student> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && (!row.isEmpty())) {

@@ -65,8 +65,8 @@ public class CheckInModel {
         studentCheckIn.add(studCheckIn);
     }
     
-    public int getStudentIdFromModel()
-    {
-        return checkInMgr.getStudentIdFromManager();
-    }
+//    public int getStudentIdFromModel()
+//    {
+//        return checkInMgr.getStudentIdFromManager();
+//    }
 }
