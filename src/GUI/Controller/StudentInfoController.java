@@ -13,7 +13,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -37,7 +40,7 @@ public class StudentInfoController implements Initializable {
 
     
     @FXML
-    private TableColumn<StudentCheckIn, Date > colTimeStamp;
+    private TableColumn<StudentCheckIn, Timestamp> colTimeStamp;
     @FXML
     private TableColumn<StudentCheckIn, String> colAttendance;
     @FXML
@@ -92,8 +95,9 @@ public class StudentInfoController implements Initializable {
     @FXML
     private void handleAttendance(ActionEvent event) throws SQLException {
       
+        LocalDateTime test = datePicker.getValue().atTime(LocalTime.now());
         LocalDate dateTime = datePicker.getValue();
-        java.sql.Date sqlDate = java.sql.Date.valueOf(dateTime);
+        java.sql.Timestamp sqlDate = java.sql.Timestamp.valueOf(test);
         int studentId = student.getId();
         String isAttendance = "Did attend";
         

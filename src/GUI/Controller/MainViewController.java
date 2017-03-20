@@ -110,7 +110,7 @@ public class MainViewController implements Initializable
                 if (event.getClickCount() == 2 && (!row.isEmpty())) {
                     Student rowData = row.getItem();
                     try {
-                        checkInModel.SetCheckInListById(rowData.getId());
+                        checkInModel.setCheckInListById(rowData.getId());
                         createInfoView(row);
 
                     } catch (SQLException ex) {

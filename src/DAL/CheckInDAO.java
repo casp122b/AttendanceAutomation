@@ -8,11 +8,11 @@ package DAL;
 import BE.StudentCheckIn;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +37,7 @@ public class CheckInDAO
         try (Connection con = cm.getConnection())
         {
             PreparedStatement ps = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
-            ps.setDate(1, ts.getDateTime());
+            ps.setTimestamp(1, ts.getDateTime());
             ps.setInt(2, ts.getStudentId());
             ps.setString(3, ts.getIsAttendance());
 
@@ -59,7 +59,7 @@ public class CheckInDAO
         try (Connection con = cm.getConnection())
         {
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setDate(1, ts.getDateTime());
+            ps.setTimestamp(1, ts.getDateTime());
             ps.setInt(2, ts.getStudentId());
             ps.setInt(3, ts.getId());
 
@@ -137,7 +137,7 @@ public class CheckInDAO
     public StudentCheckIn getOneCheckIn(ResultSet rs) throws SQLException
     {
         int id = rs.getInt("id");
-        Date dateTime = rs.getDate("studentCheckIn");
+        Timestamp dateTime = rs.getTimestamp("studentCheckIn");
         int studentId = rs.getInt("studentId");
         String isAttendance = rs.getString("isAttendance");
         
@@ -147,7 +147,7 @@ public class CheckInDAO
     public List<StudentCheckIn> getAllCheckIns() throws SQLException {
         List<StudentCheckIn> allCheckIns = new ArrayList<>();
 
-        String sql = "SELECT * FROM StudentCheckIn";
+        String sql = "SELECT studentCheckIn FROM StudentCheckIn";
         try (Connection con = cm.getConnection())
         {
             Statement st = con.createStatement();

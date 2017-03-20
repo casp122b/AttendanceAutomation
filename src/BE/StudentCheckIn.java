@@ -5,7 +5,7 @@
  */
 package BE;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 /**
  *
@@ -13,7 +13,7 @@ import java.sql.Date;
  */
 public class StudentCheckIn{
     private int id;
-    private Date dateTime;
+    private Timestamp dateTime;
     private int studentId;
     private String isAttendance;
 
@@ -29,18 +29,18 @@ public class StudentCheckIn{
         this(id, ts.getDateTime(), ts.getStudentId(), ts.isAttendance);
     }
     
-    public StudentCheckIn(Date dateTime, int studentId, String isAttendance){
+    public StudentCheckIn(Timestamp dateTime, int studentId, String isAttendance){
         this(-1, dateTime, studentId, isAttendance);
     }
 
-    public StudentCheckIn(int id, Date dateTime, int studentId, String isAttendance) {
+    public StudentCheckIn(int id, Timestamp dateTime, int studentId, String isAttendance) {
         this.id = id;
         this.dateTime = dateTime;
         this.studentId = studentId;
         this.isAttendance = isAttendance;
     }
     
-    public StudentCheckIn(Date dateTime, String isAttendance)
+    public StudentCheckIn(Timestamp dateTime, String isAttendance)
     {
         this(-1, dateTime, -1, isAttendance);
     }
@@ -53,11 +53,11 @@ public class StudentCheckIn{
         this.id = id;
     }
 
-    public Date getDateTime() {
+    public Timestamp getDateTime() {
         return dateTime;
     }
 
-    public void setDateTime(Date dateTime) {
+    public void setDateTime(Timestamp dateTime) {
         this.dateTime = dateTime;
     }
 

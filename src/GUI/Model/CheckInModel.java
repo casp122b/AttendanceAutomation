@@ -54,7 +54,7 @@ public class CheckInModel {
         this.studentCheckIn = studentCheckIn;
     }
     
-    public void SetCheckInListById(int id) throws SQLException{
+    public void setCheckInListById(int id) throws SQLException{
                 
         studentCheckIn = FXCollections.observableArrayList();
         studentCheckIn.addAll(checkInMgr.getAllCheckInsById(id));
@@ -63,6 +63,12 @@ public class CheckInModel {
     public void addStudentCheckIn(StudentCheckIn sCheckIn) throws SQLException {
         StudentCheckIn studCheckIn = checkInMgr.add(sCheckIn);
         studentCheckIn.add(studCheckIn);
+    }
+    
+    public void getStudentCheckInOnly() throws SQLException
+    {
+        studentCheckIn = FXCollections.observableArrayList();
+        studentCheckIn.addAll(checkInMgr.getStudentCheckIn());
     }
     
 //    public int getStudentIdFromModel()
