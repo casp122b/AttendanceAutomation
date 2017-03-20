@@ -11,7 +11,6 @@ import GUI.Model.CheckInModel;
 import GUI.Model.StudentModel;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDate;
@@ -46,8 +45,6 @@ public class StudentInfoController implements Initializable {
     @FXML
     private Button btnDidAttend;
     @FXML
-    private Button btnDidNotAttend;
-    @FXML
     private DatePicker datePicker;
     
     private ObservableList<StudentCheckIn> checkIn;
@@ -60,6 +57,8 @@ public class StudentInfoController implements Initializable {
     
     private CheckInModel checkInModel;
     private Student student;
+    @FXML
+    private Button btnDeleteDate;
 
     public StudentInfoController() throws IOException, SQLException {
         studentModel = StudentModel.getInstance();
