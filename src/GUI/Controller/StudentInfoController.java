@@ -55,68 +55,43 @@ public class StudentInfoController implements Initializable {
     private StudentCheckIn studCheckIn;
     private CheckInModel checkInModel;
     private Student student;
-    
 
-    public StudentInfoController() throws IOException, SQLException {
+    public StudentInfoController() throws IOException, SQLException 
+    {
         studentModel = StudentModel.getInstance();
         checkInModel = CheckInModel.getInstance();
-//        checkIn = FXCollections.observableArrayList();
     }
-    
-    
+
     /**
      * Initializes the controller class.
      * @param url
      * @param rb
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        try {
+    public void initialize(URL url, ResourceBundle rb) 
+    {
+        try 
+        {
             tblStudentInfo.setItems(CheckInModel.getInstance().getStudentCheckIn());
-        } catch (IOException | SQLException ex) {
+        } catch (IOException | SQLException ex) 
+        {
             Logger.getLogger(StudentInfoController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        DataBind();
-     
+        databind();
     } 
 
-    private void DataBind() {
-        colTimeStamp.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getDateTime()));
-//        tblStudentInfo.setItems(checkIn);
-        colAttendance.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getIsAttendance()));
-//        tblStudentInfo.setItems(checkIn);
-
-                }
-
     @FXML
-    private void handleAttendance(ActionEvent event) throws SQLException {
-      
+    private void handleAttendance(ActionEvent event) throws SQLException 
+    {
         LocalDateTime test = datePicker.getValue().atTime(LocalTime.now());
         //LocalDate dateTime = datePicker.getValue();
         java.sql.Timestamp sqlDate = java.sql.Timestamp.valueOf(test);
         int studentId = student.getId();
         String isAttendance = "Did attend";
-        
 
         StudentCheckIn studCheckIn = new StudentCheckIn(sqlDate, studentId, isAttendance);  
         checkInModel.addStudentCheckIn(new StudentCheckIn(sqlDate, studentId, isAttendance));
-//        checkIn.add(studCheckIn);
-        
-         
-//        studCheckIn.setDateTime(datePicker.getValue().toString());
-            
-//        try {
-//            checkIn.addAll(CheckInModel.getInstance().getStudentCheckIn());
-//        } catch (IOException | SQLException ex) {
-//            Logger.getLogger(StudentInfoController.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        tblStudentInfo.setItems(checkIn);
-//        colAttendance.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getIsAttendance()));
-       
-    }
-
-    void setStudent(Student student) {
-        this.student = student;
+//        checkIn.add(studCheckIn); 
     }
     
     @FXML
@@ -128,10 +103,17 @@ public class StudentInfoController implements Initializable {
         
         tblStudentInfo.getSelectionModel().clearSelection();
     }
-    
-    private void dateExist()
+
+    void setStudent(Student student) 
     {
-        
+        this.student = student;
     }
     
+    private void databind() 
+    {
+        colTimeStamp.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getDateTime()));
+//        tblStudentInfo.setItems(checkIn);
+        colAttendance.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getIsAttendance()));
+//        tblStudentInfo.setItems(checkIn);
+    }
 }

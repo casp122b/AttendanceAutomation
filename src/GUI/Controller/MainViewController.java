@@ -61,9 +61,7 @@ public class MainViewController implements Initializable
     public void initialize(URL url, ResourceBundle rb) 
     {
         dataBind();
-        teacherTblClicked2();
-//        studentModel.prefixedStudentList();
-
+        teacherTblDoubleClick();
     }
     /**
      * Sets the value of the instance variables name and currentClass from the
@@ -103,17 +101,23 @@ public class MainViewController implements Initializable
             System.out.println("Something went wrong");
         }
     }
-       private void teacherTblClicked2() {
-        tblStudents.setRowFactory(tv -> {
-            TableRow<Student> row = new TableRow<>();
-            row.setOnMouseClicked(event -> {
-                if (event.getClickCount() == 2 && (!row.isEmpty())) {
-                    Student rowData = row.getItem();
-                    try {
-                        checkInModel.setCheckInListById(rowData.getId());
-                        createInfoView(row);
+    private void teacherTblDoubleClick() 
+    {
+        tblStudents.setRowFactory(tv -> 
+        {
+        TableRow<Student> row = new TableRow<>();
+        row.setOnMouseClicked(event -> 
+        {
+            if (event.getClickCount() == 2 && (!row.isEmpty())) 
+            {
+                Student rowData = row.getItem();
+                try 
+                {
+                    checkInModel.setCheckInListById(rowData.getId());
+                    createInfoView(row);
 
-                    } catch (SQLException ex) {
+                    } catch (SQLException ex) 
+                    {
                         Logger.getLogger(TeacherViewController.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
@@ -122,8 +126,10 @@ public class MainViewController implements Initializable
         });
     }
 
-    private void createInfoView(TableRow row) {
-        try {
+    private void createInfoView(TableRow row) 
+    {
+        try 
+        {
             Stage mainViewStage = (Stage) row.getScene().getWindow();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/View/StudentInfo.fxml"));
             Parent Login = loader.load();
@@ -135,8 +141,9 @@ public class MainViewController implements Initializable
             stage.initOwner(mainViewStage);
             stage.show();
 
-        } catch (Exception e) {
+        } catch (Exception e) 
+        {
             System.out.println("Something went wrong");
         }
-}
+    }
 }
