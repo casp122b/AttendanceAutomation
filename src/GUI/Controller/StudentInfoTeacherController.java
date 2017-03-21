@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ResourceBundle;
@@ -37,7 +38,7 @@ public class StudentInfoTeacherController implements Initializable {
     @FXML
     private TableColumn<StudentCheckIn, Timestamp> colTimeStamp;
     @FXML
-    private TableColumn<StudentCheckIn, String> colAttendance;
+    private TableColumn<StudentCheckIn, Double> colAttendance;
     @FXML
     private Button btnDidAttend;
     @FXML
@@ -75,6 +76,8 @@ public class StudentInfoTeacherController implements Initializable {
             Logger.getLogger(StudentInfoTeacherController.class.getName()).log(Level.SEVERE, null, ex);
         }
         databind();
+//        datePicker.setValue(LocalDate.now());
+//        datePicker.setVisible(true);
     } 
 
     @FXML
@@ -84,12 +87,27 @@ public class StudentInfoTeacherController implements Initializable {
         //LocalDate dateTime = datePicker.getValue();
         java.sql.Timestamp sqlDate = java.sql.Timestamp.valueOf(test);
         int studentId = student.getId();
-        String isAttendance = "Did attend";
+        double getArraySize = checkInModel.getStudentCheckIn().size();
+        
+        if(getArraySize == 0.00)
+        {
+            getArraySize++;
+            double isAttendance = (60 - getArraySize) * 100 / 60;
+            StudentCheckIn studCheckIn = new StudentCheckIn(sqlDate, studentId, isAttendance);  
+            checkInModel.addStudentCheckIn(new StudentCheckIn(sqlDate, studentId, isAttendance));
+        }
+        else
+        {
+            getArraySize++;
+            double isAttendance = (60 - getArraySize) * 100 / 60;
+            StudentCheckIn studCheckIn = new StudentCheckIn(sqlDate, studentId, isAttendance);  
+            checkInModel.addStudentCheckIn(new StudentCheckIn(sqlDate, studentId, isAttendance));
+        }
 
-        StudentCheckIn studCheckIn = new StudentCheckIn(sqlDate, studentId, isAttendance);  
-        checkInModel.addStudentCheckIn(new StudentCheckIn(sqlDate, studentId, isAttendance));
 //        checkIn.add(studCheckIn); 
-    }
+
+
+        }
     
     @FXML
     private void handleDeleteAction(ActionEvent event) throws SQLException {

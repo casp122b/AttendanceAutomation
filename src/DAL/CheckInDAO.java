@@ -39,7 +39,7 @@ public class CheckInDAO
             PreparedStatement ps = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
             ps.setTimestamp(1, ts.getDateTime());
             ps.setInt(2, ts.getStudentId());
-            ps.setString(3, ts.getIsAttendance());
+            ps.setDouble(3, ts.getIsAttendance());
 
             ps.executeUpdate();
             ResultSet generatedKey = ps.getGeneratedKeys();
@@ -139,7 +139,7 @@ public class CheckInDAO
         int id = rs.getInt("id");
         Timestamp dateTime = rs.getTimestamp("studentCheckIn");
         int studentId = rs.getInt("studentId");
-        String isAttendance = rs.getString("isAttendance");
+        double isAttendance = rs.getDouble("isAttendance");
         
         return new StudentCheckIn(id, dateTime, studentId, isAttendance);
     }

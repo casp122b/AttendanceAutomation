@@ -131,7 +131,7 @@ public class MainViewController implements Initializable
         try 
         {
             Stage mainViewStage = (Stage) row.getScene().getWindow();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/View/StudentInfo.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/View/StudentInfoTeacher.fxml"));
             Parent Login = loader.load();
             StudentInfoTeacherController sic = loader.getController();
             sic.setStudent((Student)row.getItem());
