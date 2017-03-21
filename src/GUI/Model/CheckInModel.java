@@ -78,7 +78,6 @@ public class CheckInModel {
         {
         StudentCheckIn studCheckIn = checkInMgr.add(sCheckIn);
         studentCheckIn.add(studCheckIn);
-            System.out.println(studentCheckIn.size());
         return true;
         }
         return false;

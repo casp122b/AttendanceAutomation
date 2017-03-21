@@ -133,7 +133,7 @@ public class MainViewController implements Initializable
             Stage mainViewStage = (Stage) row.getScene().getWindow();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/View/StudentInfo.fxml"));
             Parent Login = loader.load();
-            StudentInfoController sic = loader.getController();
+            StudentInfoTeacherController sic = loader.getController();
             sic.setStudent((Student)row.getItem());
             Stage stage = new Stage();
             stage.setScene(new Scene(Login));
