@@ -37,7 +37,6 @@ import javafx.scene.control.TableView;
  */
 public class StudentInfoController implements Initializable {
 
-    
     @FXML
     private TableColumn<StudentCheckIn, Timestamp> colTimeStamp;
     @FXML
@@ -46,24 +45,22 @@ public class StudentInfoController implements Initializable {
     private Button btnDidAttend;
     @FXML
     private DatePicker datePicker;
-    
-    private ObservableList<StudentCheckIn> checkIn;
+//    private ObservableList<StudentCheckIn> checkIn;
     @FXML
     private TableView<StudentCheckIn> tblStudentInfo;
-    
-    private StudentModel studentModel;
-    
-    private StudentCheckIn studCheckIn;
-    
-    private CheckInModel checkInModel;
-    private Student student;
     @FXML
     private Button btnDeleteDate;
+    
+    private StudentModel studentModel;
+    private StudentCheckIn studCheckIn;
+    private CheckInModel checkInModel;
+    private Student student;
+    
 
     public StudentInfoController() throws IOException, SQLException {
         studentModel = StudentModel.getInstance();
         checkInModel = CheckInModel.getInstance();
-        checkIn = FXCollections.observableArrayList();
+//        checkIn = FXCollections.observableArrayList();
     }
     
     
@@ -75,7 +72,7 @@ public class StudentInfoController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
-            checkIn.addAll(CheckInModel.getInstance().getStudentCheckIn());
+            tblStudentInfo.setItems(CheckInModel.getInstance().getStudentCheckIn());
         } catch (IOException | SQLException ex) {
             Logger.getLogger(StudentInfoController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -85,9 +82,9 @@ public class StudentInfoController implements Initializable {
 
     private void DataBind() {
         colTimeStamp.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getDateTime()));
-        tblStudentInfo.setItems(checkIn);
+//        tblStudentInfo.setItems(checkIn);
         colAttendance.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getIsAttendance()));
-        tblStudentInfo.setItems(checkIn);
+//        tblStudentInfo.setItems(checkIn);
 
                 }
 
@@ -95,7 +92,7 @@ public class StudentInfoController implements Initializable {
     private void handleAttendance(ActionEvent event) throws SQLException {
       
         LocalDateTime test = datePicker.getValue().atTime(LocalTime.now());
-        LocalDate dateTime = datePicker.getValue();
+        //LocalDate dateTime = datePicker.getValue();
         java.sql.Timestamp sqlDate = java.sql.Timestamp.valueOf(test);
         int studentId = student.getId();
         String isAttendance = "Did attend";
@@ -103,7 +100,7 @@ public class StudentInfoController implements Initializable {
 
         StudentCheckIn studCheckIn = new StudentCheckIn(sqlDate, studentId, isAttendance);  
         checkInModel.addStudentCheckIn(new StudentCheckIn(sqlDate, studentId, isAttendance));
-        checkIn.add(studCheckIn);
+//        checkIn.add(studCheckIn);
         
          
 //        studCheckIn.setDateTime(datePicker.getValue().toString());
@@ -120,6 +117,21 @@ public class StudentInfoController implements Initializable {
 
     void setStudent(Student student) {
         this.student = student;
+    }
+    
+    @FXML
+    private void handleDeleteAction(ActionEvent event) throws SQLException {
+        StudentCheckIn selectedItem = tblStudentInfo.getSelectionModel().getSelectedItem();
+        studCheckIn = selectedItem;
+        checkInModel.deleteStudent(studCheckIn);
+        tblStudentInfo.getItems().remove(selectedItem);
+        
+        tblStudentInfo.getSelectionModel().clearSelection();
+    }
+    
+    private void dateExist()
+    {
+        
     }
     
 }

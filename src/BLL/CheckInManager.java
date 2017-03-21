@@ -43,4 +43,8 @@ public class CheckInManager {
 //    {
 //        return checkInDAO.getStudentId();
 //    }
+
+    public void delete(StudentCheckIn studCheckIn) throws SQLException {
+        checkInDAO.delete(studCheckIn);
+    }
 }
