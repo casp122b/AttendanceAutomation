@@ -65,9 +65,9 @@ public class CheckInModel {
         boolean dateExists = false;
         for (StudentCheckIn sci : studentCheckIn) {
             
-            if(sCheckIn.getDateTime().getDate() == sci.getDateTime().getDate() && 
-                    sCheckIn.getDateTime().getYear() == sci.getDateTime().getYear() && 
-                    sCheckIn.getDateTime().getMonth() == sci.getDateTime().getMonth())
+            if(sCheckIn.getDateTime().getDate() == sci.getDateTime().getDate() 
+                    && sCheckIn.getDateTime().getYear() == sci.getDateTime().getYear() 
+                    && sCheckIn.getDateTime().getMonth() == sci.getDateTime().getMonth())
             {
                 dateExists = true;
             }
@@ -78,6 +78,7 @@ public class CheckInModel {
         {
         StudentCheckIn studCheckIn = checkInMgr.add(sCheckIn);
         studentCheckIn.add(studCheckIn);
+            System.out.println(studentCheckIn.size());
         return true;
         }
         return false;
