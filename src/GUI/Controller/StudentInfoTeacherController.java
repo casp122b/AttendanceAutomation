@@ -43,7 +43,7 @@ public class StudentInfoTeacherController implements Initializable {
     private Button btnDidAttend;
     @FXML
     private DatePicker datePicker;
-//    private ObservableList<StudentCheckIn> checkIn;
+
     @FXML
     private TableView<StudentCheckIn> tblStudentInfo;
     @FXML
@@ -76,8 +76,7 @@ public class StudentInfoTeacherController implements Initializable {
             Logger.getLogger(StudentInfoTeacherController.class.getName()).log(Level.SEVERE, null, ex);
         }
         databind();
-//        datePicker.setValue(LocalDate.now());
-//        datePicker.setVisible(true);
+  datePicker.setValue(LocalDate.now());
     } 
 
     @FXML

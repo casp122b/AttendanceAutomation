@@ -96,7 +96,8 @@ public class TeacherViewController implements Initializable {
      */
     @FXML
     private void handleAddAction(ActionEvent event) throws SQLException {
-        //First I create a new Student:
+        
+//First I create a new Student:
         String name = txtName.getText().trim();
         studentModel.addStudent(new Student(name));
 

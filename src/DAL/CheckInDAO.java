@@ -160,6 +160,24 @@ public class CheckInDAO
         }
     }
     
+    
+public List<StudentCheckIn> getWeeks(int schoolDate) throws SQLException{
+        
+      List<StudentCheckIn> allTimeStamps = new ArrayList<>();
+      String sql = "SELECT * FROM schoolWeeks WHERE schoolDate = 01-02-2017 AND WHERE schoolDate<Date.TODAY ";
+      
+      try (Connection con = cm.getConnection())
+        {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, schoolDate);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next())
+            {
+                allTimeStamps.add(getOneCheckIn(rs));
+            }
+            return allTimeStamps;
+        }
+    }
 //    public int getStudentId()
 //    {
 //        return studentId;
