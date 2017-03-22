@@ -5,6 +5,7 @@
  */
 package DAL;
 
+import BE.Calendar;
 import BE.StudentCheckIn;
 import java.io.IOException;
 import java.sql.Connection;
@@ -143,6 +144,14 @@ public class CheckInDAO
         
         return new StudentCheckIn(id, dateTime, studentId, isAttendance);
     }
+    
+    public Calendar getOneSchoolDay(ResultSet rs) throws SQLException
+    {
+        int id = rs.getInt("id");
+        Timestamp schoolDate = rs.getTimestamp("schoolDate");
+        
+        return new Calendar(id, schoolDate);
+    }
 
     public List<StudentCheckIn> getAllCheckIns() throws SQLException {
         List<StudentCheckIn> allCheckIns = new ArrayList<>();
@@ -161,10 +170,10 @@ public class CheckInDAO
     }
     
     
-public List<StudentCheckIn> getWeeks(int schoolDate) throws SQLException{
+public List<Calendar> getWeeks(int schoolDate) throws SQLException{
         
-      List<StudentCheckIn> allTimeStamps = new ArrayList<>();
-      String sql = "SELECT * from SchoolDays where schoolDate > '2017-01-02' and schoolDate < GETDATE();";
+      List<Calendar> allSchoolDays = new ArrayList<>();
+      String sql = "SELECT * FROM SchoolDays WHERE schoolDate > '2017-01-02' and schoolDate < GETDATE();";
       
       try (Connection con = cm.getConnection())
         {
@@ -173,9 +182,9 @@ public List<StudentCheckIn> getWeeks(int schoolDate) throws SQLException{
             ResultSet rs = ps.executeQuery();
             while (rs.next())
             {
-                allTimeStamps.add(getOneCheckIn(rs));
+                allSchoolDays.add(getOneSchoolDay(rs));
             }
-            return allTimeStamps;
+            return allSchoolDays;
         }   
 }
 //    public int getStudentId()

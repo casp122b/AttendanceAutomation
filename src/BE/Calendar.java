@@ -5,19 +5,34 @@
  */
 package BE;
 
+import java.sql.Timestamp;
+
 /**
  *
  * @author patrick
  */
 public class Calendar {
- private int id;
+    private int id;
     private Timestamp schoolDate;
-    
     
     public Calendar(int id, Timestamp schoolDate) {
         this.id = id;
         this.schoolDate = schoolDate;
     }
-   
-    
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Timestamp getSchoolDate() {
+        return schoolDate;
+    }
+
+    public void setSchoolDate(Timestamp schoolDate) {
+        this.schoolDate = schoolDate;
+    }
 }
