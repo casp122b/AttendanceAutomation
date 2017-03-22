@@ -170,7 +170,7 @@ public class CheckInDAO
     }
     
     
-public List<Calendar> getWeeks(int schoolDate) throws SQLException{
+public List<Calendar> getWeeks(Timestamp schoolDate) throws SQLException{
         
       List<Calendar> allSchoolDays = new ArrayList<>();
       String sql = "SELECT * FROM SchoolDays WHERE schoolDate > '2017-01-02' and schoolDate < GETDATE();";
@@ -178,7 +178,7 @@ public List<Calendar> getWeeks(int schoolDate) throws SQLException{
       try (Connection con = cm.getConnection())
         {
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, schoolDate);
+            ps.setTimestamp(1, schoolDate);
             ResultSet rs = ps.executeQuery();
             while (rs.next())
             {

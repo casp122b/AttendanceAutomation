@@ -5,10 +5,12 @@
  */
 package BLL;
 
+import BE.Calendar;
 import BE.StudentCheckIn;
 import DAL.CheckInDAO;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -28,6 +30,11 @@ public class CheckInManager {
     
     public List<StudentCheckIn> getAllCheckInsById(int id) throws SQLException {
         return checkInDAO.getByStudentId(id);
+    }
+    
+    public List<Calendar> getWeeksTest(Timestamp schoolDate) throws SQLException
+    {
+        return checkInDAO.getWeeks(schoolDate);
     }
 
     public StudentCheckIn add(StudentCheckIn sCheckIn) throws SQLException {

@@ -9,9 +9,10 @@ import BE.StudentCheckIn;
 import BLL.CheckInManager;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Calendar;
+import java.sql.Timestamp;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import BE.Calendar;
 
 /**
  *
@@ -22,6 +23,7 @@ public class CheckInModel {
     private static CheckInModel INSTANCE;
     private ObservableList<StudentCheckIn> studentCheckIn;
     private final CheckInManager checkInMgr;
+    private ObservableList<Calendar> calendar;
 
     /**
      * Constructs a new StudentManager and creates an observable arraylist out  of the observable list Student.
@@ -50,6 +52,11 @@ public class CheckInModel {
     public ObservableList<StudentCheckIn> getStudentCheckIn() {
         return studentCheckIn;
     }
+    
+    public ObservableList<Calendar> getSchoolDate()
+    {
+        return calendar;
+    }
 
     public void setStudentCheckIn(ObservableList<StudentCheckIn> studentCheckIn) {
         this.studentCheckIn = studentCheckIn;
@@ -59,6 +66,12 @@ public class CheckInModel {
                 
         studentCheckIn = FXCollections.observableArrayList();
         studentCheckIn.addAll(checkInMgr.getAllCheckInsById(id));
+    }
+    
+    public void setTest(Timestamp schoolDate) throws SQLException
+    {
+        calendar = FXCollections.observableArrayList();
+        calendar.addAll(checkInMgr.getWeeksTest(schoolDate));
     }
 
     public boolean addStudentCheckIn(StudentCheckIn sCheckIn) throws SQLException {
