@@ -118,7 +118,7 @@ public class MainViewController implements Initializable
 
                     } catch (SQLException ex) 
                     {
-                        Logger.getLogger(TeacherViewController.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(StudentInfoController.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
             });
@@ -131,9 +131,9 @@ public class MainViewController implements Initializable
         try 
         {
             Stage mainViewStage = (Stage) row.getScene().getWindow();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/View/StudentInfoTeacher.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/View/StudentInfo.fxml"));
             Parent Login = loader.load();
-            StudentInfoTeacherController sic = loader.getController();
+            StudentInfoController sic = loader.getController();
             sic.setStudent((Student)row.getItem());
             Stage stage = new Stage();
             stage.setScene(new Scene(Login));

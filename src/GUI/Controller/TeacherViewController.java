@@ -150,17 +150,21 @@ public class TeacherViewController implements Initializable {
     }
 
     private void createInfoView(TableRow row) {
-        try {
+          try 
+        {
             Stage mainViewStage = (Stage) row.getScene().getWindow();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/View/StudentInfo.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/View/StudentInfoTeacher.fxml"));
             Parent Login = loader.load();
+            StudentInfoTeacherController sic = loader.getController();
+            sic.setStudent((Student)row.getItem());
             Stage stage = new Stage();
             stage.setScene(new Scene(Login));
             stage.initModality(Modality.WINDOW_MODAL);
             stage.initOwner(mainViewStage);
             stage.show();
 
-        } catch (Exception e) {
+        } catch (Exception e) 
+        {
             System.out.println("Something went wrong");
         }
     }
