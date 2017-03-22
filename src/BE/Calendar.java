@@ -10,5 +10,14 @@ package BE;
  * @author patrick
  */
 public class Calendar {
+ private int id;
+    private Timestamp schoolDate;
+    
+    
+    public Calendar(int id, Timestamp schoolDate) {
+        this.id = id;
+        this.schoolDate = schoolDate;
+    }
+   
     
 }

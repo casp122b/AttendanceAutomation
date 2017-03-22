@@ -164,7 +164,7 @@ public class CheckInDAO
 public List<StudentCheckIn> getWeeks(int schoolDate) throws SQLException{
         
       List<StudentCheckIn> allTimeStamps = new ArrayList<>();
-      String sql = "SELECT * FROM schoolWeeks WHERE schoolDate = 01-02-2017 AND WHERE schoolDate<Date.TODAY ";
+      String sql = "SELECT * from SchoolDays where schoolDate > '2017-01-02' and schoolDate < GETDATE();";
       
       try (Connection con = cm.getConnection())
         {
@@ -176,8 +176,8 @@ public List<StudentCheckIn> getWeeks(int schoolDate) throws SQLException{
                 allTimeStamps.add(getOneCheckIn(rs));
             }
             return allTimeStamps;
-        }
-    }
+        }   
+}
 //    public int getStudentId()
 //    {
 //        return studentId;
