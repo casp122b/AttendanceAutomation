@@ -82,6 +82,7 @@ public class StudentInfoTeacherController implements Initializable {
     @FXML
     private void handleAttendance(ActionEvent event) throws SQLException 
     {
+        if(datePicker.getValue() != null){
         LocalDateTime test = datePicker.getValue().atTime(LocalTime.now());
         //LocalDate dateTime = datePicker.getValue();
         java.sql.Timestamp sqlDate = java.sql.Timestamp.valueOf(test);
@@ -114,16 +115,17 @@ public class StudentInfoTeacherController implements Initializable {
 //        checkIn.add(studCheckIn); 
 
 
-        }
+        }}
     
     @FXML
     private void handleDeleteAction(ActionEvent event) throws SQLException {
+        if(tblStudentInfo.getSelectionModel().getSelectedItem() != null){
         StudentCheckIn selectedItem = tblStudentInfo.getSelectionModel().getSelectedItem();
         studCheckIn = selectedItem;
         checkInModel.deleteStudent(studCheckIn);
         tblStudentInfo.getItems().remove(selectedItem);
         tblStudentInfo.getSelectionModel().clearSelection();
-    }
+    }}
 
     void setStudent(Student student) 
     {
