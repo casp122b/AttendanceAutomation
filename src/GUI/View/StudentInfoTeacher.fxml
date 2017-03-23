@@ -6,12 +6,12 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="293.0" prefWidth="397.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller.StudentInfoTeacherController">
+<AnchorPane id="AnchorPane" prefHeight="293.0" prefWidth="397.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller.StudentInfoTeacherController">
    <children>
       <TableView fx:id="tblStudentInfo" layoutX="14.0" layoutY="14.0" prefHeight="200.0" prefWidth="369.0">
         <columns>
           <TableColumn fx:id="colTimeStamp" prefWidth="232.0" text="TimeStamp" />
-          <TableColumn fx:id="colAttendance" prefWidth="135.0" text="Attendance" />
+          <TableColumn fx:id="colAttendance" prefWidth="135.0" text="Absence" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
