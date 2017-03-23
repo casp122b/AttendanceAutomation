@@ -14,14 +14,23 @@ import java.time.LocalTime;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import static javafx.application.Application.launch;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -47,6 +56,8 @@ public class StudentInfoController implements Initializable {
     private StudentCheckIn studCheckIn;
     private CheckInModel checkInModel;
     private Student student;
+    @FXML
+    private Label pieChart;
 
     public StudentInfoController() throws IOException, SQLException 
     {
@@ -54,6 +65,34 @@ public class StudentInfoController implements Initializable {
         checkInModel = CheckInModel.getInstance();
     
     }
+
+ 
+
+    public void start() {
+   double  Attendsize = checkInModel.getStudentCheckIn().size();
+      int DaysTotal = checkInModel.getSchoolDate().size();       
+               
+        ObservableList<PieChart.Data> pieChartData =
+                FXCollections.observableArrayList(
+                new PieChart.Data("Attended", Attendsize),
+                new PieChart.Data("Days Total", DaysTotal));
+        final PieChart chart = new PieChart(pieChartData);
+        pieChart.setGraphic(chart);
+        pieChart.scaleShapeProperty();
+        
+        
+
+      
+    
+    
+
+                
+}                
+                
+       
+
+   
+
 
     /**
      * Initializes the controller class.
@@ -73,11 +112,13 @@ public class StudentInfoController implements Initializable {
         databind();
         datePicker.setValue(LocalDate.now());
 datePicker.setVisible(false);
+//        start();
     } 
  void setStudent(Student student) 
     {
         this.student = student;
     }
+ 
     
   private void databind() 
     {
@@ -103,7 +144,8 @@ datePicker.setVisible(false);
         double isAttendance = absence;
             checkInModel.addStudentCheckIn(new StudentCheckIn(sqlDate, studentId, isAttendance));
             StudentCheckIn studCheckIn = new StudentCheckIn(sqlDate, studentId, isAttendance);  
-        
+         
+        start();
 //        if(getArraySize == 0.00)
 //        {
 //            getArraySize++;
@@ -118,11 +160,12 @@ datePicker.setVisible(false);
 //            StudentCheckIn studCheckIn = new StudentCheckIn(sqlDate, studentId, isAttendance);  
 //            checkInModel.addStudentCheckIn(new StudentCheckIn(sqlDate, studentId, isAttendance));
 //        }
-    
 
-   
+
 }
 }
+
+
 
 
 
