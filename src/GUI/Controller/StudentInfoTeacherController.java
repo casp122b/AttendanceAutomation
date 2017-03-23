@@ -87,21 +87,28 @@ public class StudentInfoTeacherController implements Initializable {
         java.sql.Timestamp sqlDate = java.sql.Timestamp.valueOf(test);
         int studentId = student.getId();
         double getArraySize = checkInModel.getStudentCheckIn().size();
+        checkInModel.setTest();
+        int teletubbies = checkInModel.getSchoolDate().size();
+        System.out.println("Her " + teletubbies);
+        double daysAway = teletubbies - getArraySize;
+        double absence = (daysAway * 100) / teletubbies;
+//        System.out.println("Here is your absence " + absence);
         
-        if(getArraySize == 0.00)
-        {
-            getArraySize++;
-            double isAttendance = (60 - getArraySize) * 100 / 60;
+//        double isAttendane = (teletubbies )
+//        if(getArraySize == 0.00)
+//        {
+//            
+            double isAttendance = absence;
             StudentCheckIn studCheckIn = new StudentCheckIn(sqlDate, studentId, isAttendance);  
             checkInModel.addStudentCheckIn(new StudentCheckIn(sqlDate, studentId, isAttendance));
-        }
-        else
-        {
-            getArraySize++;
-            double isAttendance = (60 - getArraySize) * 100 / 60;
-            StudentCheckIn studCheckIn = new StudentCheckIn(sqlDate, studentId, isAttendance);  
-            checkInModel.addStudentCheckIn(new StudentCheckIn(sqlDate, studentId, isAttendance));
-        }
+//        }
+//        else
+//        {
+//            getArraySize++;
+//            double isAttendance = (60 - getArraySize) * 100 / 60;
+//            StudentCheckIn studCheckIn = new StudentCheckIn(sqlDate, studentId, isAttendance);  
+//            checkInModel.addStudentCheckIn(new StudentCheckIn(sqlDate, studentId, isAttendance));
+//        }
 
 //        checkIn.add(studCheckIn); 
 

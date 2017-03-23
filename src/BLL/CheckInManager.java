@@ -32,9 +32,9 @@ public class CheckInManager {
         return checkInDAO.getByStudentId(id);
     }
     
-    public List<Calendar> getWeeksTest(Timestamp schoolDate) throws SQLException
+    public List<Calendar> getDays() throws SQLException
     {
-        return checkInDAO.getWeeks(schoolDate);
+        return checkInDAO.getDays();
     }
 
     public StudentCheckIn add(StudentCheckIn sCheckIn) throws SQLException {

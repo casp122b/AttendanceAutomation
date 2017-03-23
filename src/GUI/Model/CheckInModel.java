@@ -68,10 +68,10 @@ public class CheckInModel {
         studentCheckIn.addAll(checkInMgr.getAllCheckInsById(id));
     }
     
-    public void setTest(Timestamp schoolDate) throws SQLException
+    public void setTest() throws SQLException
     {
         calendar = FXCollections.observableArrayList();
-        calendar.addAll(checkInMgr.getWeeksTest(schoolDate));
+        calendar.addAll(checkInMgr.getDays());
     }
 
     public boolean addStudentCheckIn(StudentCheckIn sCheckIn) throws SQLException {
