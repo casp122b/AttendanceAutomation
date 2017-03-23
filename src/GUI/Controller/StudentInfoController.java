@@ -94,22 +94,30 @@ datePicker.setVisible(false);
         //LocalDate dateTime = datePicker.getValue();
         java.sql.Timestamp sqlDate = java.sql.Timestamp.valueOf(test);
         int studentId = student.getId();
-        double getArraySize = checkInModel.getStudentCheckIn().size();
+        double getArraySize = checkInModel.getStudentCheckIn().size(); //Number of timeStamps on a specific student.
+        checkInModel.setTest(); //Calculation of schooldays from 01-02-2017 untill now taken taken from database.
+        int schoolDaysUntillNow = checkInModel.getSchoolDate().size(); //SchoolDays from 01-02-2017 to now taken from observableList Calendar.
+        double daysAway = schoolDaysUntillNow - getArraySize;
+        double absence = ((daysAway - 1) * 100) / schoolDaysUntillNow;
         
-        if(getArraySize == 0.00)
-        {
-            getArraySize++;
-            double isAttendance = (60 - getArraySize) * 100 / 60;
-            StudentCheckIn studCheckIn = new StudentCheckIn(sqlDate, studentId, isAttendance);  
+        double isAttendance = absence;
             checkInModel.addStudentCheckIn(new StudentCheckIn(sqlDate, studentId, isAttendance));
-        }
-        else
-        {
-            getArraySize++;
-            double isAttendance = (60 - getArraySize) * 100 / 60;
             StudentCheckIn studCheckIn = new StudentCheckIn(sqlDate, studentId, isAttendance);  
-            checkInModel.addStudentCheckIn(new StudentCheckIn(sqlDate, studentId, isAttendance));
-        }
+        
+//        if(getArraySize == 0.00)
+//        {
+//            getArraySize++;
+//            double isAttendance = (60 - getArraySize) * 100 / 60;
+//            StudentCheckIn studCheckIn = new StudentCheckIn(sqlDate, studentId, isAttendance);  
+//            checkInModel.addStudentCheckIn(new StudentCheckIn(sqlDate, studentId, isAttendance));
+//        }
+//        else
+//        {
+//            getArraySize++;
+//            double isAttendance = (60 - getArraySize) * 100 / 60;
+//            StudentCheckIn studCheckIn = new StudentCheckIn(sqlDate, studentId, isAttendance);  
+//            checkInModel.addStudentCheckIn(new StudentCheckIn(sqlDate, studentId, isAttendance));
+//        }
     
 
    
