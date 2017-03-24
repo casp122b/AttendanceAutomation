@@ -95,33 +95,28 @@ public class TeacherViewController implements Initializable {
      *
      * @param event
      */
+    //adds a student to the class
     @FXML
     private void handleAddAction(ActionEvent event) throws SQLException {
         
 //First I create a new Student:
-        String name = txtName.getText().trim();
+        String name =("Esbjerg - CS2016A - ") + txtName.getText().trim();
         studentModel.addStudent(new Student(name));
 
         //I reset the GUI for adding new persons
         txtName.clear();
         txtName.requestFocus();
     }
-
+//closes the TeacherWindow
     @FXML
     private void signOutBtn(ActionEvent event) {
         try {
             ((Node) (event.getSource())).getScene().getWindow().hide();
-//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/View/MainView.fxml"));
-//            Parent Main = loader.load();
-//            Stage stage = new Stage();
-//            stage.setScene(new Scene(Main));
-
-//            stage.show();
         } catch (Exception e) {
             System.out.println("Something went wrong");
         }
     }
-
+//deletes the selected student and removes him from the database
     @FXML
     private void handleDeleteAction(ActionEvent event) throws SQLException {
         Student selectedItem = tblStudents.getSelectionModel().getSelectedItem();
@@ -131,7 +126,7 @@ public class TeacherViewController implements Initializable {
         
         tblStudents.getSelectionModel().clearSelection();
     }
-
+//checks for double clicks and if a tablerow is clicked twice then it use the method createInfoView and opens the StudentInfoTeacherView
     private void teacherTblClicked2() {
         tblStudents.setRowFactory(tv -> {
             TableRow<Student> row = new TableRow<>();
@@ -150,7 +145,7 @@ public class TeacherViewController implements Initializable {
             return row;
         });
     }
-
+//Method that opens the StudentInfoTeacherView
     private void createInfoView(TableRow row) {
           try 
         {

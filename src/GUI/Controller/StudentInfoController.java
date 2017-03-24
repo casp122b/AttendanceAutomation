@@ -67,7 +67,7 @@ public class StudentInfoController implements Initializable {
     }
 
  
-
+//makes a Piechart that contains the student´s total attended and all the school Days from 01-02-2017, that we set on a label called pieChart.
     public void MakePieChart() throws SQLException {
    checkInModel.setTest();
         double  Attendsize = checkInModel.getStudentCheckIn().size();
@@ -124,21 +124,21 @@ datePicker.setVisible(false);
         this.student = student;
     }
  
-    
+    //gets the timeStamps and Total Attendance on the student from StudentCheckIn
   private void databind() 
     {
         colTimeStamp.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getDateTime()));
-//        tblStudentInfo.setItems(checkIn);
+//        
         colAttendance.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getIsAttendance()));
-//        tblStudentInfo.setItems(checkIn);
+//      
 
     }
-    
+    //sets a Timestamp and the Total Attendance into the Tableview and into the Database 
     @FXML
     private void handleAttendance(ActionEvent event) throws SQLException 
     {
         LocalDateTime test = datePicker.getValue().atTime(LocalTime.now());
-        //LocalDate dateTime = datePicker.getValue();
+      
         java.sql.Timestamp sqlDate = java.sql.Timestamp.valueOf(test);
         int studentId = student.getId();
         double getArraySize = checkInModel.getStudentCheckIn().size(); //Number of timeStamps on a specific student.
@@ -151,21 +151,6 @@ datePicker.setVisible(false);
             checkInModel.addStudentCheckIn(new StudentCheckIn(sqlDate, studentId, isAttendance));
             StudentCheckIn studCheckIn = new StudentCheckIn(sqlDate, studentId, isAttendance);  
          MakePieChart();
-//        start();
-//        if(getArraySize == 0.00)
-//        {
-//            getArraySize++;
-//            double isAttendance = (60 - getArraySize) * 100 / 60;
-//            StudentCheckIn studCheckIn = new StudentCheckIn(sqlDate, studentId, isAttendance);  
-//            checkInModel.addStudentCheckIn(new StudentCheckIn(sqlDate, studentId, isAttendance));
-//        }
-//        else
-//        {
-//            getArraySize++;
-//            double isAttendance = (60 - getArraySize) * 100 / 60;
-//            StudentCheckIn studCheckIn = new StudentCheckIn(sqlDate, studentId, isAttendance);  
-//            checkInModel.addStudentCheckIn(new StudentCheckIn(sqlDate, studentId, isAttendance));
-//        }
 
 
 }

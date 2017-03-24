@@ -126,7 +126,7 @@ public class MainViewController implements Initializable
             return row;
         });
     }
-
+//
     private void createInfoView(TableRow row) 
     {
         try 

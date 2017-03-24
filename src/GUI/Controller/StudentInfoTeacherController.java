@@ -85,6 +85,7 @@ public class StudentInfoTeacherController implements Initializable {
         databind();
   datePicker.setValue(LocalDate.now());
     } 
+    // a Piechart that contains the student´s total attended and all the school Days from 01-02-2017, that we set on a label called pieChart.
        public void MakePieChart() throws SQLException {
       checkInModel.setTest();
            double  Attendsize = checkInModel.getStudentCheckIn().size();
@@ -97,7 +98,7 @@ public class StudentInfoTeacherController implements Initializable {
         final PieChart chart = new PieChart(pieChartData);
         studPieChart.setGraphic(chart);
        }
-
+  //sets a Timestamp and the Total Attendance into the Tableview and into the Database and updates the Piechart.
     @FXML
     private void handleAttendance(ActionEvent event) throws SQLException 
     {
@@ -111,31 +112,15 @@ public class StudentInfoTeacherController implements Initializable {
         int schoolDaysUntillNow = checkInModel.getSchoolDate().size(); //SchoolDays from 01-02-2017 to now taken from observableList Calendar.
         double daysAway = schoolDaysUntillNow - getArraySize;
         double absence = ((daysAway - 1) * 100) / schoolDaysUntillNow;
-//        System.out.println("Here is your absence " + absence);
-        
-//        double isAttendance = (teletubbies);
-//        if(getArraySize == 0.00)
-//        {
-//            getArraySize++;
+
             double isAttendance = absence;
             checkInModel.addStudentCheckIn(new StudentCheckIn(sqlDate, studentId, isAttendance));
             StudentCheckIn studCheckIn = new StudentCheckIn(sqlDate, studentId, isAttendance);  
             MakePieChart();
-//        }
-//        else
-//        {
-//            getArraySize++;
-//            double isAttendance = absence;
-//            checkInModel.addStudentCheckIn(new StudentCheckIn(sqlDate, studentId, isAttendance));
-//            StudentCheckIn studCheckIn = new StudentCheckIn(sqlDate, studentId, isAttendance);  
-            
-//        }
-
-//        checkIn.add(studCheckIn); 
 
 
         }}
-    
+    //Deletes the selected day, where the student have clicked attended and updates the Piechart
     @FXML
     private void handleDeleteAction(ActionEvent event) throws SQLException {
         if(tblStudentInfo.getSelectionModel().getSelectedItem() != null){
@@ -151,13 +136,12 @@ public class StudentInfoTeacherController implements Initializable {
     {
         this.student = student;
     }
-    
+     //gets the timeStamps and Total Attendance on the student from StudentCheckIn
     private void databind() 
     {
         colTimeStamp.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getDateTime()));
-//        tblStudentInfo.setItems(checkIn);
+
         colAttendance.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getIsAttendance()));
-//        tblStudentInfo.setItems(checkIn);
     }
     
         
