@@ -20,11 +20,15 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
@@ -53,6 +57,8 @@ public class StudentInfoTeacherController implements Initializable {
     private StudentCheckIn studCheckIn;
     private CheckInModel checkInModel;
     private Student student;
+    @FXML
+    private Label studPieChart;
 
     public StudentInfoTeacherController() throws IOException, SQLException 
     {
@@ -70,6 +76,7 @@ public class StudentInfoTeacherController implements Initializable {
     {
         try 
         {
+            MakePieChart();
             tblStudentInfo.setItems(CheckInModel.getInstance().getStudentCheckIn());
         } catch (IOException | SQLException ex) 
         {
@@ -78,6 +85,18 @@ public class StudentInfoTeacherController implements Initializable {
         databind();
   datePicker.setValue(LocalDate.now());
     } 
+       public void MakePieChart() throws SQLException {
+      checkInModel.setTest();
+           double  Attendsize = checkInModel.getStudentCheckIn().size();
+      int DaysTotal = checkInModel.getSchoolDate().size();       
+               
+        ObservableList<PieChart.Data> pieChartData =
+                FXCollections.observableArrayList(
+                new PieChart.Data("Attended", Attendsize),
+                new PieChart.Data("Days Total", DaysTotal));
+        final PieChart chart = new PieChart(pieChartData);
+        studPieChart.setGraphic(chart);
+       }
 
     @FXML
     private void handleAttendance(ActionEvent event) throws SQLException 
@@ -101,7 +120,7 @@ public class StudentInfoTeacherController implements Initializable {
             double isAttendance = absence;
             checkInModel.addStudentCheckIn(new StudentCheckIn(sqlDate, studentId, isAttendance));
             StudentCheckIn studCheckIn = new StudentCheckIn(sqlDate, studentId, isAttendance);  
-            
+            MakePieChart();
 //        }
 //        else
 //        {
@@ -125,6 +144,7 @@ public class StudentInfoTeacherController implements Initializable {
         checkInModel.deleteStudent(studCheckIn);
         tblStudentInfo.getItems().remove(selectedItem);
         tblStudentInfo.getSelectionModel().clearSelection();
+      MakePieChart();
     }}
 
     void setStudent(Student student) 
@@ -139,4 +159,14 @@ public class StudentInfoTeacherController implements Initializable {
         colAttendance.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getIsAttendance()));
 //        tblStudentInfo.setItems(checkIn);
     }
+    
+        
+        
+
+      
+    
+    
+
+                
+
 }

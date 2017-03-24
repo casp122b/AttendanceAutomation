@@ -68,8 +68,9 @@ public class StudentInfoController implements Initializable {
 
  
 
-    public void start() {
-   double  Attendsize = checkInModel.getStudentCheckIn().size();
+    public void MakePieChart() throws SQLException {
+   checkInModel.setTest();
+        double  Attendsize = checkInModel.getStudentCheckIn().size();
       int DaysTotal = checkInModel.getSchoolDate().size();       
                
         ObservableList<PieChart.Data> pieChartData =
@@ -78,7 +79,7 @@ public class StudentInfoController implements Initializable {
                 new PieChart.Data("Days Total", DaysTotal));
         final PieChart chart = new PieChart(pieChartData);
         pieChart.setGraphic(chart);
-        pieChart.scaleShapeProperty();
+        
         
         
 
@@ -102,8 +103,10 @@ public class StudentInfoController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
+        
         try 
         {
+            MakePieChart();
             tblStudentInfo.setItems(CheckInModel.getInstance().getStudentCheckIn());
         } catch (IOException | SQLException ex) 
         {
@@ -112,6 +115,8 @@ public class StudentInfoController implements Initializable {
         databind();
         datePicker.setValue(LocalDate.now());
 datePicker.setVisible(false);
+
+
 //        start();
     } 
  void setStudent(Student student) 
@@ -126,6 +131,7 @@ datePicker.setVisible(false);
 //        tblStudentInfo.setItems(checkIn);
         colAttendance.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getIsAttendance()));
 //        tblStudentInfo.setItems(checkIn);
+
     }
     
     @FXML
@@ -144,8 +150,8 @@ datePicker.setVisible(false);
         double isAttendance = absence;
             checkInModel.addStudentCheckIn(new StudentCheckIn(sqlDate, studentId, isAttendance));
             StudentCheckIn studCheckIn = new StudentCheckIn(sqlDate, studentId, isAttendance);  
-         
-        start();
+         MakePieChart();
+//        start();
 //        if(getArraySize == 0.00)
 //        {
 //            getArraySize++;
