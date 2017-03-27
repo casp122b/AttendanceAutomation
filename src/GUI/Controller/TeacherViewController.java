@@ -35,7 +35,7 @@ import javafx.stage.Stage;
 /**
  * FXML Controller class
  *
- * @author Jens, Patrick, Casper
+ * @author Jens, Patrick, Casper, Kasper
  */
 public class TeacherViewController implements Initializable {
 

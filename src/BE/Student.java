@@ -7,7 +7,7 @@ package BE;
 
 /**
  *
- * @author Jens, Patrick, Casper
+ * @author Jens, Patrick, Casper, Kasper
  */
 public class Student 
 {

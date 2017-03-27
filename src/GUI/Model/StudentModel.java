@@ -9,12 +9,11 @@ import BE.Student;
 import BLL.StudentManager;
 import java.io.IOException;
 import java.sql.SQLException;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 /**
  *
- * @author Jens, Patrick, Casper
+ * @author Jens, Patrick, Casper, Kasper
  */
 public class StudentModel {
     

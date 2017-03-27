@@ -13,7 +13,7 @@ import java.util.List;
 
 /**
  *
- * @author Jens, Patrick, Casper
+ * @author Jens, Patrick, Casper, Kasper
  */
 public class StudentManager {
     

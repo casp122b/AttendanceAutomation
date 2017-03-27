@@ -10,12 +10,11 @@ import BE.StudentCheckIn;
 import DAL.CheckInDAO;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.List;
 
 /**
  *
- * @author patrick
+ * @author Jens, Patrick, Casper, Kasper
  */
 public class CheckInManager {
     

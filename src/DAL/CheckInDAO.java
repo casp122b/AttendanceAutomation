@@ -19,7 +19,7 @@ import java.util.List;
 
 /**
  *
- * @author Casper
+ * @author Jens, Patrick, Casper, Kasper
  */
 public class CheckInDAO
 {

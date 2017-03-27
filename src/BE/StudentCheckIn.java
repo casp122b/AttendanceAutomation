@@ -9,7 +9,7 @@ import java.sql.Timestamp;
 
 /**
  *
- * @author Casper
+ * @author Jens, Patrick, Casper, Kasper
  */
 public class StudentCheckIn{
     private int id;

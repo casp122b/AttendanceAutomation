@@ -9,7 +9,7 @@ import java.sql.Timestamp;
 
 /**
  *
- * @author patrick
+ * @author Jens, Patrick, Casper, Kasper
  */
 public class Calendar {
     private int id;

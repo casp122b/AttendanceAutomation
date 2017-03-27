@@ -16,7 +16,7 @@ import BE.Calendar;
 
 /**
  *
- * @author patrick
+ * @author Jens, Patrick, Casper, Kasper
  */
 public class CheckInModel {
     

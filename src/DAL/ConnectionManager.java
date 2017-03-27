@@ -14,7 +14,7 @@ import java.util.Properties;
 
 /**
  *
- * @author bhp
+ * @author Jens, Patrick, Casper, Kasper
  */
 public class ConnectionManager
 {
