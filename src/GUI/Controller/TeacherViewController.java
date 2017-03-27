@@ -155,6 +155,7 @@ public class TeacherViewController implements Initializable {
             StudentInfoTeacherController sic = loader.getController();
             sic.setStudent((Student)row.getItem());
             Stage stage = new Stage();
+            stage.setTitle(tblStudents.getSelectionModel().getSelectedItem().getName());
             stage.setScene(new Scene(Login));
             stage.initModality(Modality.WINDOW_MODAL);
             stage.initOwner(mainViewStage);

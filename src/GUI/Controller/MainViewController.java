@@ -93,6 +93,7 @@ public class MainViewController implements Initializable
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/View/Login.fxml"));
             Parent Login = loader.load();
             Stage stage = new Stage();
+            stage.setTitle("Teacher Login");
             stage.setScene(new Scene(Login));
             stage.initModality(Modality.WINDOW_MODAL);
             stage.initOwner(mainViewStage);
@@ -137,6 +138,7 @@ public class MainViewController implements Initializable
             StudentInfoController sic = loader.getController();
             sic.setStudent((Student)row.getItem());
             Stage stage = new Stage();
+            stage.setTitle(tblStudents.getSelectionModel().getSelectedItem().getName());
             stage.setScene(new Scene(Login));
             stage.initModality(Modality.WINDOW_MODAL);
             stage.initOwner(mainViewStage);
