@@ -97,6 +97,7 @@ public class StudentInfoTeacherController implements Initializable {
                 new PieChart.Data("Days Total", DaysTotal));
         final PieChart chart = new PieChart(pieChartData);
         studPieChart.setGraphic(chart);
+         studPieChart.setStyle("-fx-font: 10 arial;");   
        }
   //sets a Timestamp and the Total Attendance into the Tableview and into the Database and updates the Piechart.
     @FXML

@@ -74,7 +74,7 @@ public class StudentInfoController implements Initializable {
                 new PieChart.Data("Days Total", DaysTotal));
         final PieChart chart = new PieChart(pieChartData);
         pieChart.setGraphic(chart);
-        
+    pieChart.setStyle("-fx-font: 10 arial;");       
         
         
 
