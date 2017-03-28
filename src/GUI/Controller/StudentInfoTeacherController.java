@@ -115,7 +115,10 @@ public class StudentInfoTeacherController implements Initializable {
         if(tblStudentInfo.getSelectionModel().getSelectedItem() != null){
         StudentCheckIn selectedItem = tblStudentInfo.getSelectionModel().getSelectedItem();
             setStudCheckIn(selectedItem);
-        checkInModel.deleteStudent(studCheckIn);
+
+        studCheckIn = selectedItem;
+        checkInModel.deleteCheckIn(studCheckIn);
+
         tblStudentInfo.getItems().remove(selectedItem);
         tblStudentInfo.getSelectionModel().clearSelection();
       MakePieChart();

@@ -110,7 +110,7 @@ public class CheckInModel {
 //        return checkInMgr.getStudentIdFromManager();
 //    }
 
-    public void deleteStudent(StudentCheckIn studCheckIn) throws SQLException {
+    public void deleteCheckIn(StudentCheckIn studCheckIn) throws SQLException {
         checkInMgr.delete(studCheckIn);
         studentCheckIn.remove(studCheckIn);
     }
