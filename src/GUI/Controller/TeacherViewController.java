@@ -72,7 +72,7 @@ public class TeacherViewController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         dataBind();
         teacherTblClicked2();
-        colTotalAbsence.setVisible(false);
+        
     }
 
     /**

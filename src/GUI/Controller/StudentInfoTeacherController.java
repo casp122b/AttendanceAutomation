@@ -106,29 +106,15 @@ public class StudentInfoTeacherController implements Initializable {
     {
         if(datePicker.getValue() != null){
         LocalDateTime test = datePicker.getValue().atTime(LocalTime.now());
-        //LocalDate dateTime = datePicker.getValue();
-        java.sql.Timestamp sqlDate = java.sql.Timestamp.valueOf(test);
-        sqlDate.setTime(1000*(long)Math.floor(sqlDate.getTime()/ 1000));
-        int studentId = student.getId();
-        double getArraySize = checkInModel.getStudentCheckIn().size(); //Number of timeStamps on a specific student.
-        checkInModel.setTest(); //Calculation of schooldays from 01-02-2017 untill now taken taken from database.
-        int schoolDaysUntillNow = checkInModel.getSchoolDate().size(); //SchoolDays from 01-02-2017 to now taken from observableList Calendar.
-        double daysAway = schoolDaysUntillNow - getArraySize;
-        double absence = ((daysAway - 1) * 100) / schoolDaysUntillNow;
-
-            double isAttendance = absence;
-            checkInModel.addStudentCheckIn(new StudentCheckIn(sqlDate, studentId, isAttendance));
-            StudentCheckIn studCheckIn = new StudentCheckIn(sqlDate, studentId, isAttendance);  
+            StudentCheckIn studCheckIn = checkInModel.calcAttendance(test, student);  
             MakePieChart();
-
-
-        }}
+    }}
     //Deletes the selected day, where the student have clicked attended and updates the Piechart
     @FXML
     private void handleDeleteAction(ActionEvent event) throws SQLException {
         if(tblStudentInfo.getSelectionModel().getSelectedItem() != null){
         StudentCheckIn selectedItem = tblStudentInfo.getSelectionModel().getSelectedItem();
-        studCheckIn = selectedItem;
+            setStudCheckIn(selectedItem);
         checkInModel.deleteStudent(studCheckIn);
         tblStudentInfo.getItems().remove(selectedItem);
         tblStudentInfo.getSelectionModel().clearSelection();
@@ -145,6 +131,13 @@ public class StudentInfoTeacherController implements Initializable {
         colTimeStamp.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getDateTime()));
 
         colAttendance.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getIsAttendance()));
+    }
+
+    /**
+     * @param studCheckIn the studCheckIn to set
+     */
+    public void setStudCheckIn(StudentCheckIn studCheckIn) {
+        this.studCheckIn = studCheckIn;
     }
     
         
