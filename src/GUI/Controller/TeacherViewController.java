@@ -121,6 +121,7 @@ public class TeacherViewController implements Initializable {
     private void handleDeleteAction(ActionEvent event) throws SQLException {
         Student selectedItem = tblStudents.getSelectionModel().getSelectedItem();
         tmpStudent = selectedItem;
+        checkInModel.deleteAttendanceByStudentId(tmpStudent);
         studentModel.deleteStudent(tmpStudent);
         tblStudents.getItems().remove(selectedItem);
         

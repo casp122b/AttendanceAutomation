@@ -53,4 +53,9 @@ public class CheckInManager {
     public void delete(StudentCheckIn studCheckIn) throws SQLException {
         checkInDAO.delete(studCheckIn);
     }
+    
+    public void deleteByStudentId(int id) throws SQLException
+    {
+        checkInDAO.deleteByStudentId(id);
+    }
 }

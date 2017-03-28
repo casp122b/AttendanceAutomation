@@ -9,10 +9,10 @@ import BE.StudentCheckIn;
 import BLL.CheckInManager;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import BE.Calendar;
+import BE.Student;
 
 /**
  *
@@ -110,5 +110,14 @@ public class CheckInModel {
     public void deleteStudent(StudentCheckIn studCheckIn) throws SQLException {
         checkInMgr.delete(studCheckIn);
         studentCheckIn.remove(studCheckIn);
+    }
+    
+    public void deleteAttendanceByStudentId(Student s) throws SQLException
+    {
+        checkInMgr.deleteByStudentId(s.getId());
+        for (int i = 0; i < studentCheckIn.size(); i++)
+        {
+            studentCheckIn.remove(i);
+        }
     }
 }

@@ -108,6 +108,7 @@ public class StudentInfoTeacherController implements Initializable {
         LocalDateTime test = datePicker.getValue().atTime(LocalTime.now());
         //LocalDate dateTime = datePicker.getValue();
         java.sql.Timestamp sqlDate = java.sql.Timestamp.valueOf(test);
+        sqlDate.setTime(1000*(long)Math.floor(sqlDate.getTime()/ 1000));
         int studentId = student.getId();
         double getArraySize = checkInModel.getStudentCheckIn().size(); //Number of timeStamps on a specific student.
         checkInModel.setTest(); //Calculation of schooldays from 01-02-2017 untill now taken taken from database.

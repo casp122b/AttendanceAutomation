@@ -191,4 +191,16 @@ public List<Calendar> getDays() throws SQLException
 //    {
 //        return studentId;
 //    }
+
+    public void deleteByStudentId(int id) throws SQLException
+    {
+        String sql = "DELETE FROM StudentCheckIn where studentId = ?";
+        try (Connection con = cm.getConnection())
+        {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+
+            ps.executeUpdate();
+        }
+    }
 }
