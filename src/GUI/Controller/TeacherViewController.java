@@ -6,6 +6,7 @@
 package GUI.Controller;
 
 import BE.Student;
+import BE.StudentCheckIn;
 import GUI.Model.CheckInModel;
 import GUI.Model.StudentModel;
 import java.io.IOException;
@@ -42,7 +43,7 @@ public class TeacherViewController implements Initializable {
     @FXML
     private AnchorPane root;
     @FXML
-    private TableColumn<Student, Integer> colTotalAbsence;
+    private TableColumn<StudentCheckIn, Double> colTotalAbsence;
     @FXML
     private Button btnAdd;
     @FXML
@@ -82,7 +83,9 @@ public class TeacherViewController implements Initializable {
     private void dataBind() {
         //I define the mapping of the table's columns to the objects that are added to it.
         colStudents.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
+//        colTotalAbsence.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getIsAttendance()));
         tblStudents.setItems(studentModel.getAllStudents());
+    
     }
 
     public void setModel(StudentModel studentModel) {
