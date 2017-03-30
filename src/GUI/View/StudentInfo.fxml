@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
@@ -9,7 +14,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="259.0" prefWidth="397.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller.StudentInfoController">
+<AnchorPane id="AnchorPane" prefHeight="269.0" prefWidth="553.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller.StudentInfoController">
    <children>
       <DatePicker fx:id="datePicker" layoutX="150.0" layoutY="50.0" prefHeight="0.0" prefWidth="38.0" />
       <TableView fx:id="tblStudentInfo" layoutX="14.0" layoutY="14.0" prefHeight="200.0" prefWidth="369.0">
@@ -26,6 +31,8 @@
          <font>
             <Font size="29.0" />
          </font></Label>
+      <Label layoutX="30.0" layoutY="245.0" text="Current absence:" />
+      <Label fx:id="absenceLbl" layoutX="130.0" layoutY="247.0" />
    </children>
    <stylesheets>
        <URL value="@css/Style.css" />

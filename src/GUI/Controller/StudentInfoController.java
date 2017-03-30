@@ -1,5 +1,6 @@
 package GUI.Controller;
 
+//import  BE.ClassSchedule.time;
 import BE.Student;
 import BE.StudentCheckIn;
 import GUI.Model.CheckInModel;
@@ -52,6 +53,8 @@ public class StudentInfoController implements Initializable {
     private Student student;
     @FXML
     private Label pieChart;
+    @FXML
+    private Label absenceLbl;
 
     public StudentInfoController() throws IOException, SQLException {
         studentModel = StudentModel.getInstance();
@@ -87,6 +90,7 @@ public class StudentInfoController implements Initializable {
         try {
             MakePieChart();
             tblStudentInfo.setItems(CheckInModel.getInstance().getStudentCheckIn());
+currentAbsence();
         } catch (IOException | SQLException ex) {
             Logger.getLogger(StudentInfoController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -116,5 +120,19 @@ public class StudentInfoController implements Initializable {
         LocalDateTime test = datePicker.getValue().atTime(LocalTime.now());
         StudentCheckIn studCheckIn = checkInModel.calcAttendance(test, student);
         MakePieChart();
+        currentAbsence();
+    }
+    public void currentAbsence() throws SQLException{
+//         java.sql.Timestamp sqlDate = java.sql.Timestamp.valueOf(time);
+//        int studentId = s.getId();
+        double getArraySize = checkInModel.getStudentCheckIn().size(); //Number of timeStamps on a specific student.
+        checkInModel.setTest(); //Calculation of schooldays from 01-02-2017 untill now taken taken from database.
+        int schoolDaysUntillNow = checkInModel.getSchoolDate().size(); //SchoolDays from 01-02-2017 to now taken from observableList Calendar.
+        double daysAway = schoolDaysUntillNow - getArraySize;
+        double absence = ((daysAway) * 100) / schoolDaysUntillNow;
+        
+//        double isAttendance = absence;
+
+        absenceLbl.setText("" + absence);
     }
 }
