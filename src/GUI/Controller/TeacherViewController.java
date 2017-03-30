@@ -72,7 +72,9 @@ public class TeacherViewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         dataBind();
-        teacherTblClicked2();
+        int i = 0;
+        
+
         
     }
 

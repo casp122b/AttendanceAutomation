@@ -138,4 +138,15 @@ public class CheckInModel {
         return studCheckIn;
         
     }
+    
+    public double getStudentAbsence() throws SQLException
+    {
+        double getArraySize = getStudentCheckIn().size(); //Number of timeStamps on a specific student.
+        setTest(); //Calculation of schooldays from 01-02-2017 untill now taken taken from database.
+        int schoolDaysUntillNow = getSchoolDate().size(); //SchoolDays from 01-02-2017 to now taken from observableList Calendar.
+        double daysAway = schoolDaysUntillNow - getArraySize;
+        double absence = ((daysAway) * 100) / schoolDaysUntillNow;
+        
+        return absence;
+    }
 }

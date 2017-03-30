@@ -126,14 +126,14 @@ currentAbsence();
     public void currentAbsence() throws SQLException{
 //         java.sql.Timestamp sqlDate = java.sql.Timestamp.valueOf(time);
 //        int studentId = s.getId();
-        double getArraySize = checkInModel.getStudentCheckIn().size(); //Number of timeStamps on a specific student.
-        checkInModel.setTest(); //Calculation of schooldays from 01-02-2017 untill now taken taken from database.
-        int schoolDaysUntillNow = checkInModel.getSchoolDate().size(); //SchoolDays from 01-02-2017 to now taken from observableList Calendar.
-        double daysAway = schoolDaysUntillNow - getArraySize;
-        double absence = ((daysAway) * 100) / schoolDaysUntillNow;
+//        double getArraySize = checkInModel.getStudentCheckIn().size(); //Number of timeStamps on a specific student.
+//        checkInModel.setTest(); //Calculation of schooldays from 01-02-2017 untill now taken taken from database.
+//        int schoolDaysUntillNow = checkInModel.getSchoolDate().size(); //SchoolDays from 01-02-2017 to now taken from observableList Calendar.
+//        double daysAway = schoolDaysUntillNow - getArraySize;
+//        double absence = ((daysAway) * 100) / schoolDaysUntillNow;
         
 //        double isAttendance = absence;
 
-        absenceLbl.setText("" + absence);
+     absenceLbl.setText("" + checkInModel.getStudentAbsence());
     }
 }
