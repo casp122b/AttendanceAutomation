@@ -66,7 +66,8 @@ public class StudentInfoController implements Initializable {
     public void MakePieChart() throws SQLException {
         checkInModel.setTest();
         double Attendsize = checkInModel.getStudentCheckIn().size();
-        int DaysTotal = checkInModel.getSchoolDate().size();
+        int DaysAttended = (int) Attendsize;
+        int DaysTotal = checkInModel.getSchoolDate().size() - DaysAttended;
 
         ObservableList<PieChart.Data> pieChartData
                 = FXCollections.observableArrayList(
