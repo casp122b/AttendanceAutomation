@@ -59,6 +59,8 @@ public class StudentInfoTeacherController implements Initializable {
     private Student student;
     @FXML
     private Label studPieChart;
+    @FXML
+    private Label absenceLbl;
 
     public StudentInfoTeacherController() throws IOException, SQLException 
     {
@@ -76,6 +78,7 @@ public class StudentInfoTeacherController implements Initializable {
     {
         try 
         {
+            currentAbsence();
             MakePieChart();
             tblStudentInfo.setItems(CheckInModel.getInstance().getStudentCheckIn());
         } catch (IOException | SQLException ex) 
@@ -84,21 +87,23 @@ public class StudentInfoTeacherController implements Initializable {
         }
         databind();
   datePicker.setValue(LocalDate.now());
+    
     } 
     // a Piechart that contains the student´s total attended and all the school Days from 01-02-2017, that we set on a label called pieChart.
        public void MakePieChart() throws SQLException {
-      checkInModel.setTest();
-           double  Attendsize = checkInModel.getStudentCheckIn().size();
-      int DaysTotal = checkInModel.getSchoolDate().size();       
-               
-        ObservableList<PieChart.Data> pieChartData =
-                FXCollections.observableArrayList(
-                new PieChart.Data("Attended", Attendsize),
-                new PieChart.Data("Days Total", DaysTotal));
+           checkInModel.setTest();
+        double Attendsize = checkInModel.getStudentCheckIn().size();
+        int DaysAttended = (int) Attendsize;
+        int DaysTotal = checkInModel.getSchoolDate().size() - DaysAttended;
+
+        ObservableList<PieChart.Data> pieChartData
+                = FXCollections.observableArrayList(
+                        new PieChart.Data("Attended", Attendsize),
+                        new PieChart.Data("Days Total", DaysTotal));
         final PieChart chart = new PieChart(pieChartData);
         studPieChart.setGraphic(chart);
-         studPieChart.setStyle("-fx-font: 10 arial;");
-           chart.setLabelsVisible(false);
+        studPieChart.setStyle("-fx-font: 10 arial;");
+        chart.setLabelsVisible(false);
          
        }
   //sets a Timestamp and the Total Attendance into the Tableview and into the Database and updates the Piechart.
@@ -144,6 +149,19 @@ public class StudentInfoTeacherController implements Initializable {
         this.studCheckIn = studCheckIn;
     }
     
+      public void currentAbsence() throws SQLException{
+//         java.sql.Timestamp sqlDate = java.sql.Timestamp.valueOf(time);
+//        int studentId = s.getId();
+        double getArraySize = checkInModel.getStudentCheckIn().size(); //Number of timeStamps on a specific student.
+        checkInModel.setTest(); //Calculation of schooldays from 01-02-2017 untill now taken taken from database.
+        int schoolDaysUntillNow = checkInModel.getSchoolDate().size(); //SchoolDays from 01-02-2017 to now taken from observableList Calendar.
+        double daysAway = schoolDaysUntillNow - getArraySize;
+        double absence = ((daysAway) * 100) / schoolDaysUntillNow;
+        
+//        double isAttendance = absence;
+
+        absenceLbl.setText("" + absence);
+    }
         
         
 
