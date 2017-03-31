@@ -93,7 +93,7 @@ public class TeacherViewController implements Initializable {
                 @Override
                 public ObservableValue<Double> call(TableColumn.CellDataFeatures<Student, Double> param) {
                     try {
-                        double abs = checkInModel.calcAttendance(ldt, param.getValue()).getIsAttendance();
+                        double abs = checkInModel.teacherViewAttendance(ldt, param.getValue()).getIsAttendance();
                         return new SimpleDoubleProperty(abs).asObject();
                     } catch (SQLException ex) {
                        ex.printStackTrace();
