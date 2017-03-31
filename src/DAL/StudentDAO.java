@@ -61,20 +61,20 @@ public class StudentDAO
         }
     }
     
-//    public void update(Student s) throws SQLException
-//    {
-//        String sql = "UPDATE Student "
-//                + "SET name = ?, "
-//                + "WHERE id = ?";
-//        try (Connection con = cm.getConnection())
-//        {
-//            PreparedStatement ps = con.prepareStatement(sql);
-//            ps.setString(1, s.getName());
-//            ps.setInt(3, s.getId());
-//
-//            ps.executeUpdate();
-//        }
-//    }
+    public void update(Student s) throws SQLException
+    {
+        String sql = "UPDATE Student "
+                + "SET name = ?, "
+                + "WHERE id = ?";
+        try (Connection con = cm.getConnection())
+        {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, s.getName());
+            ps.setInt(3, s.getId());
+
+            ps.executeUpdate();
+        }
+    }
 
     public void delete(Student s) throws SQLException
     {
@@ -88,25 +88,25 @@ public class StudentDAO
         }
     }
 
-//    public Student getById(int id) throws SQLException
-//    {
-//        String sql = "SELECT * FROM Student WHERE id = ?";
-//        try (Connection con = cm.getConnection())
-//        {
-//            PreparedStatement ps = con.prepareStatement(sql);
-//            ps.setInt(1, id);
-//
-//            ResultSet rs = ps.executeQuery();
-//            if (rs.next())
-//            {
-//                return getOneStudent(rs);
-//            }
-//            else
-//            {
-//                return null;
-//            }
-//        }
-//    }
+    public Student getById(int id) throws SQLException
+    {
+        String sql = "SELECT * FROM Student WHERE id = ?";
+        try (Connection con = cm.getConnection())
+        {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+
+            ResultSet rs = ps.executeQuery();
+            if (rs.next())
+            {
+                return getOneStudent(rs);
+            }
+            else
+            {
+                return null;
+            }
+        }
+    }
 
     private Student getOneStudent(ResultSet rs) throws SQLException
     {
