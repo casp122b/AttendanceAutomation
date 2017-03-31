@@ -174,6 +174,7 @@ public class TeacherViewController implements Initializable {
 
     private void createInfoView(TableRow row) {
         try {
+            
             Stage mainViewStage = (Stage) row.getScene().getWindow();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/View/StudentInfoTeacher.fxml"));
             Parent Login = loader.load();

@@ -46,8 +46,6 @@ public class StudentInfoTeacherController implements Initializable {
     @FXML
     private DatePicker datePicker;
     @FXML
-    private TableColumn<StudentCheckIn, Double> colAttendance;
-    @FXML
     private TableView<StudentCheckIn> tblStudentInfo;
     @FXML
     private Button btnDeleteDate;
@@ -113,7 +111,7 @@ public class StudentInfoTeacherController implements Initializable {
         if(datePicker.getValue() != null){
         LocalDateTime test = datePicker.getValue().atTime(LocalTime.now());
             StudentCheckIn studCheckIn = checkInModel.calcAttendance(test, student);  
-
+currentAbsence();
             MakePieChart();
     }}
     //Deletes the selected day, where the student have clicked attended and updates the Piechart
@@ -145,7 +143,7 @@ public class StudentInfoTeacherController implements Initializable {
     {
         colTimeStamp.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getDateTime()));
 
-        colAttendance.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getIsAttendance()));
+//        colAttendance.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getIsAttendance()));
     }
 
     /**

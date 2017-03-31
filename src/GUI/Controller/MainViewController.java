@@ -43,7 +43,6 @@ public class MainViewController implements Initializable
     private TableColumn<Student, String> colStudents;
     @FXML
     private Button btnTeacher;
-    @FXML
     private TableColumn<Student, Integer> colTotalAbsence;
     
     private StudentModel studentModel;
@@ -62,7 +61,7 @@ public class MainViewController implements Initializable
     {
         dataBind();
         teacherTblDoubleClick();
-        colTotalAbsence.setVisible(false);
+//        colTotalAbsence.setVisible(false);
     }
     /**
      * Sets the value of the instance variables name and currentClass from the
