@@ -132,7 +132,7 @@ public class MainViewController implements Initializable
     {
         try 
         {
-            Stage mainViewStage = (Stage) row.getScene().getWindow();
+                Stage mainViewStage = (Stage) row.getScene().getWindow();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/View/StudentInfo.fxml"));
             Parent Login = loader.load();
             StudentInfoController sic = loader.getController();
