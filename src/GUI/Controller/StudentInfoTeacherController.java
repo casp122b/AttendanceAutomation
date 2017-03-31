@@ -45,7 +45,8 @@ public class StudentInfoTeacherController implements Initializable {
     private Button btnDidAttend;
     @FXML
     private DatePicker datePicker;
-
+    @FXML
+    private TableColumn<StudentCheckIn, Double> colAttendance;
     @FXML
     private TableView<StudentCheckIn> tblStudentInfo;
     @FXML
@@ -106,18 +107,13 @@ public class StudentInfoTeacherController implements Initializable {
        }
   //sets a Timestamp and the Total Attendance into the Tableview and into the Database and updates the Piechart.
     @FXML
-<<<<<<< HEAD
+
     private void handleAttendance(ActionEvent event) throws SQLException 
     {
         if(datePicker.getValue() != null){
         LocalDateTime test = datePicker.getValue().atTime(LocalTime.now());
             StudentCheckIn studCheckIn = checkInModel.calcAttendance(test, student);  
-=======
-    private void handleAttendance(ActionEvent event) throws SQLException {
-        if (datePicker.getValue() != null) {
-            LocalDateTime test = datePicker.getValue().atTime(LocalTime.now());
-//            StudentCheckIn studCheckIn = checkInModel.calcAttendance(test, student);
->>>>>>> origin/master
+
             MakePieChart();
     }}
     //Deletes the selected day, where the student have clicked attended and updates the Piechart
@@ -149,7 +145,7 @@ public class StudentInfoTeacherController implements Initializable {
     {
         colTimeStamp.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getDateTime()));
 
-//        colAttendance.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getIsAttendance()));
+        colAttendance.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getIsAttendance()));
     }
 
     /**

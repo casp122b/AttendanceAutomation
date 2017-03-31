@@ -72,13 +72,13 @@ public class CheckInModel {
 
     public boolean addStudentCheckIn(StudentCheckIn sCheckIn) throws SQLException {
         boolean dateExists = false;
-//        for (StudentCheckIn sci : studentCheckIn) {
-//            if (sCheckIn.getDateTime().getDate() == sci.getDateTime().getDate()
-//                    && sCheckIn.getDateTime().getYear() == sci.getDateTime().getYear()
-//                    && sCheckIn.getDateTime().getMonth() == sci.getDateTime().getMonth()) {
-//                dateExists = true;
-//            }
-//        }
+        for (StudentCheckIn sci : studentCheckIn) {
+            if (sCheckIn.getDateTime().getDate() == sci.getDateTime().getDate()
+                    && sCheckIn.getDateTime().getYear() == sci.getDateTime().getYear()
+                    && sCheckIn.getDateTime().getMonth() == sci.getDateTime().getMonth()) {
+                dateExists = true;
+            }
+        }
         if (!dateExists) {
             StudentCheckIn studCheckIn = checkInMgr.add(sCheckIn);
             studentCheckIn.add(studCheckIn);
@@ -106,17 +106,8 @@ public class CheckInModel {
         setTest(); //Calculation of schooldays from 01-02-2017 untill now taken taken from database.
         int schoolDaysUntillNow = getSchoolDate().size(); //SchoolDays from 01-02-2017 to now taken from observableList Calendar.
         double daysAway = schoolDaysUntillNow - getArraySize;
-<<<<<<< HEAD
-<<<<<<< HEAD
         double absence = (daysAway * 100) / schoolDaysUntillNow;
-        
-=======
-        double absence = ((daysAway - 1) * 100) / schoolDaysUntillNow;
-=======
-        double absence = ((daysAway) * 100) / schoolDaysUntillNow;
->>>>>>> origin/master
 
->>>>>>> origin/master
         double isAttendance = absence;
         addStudentCheckIn(new StudentCheckIn(sqlDate, studentId, isAttendance));
         StudentCheckIn studCheckIn = new StudentCheckIn(sqlDate, studentId, isAttendance);
@@ -134,7 +125,6 @@ public class CheckInModel {
 
         return absence;
     }
-<<<<<<< HEAD
     
     public StudentCheckIn teacherViewAttendance (LocalDateTime time, Student s) throws SQLException{
         java.sql.Timestamp sqlDate = java.sql.Timestamp.valueOf(time);
@@ -150,40 +140,4 @@ public class CheckInModel {
             StudentCheckIn studCheckIn = new StudentCheckIn(sqlDate, studentId, isAttendance);
         return studCheckIn;
     }
-=======
-
-<<<<<<< HEAD
-//    public StudentCheckIn teacherViewAttendance(LocalDateTime time, Student s) throws SQLException 
-//    {
-//        java.sql.Timestamp sqlDate = java.sql.Timestamp.valueOf(time);
-//        int studentId = s.getId();
-//        double getArraySize = checkInMgr.getAllCheckInsById(s.getId()).size();  //Number of timeStamps on a specific student.
-//        setTest(); //Calculation of schooldays from 01-02-2017 untill now taken taken from database.
-//        int schoolDaysUntillNow = getSchoolDate().size(); //SchoolDays from 01-02-2017 to now taken from observableList Calendar.
-//        double daysAway = schoolDaysUntillNow - getArraySize;
-//        double absence = ((daysAway - 1) * 100) / schoolDaysUntillNow;
-//
-//        double isAttendance = absence;
-//        addStudentCheckIn(new StudentCheckIn(sqlDate, studentId, isAttendance));
-//        StudentCheckIn studCheckIn = new StudentCheckIn(sqlDate, studentId, isAttendance);
-//        return studCheckIn;
-//    }
->>>>>>> origin/master
-=======
-    public StudentCheckIn teacherViewAttendance(LocalDateTime time, Student s) throws SQLException 
-    {
-        java.sql.Timestamp sqlDate = java.sql.Timestamp.valueOf(time);
-        int studentId = s.getId();
-        double getArraySize = checkInMgr.getAllCheckInsById(s.getId()).size();  //Number of timeStamps on a specific student.
-        setTest(); //Calculation of schooldays from 01-02-2017 untill now taken taken from database.
-        int schoolDaysUntillNow = getSchoolDate().size(); //SchoolDays from 01-02-2017 to now taken from observableList Calendar.
-        double daysAway = schoolDaysUntillNow - getArraySize;
-        double absence = ((daysAway) * 100) / schoolDaysUntillNow;
-
-        double isAttendance = absence;
-        addStudentCheckIn(new StudentCheckIn(sqlDate, studentId, isAttendance));
-        StudentCheckIn studCheckIn = new StudentCheckIn(sqlDate, studentId, isAttendance);
-        return studCheckIn;
-    }
->>>>>>> origin/master
 }

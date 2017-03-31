@@ -31,10 +31,7 @@ public class CheckInManager {
         return checkInDAO.getByStudentId(id);
     }
     
-    public List<Calendar> getDays() throws SQLException
-    {
-        return checkInDAO.getDays();
-    }
+    
 
     public StudentCheckIn add(StudentCheckIn sCheckIn) throws SQLException {
         return checkInDAO.add(sCheckIn);

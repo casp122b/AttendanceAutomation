@@ -144,14 +144,6 @@ public class CheckInDAO
         
         return new StudentCheckIn(id, dateTime, studentId, isAttendance);
     }
-    
-    public Calendar getOneSchoolDay(ResultSet rs) throws SQLException
-    {
-        int id = rs.getInt("id");
-        Timestamp schoolDate = rs.getTimestamp("schoolDate");
-        
-        return new Calendar(id, schoolDate);
-    }
 
     public List<StudentCheckIn> getAllCheckIns() throws SQLException {
         List<StudentCheckIn> allCheckIns = new ArrayList<>();
@@ -168,25 +160,7 @@ public class CheckInDAO
             return allCheckIns;
         }
     }
-    
-    
-public List<Calendar> getDays() throws SQLException
-{
-        
-      List<Calendar> allSchoolDays = new ArrayList<>();
-      String sql = "SELECT * FROM SchoolDays WHERE schoolDate > '2017-01-02' and schoolDate < GETDATE();";
-      
-      try (Connection con = cm.getConnection())
-        {
-            PreparedStatement ps = con.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next())
-            {
-                allSchoolDays.add(getOneSchoolDay(rs));
-            }
-            return allSchoolDays;
-        }   
-}
+
 //    public int getStudentId()
 //    {
 //        return studentId;
