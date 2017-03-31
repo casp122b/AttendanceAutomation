@@ -42,8 +42,6 @@ public class StudentInfoTeacherController implements Initializable {
     @FXML
     private TableColumn<StudentCheckIn, Timestamp> colTimeStamp;
     @FXML
-    private TableColumn<StudentCheckIn, Double> colAttendance;
-    @FXML
     private Button btnDidAttend;
     @FXML
     private DatePicker datePicker;
@@ -109,7 +107,7 @@ public class StudentInfoTeacherController implements Initializable {
     private void handleAttendance(ActionEvent event) throws SQLException {
         if (datePicker.getValue() != null) {
             LocalDateTime test = datePicker.getValue().atTime(LocalTime.now());
-            StudentCheckIn studCheckIn = checkInModel.calcAttendance(test, student);
+//            StudentCheckIn studCheckIn = checkInModel.calcAttendance(test, student);
             MakePieChart();
         }
     }

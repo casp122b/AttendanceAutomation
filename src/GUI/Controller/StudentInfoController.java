@@ -37,7 +37,6 @@ public class StudentInfoController implements Initializable {
 
     @FXML
     private TableColumn<StudentCheckIn, Timestamp> colTimeStamp;
-    @FXML
     private TableColumn<StudentCheckIn, Double> colAttendance;
     @FXML
     private Button btnDidAttend;
@@ -109,7 +108,7 @@ public class StudentInfoController implements Initializable {
     //gets the timeStamps and Total Attendance on the student from StudentCheckIn
     private void databind() {
         colTimeStamp.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getDateTime()));
-        colAttendance.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getIsAttendance()));
+//        colAttendance.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getIsAttendance()));
     }
 
     //sets a Timestamp and the Total Attendance into the Tableview and into the Database 
