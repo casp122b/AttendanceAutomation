@@ -61,20 +61,20 @@ public class StudentDAO
         }
     }
     
-    public void update(Student s) throws SQLException
-    {
-        String sql = "UPDATE Student "
-                + "SET name = ?, "
-                + "WHERE id = ?";
-        try (Connection con = cm.getConnection())
-        {
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setString(1, s.getName());
-            ps.setInt(3, s.getId());
-
-            ps.executeUpdate();
-        }
-    }
+//    public void update(Student s) throws SQLException
+//    {
+//        String sql = "UPDATE Student "
+//                + "SET name = ?, "
+//                + "WHERE id = ?";
+//        try (Connection con = cm.getConnection())
+//        {
+//            PreparedStatement ps = con.prepareStatement(sql);
+//            ps.setString(1, s.getName());
+//            ps.setInt(3, s.getId());
+//
+//            ps.executeUpdate();
+//        }
+//    }
 
     public void delete(Student s) throws SQLException
     {

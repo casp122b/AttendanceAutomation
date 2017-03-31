@@ -75,11 +75,6 @@ public class MainViewController implements Initializable
         tblStudents.setItems(studentModel.getAllStudents());
     }
 
-    public void setModel(StudentModel studentModel) 
-    {
-        this.studentModel = studentModel;
-    }
-
     /**
      * Hides MainView and opens Login.fxml
      * @param event 

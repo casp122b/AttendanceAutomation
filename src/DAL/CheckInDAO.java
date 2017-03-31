@@ -80,42 +80,42 @@ public class CheckInDAO
         }
     }
 
-    public List<StudentCheckIn> getAll() throws SQLException
-    {
-        List<StudentCheckIn> allTimeStamps = new ArrayList<>();
+//    public List<StudentCheckIn> getAll() throws SQLException
+//    {
+//        List<StudentCheckIn> allTimeStamps = new ArrayList<>();
+//
+//        String sql = "SELECT * FROM StudentCheckIn";
+//        try (Connection con = cm.getConnection())
+//        {
+//            Statement st = con.createStatement();
+//            ResultSet rs = st.executeQuery(sql);
+//            while (rs.next())
+//            {
+//                allTimeStamps.add(getOneCheckIn(rs));
+//            }
+//            return allTimeStamps;
+//        }
+//    }
 
-        String sql = "SELECT * FROM StudentCheckIn";
-        try (Connection con = cm.getConnection())
-        {
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery(sql);
-            while (rs.next())
-            {
-                allTimeStamps.add(getOneCheckIn(rs));
-            }
-            return allTimeStamps;
-        }
-    }
-
-    public StudentCheckIn getById(int id) throws SQLException
-    {
-        String sql = "SELECT * FROM StudentCheckIn WHERE id = ?";
-        try (Connection con = cm.getConnection())
-        {
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, id);
-
-            ResultSet rs = ps.executeQuery();
-            if (rs.next())
-            {
-                return getOneCheckIn(rs);
-            }
-            else
-            {
-                return null;
-            }
-        }
-    }
+//    public StudentCheckIn getById(int id) throws SQLException
+//    {
+//        String sql = "SELECT * FROM StudentCheckIn WHERE id = ?";
+//        try (Connection con = cm.getConnection())
+//        {
+//            PreparedStatement ps = con.prepareStatement(sql);
+//            ps.setInt(1, id);
+//
+//            ResultSet rs = ps.executeQuery();
+//            if (rs.next())
+//            {
+//                return getOneCheckIn(rs);
+//            }
+//            else
+//            {
+//                return null;
+//            }
+//        }
+//    }
     
     public List<StudentCheckIn> getByStudentId(int id) throws SQLException{
         

@@ -41,7 +41,8 @@ public class LoginController implements Initializable {
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb) 
+    {
 
     }
 
@@ -67,7 +68,7 @@ public class LoginController implements Initializable {
                 stage.setScene(new Scene(Login));
                 stage.show();
             } catch (Exception e) {
-e.printStackTrace();
+                e.printStackTrace();
             }
         } else {
             incorrect.setText("Incorrect Username or Password");

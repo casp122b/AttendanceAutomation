@@ -23,16 +23,4 @@ public class Calendar {
     public int getId() {
         return id;
     }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public Timestamp getSchoolDate() {
-        return schoolDate;
-    }
-
-    public void setSchoolDate(Timestamp schoolDate) {
-        this.schoolDate = schoolDate;
-    }
 }

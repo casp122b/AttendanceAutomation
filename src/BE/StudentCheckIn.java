@@ -21,10 +21,6 @@ public class StudentCheckIn{
         return isAttendance;
     }
 
-    public void setIsAttendance(double isAttendance) {
-        this.isAttendance = isAttendance;
-    }
-
     public StudentCheckIn(int id, StudentCheckIn ts) {
         this(id, ts.getDateTime(), ts.getStudentId(), ts.isAttendance);
     }
@@ -39,34 +35,16 @@ public class StudentCheckIn{
         this.studentId = studentId;
         this.isAttendance = isAttendance;
     }
-    
-    public StudentCheckIn(Timestamp dateTime, double isAttendance)
-    {
-        this(-1, dateTime, -1, isAttendance);
-    }
 
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public Timestamp getDateTime() {
         return dateTime;
     }
 
-    public void setDateTime(Timestamp dateTime) {
-        this.dateTime = dateTime;
-    }
-
     public int getStudentId() {
         return studentId;
-    }
-
-    public void setStudentId(int studentId) {
-        this.studentId = studentId;
-    }
-    
+    }   
 }

@@ -28,17 +28,6 @@ public class StudentManager {
     {
         studentDAO = new StudentDAO();
     }
-    
-    /**
-     * Creates annd returns a new Student object.
-     * @param name
-     * @param attendance
-     * @return The new Student object.
-     */
-    public Student createNewStudent(String name, int attendance)
-    {
-        return new Student(name);
-    }
 
     public List<Student> getAllStudents() throws SQLException {
         return studentDAO.getAllStudents();

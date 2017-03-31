@@ -40,14 +40,6 @@ public class Student
     }
 
     /**
-     * Sets the value of name
-     * @param name 
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    /**
      * returns name, currentClass and attendance as strings
      * @return 
      */

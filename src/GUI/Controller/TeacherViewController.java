@@ -6,7 +6,6 @@
 package GUI.Controller;
 
 import BE.Student;
-import BE.StudentCheckIn;
 import GUI.Model.CheckInModel;
 import GUI.Model.StudentModel;
 import java.io.IOException;
@@ -76,17 +75,15 @@ public class TeacherViewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         dataBind();
-//        int i = 0;
         teacherTblClicked2();
-
     }
 
     /**
      * Sets instance variables from Student. Takes instance variables from
      * Absence through Student. Runs the checkBoxMethod.
      */
-    private void dataBind() {
-      
+    private void dataBind() 
+    {
             LocalDateTime ldt = LocalDateTime.now();
             colStudents.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
             colTotalAbsence.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Student, Double>, ObservableValue<Double>>() {
@@ -102,17 +99,11 @@ public class TeacherViewController implements Initializable {
                 }
             });
             tblStudents.setItems(studentModel.getAllStudents());
-        
-
-    }
-
-    public void setModel(StudentModel studentModel) {
-        this.studentModel = studentModel;
     }
 
     /**
-     * Takes user input from txtName and txtCurrentClass. Adds the input to the
-     * observable arraylist Student through studentModel.
+     * Takes user input from txtName. Adds the input to the
+     * observable arraylist Student and the database through studentModel.
      *
      * @param event
      */

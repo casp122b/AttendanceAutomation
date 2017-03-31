@@ -91,7 +91,7 @@ public class StudentInfoController implements Initializable {
         try {
             MakePieChart();
             tblStudentInfo.setItems(CheckInModel.getInstance().getStudentCheckIn());
-currentAbsence();
+            currentAbsence();
         } catch (IOException | SQLException ex) {
             Logger.getLogger(StudentInfoController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -102,28 +102,26 @@ currentAbsence();
 //        start();
     }
 
-    void setStudent(Student student) 
-    {
+    void setStudent(Student student) {
         this.student = student;
     }
-    
+
     //gets the timeStamps and Total Attendance on the student from StudentCheckIn
-    private void databind() 
-    {
-        colTimeStamp.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getDateTime()));    
+    private void databind() {
+        colTimeStamp.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getDateTime()));
         colAttendance.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getIsAttendance()));
     }
 
     //sets a Timestamp and the Total Attendance into the Tableview and into the Database 
     @FXML
-    private void handleAttendance(ActionEvent event) throws SQLException 
-    {
+    private void handleAttendance(ActionEvent event) throws SQLException {
         LocalDateTime test = datePicker.getValue().atTime(LocalTime.now());
         StudentCheckIn studCheckIn = checkInModel.calcAttendance(test, student);
         MakePieChart();
         currentAbsence();
     }
-    public void currentAbsence() throws SQLException{
+
+    public void currentAbsence() throws SQLException {
 //         java.sql.Timestamp sqlDate = java.sql.Timestamp.valueOf(time);
 //        int studentId = s.getId();
 //        double getArraySize = checkInModel.getStudentCheckIn().size(); //Number of timeStamps on a specific student.
@@ -131,9 +129,8 @@ currentAbsence();
 //        int schoolDaysUntillNow = checkInModel.getSchoolDate().size(); //SchoolDays from 01-02-2017 to now taken from observableList Calendar.
 //        double daysAway = schoolDaysUntillNow - getArraySize;
 //        double absence = ((daysAway) * 100) / schoolDaysUntillNow;
-        
-//        double isAttendance = absence;
 
-     absenceLbl.setText("" + checkInModel.getStudentAbsence());
+//        double isAttendance = absence;
+        absenceLbl.setText("" + checkInModel.getStudentAbsence());
     }
 }
