@@ -12,10 +12,13 @@ import GUI.Model.StudentModel;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -32,6 +35,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 /**
  * FXML Controller class
@@ -43,7 +47,7 @@ public class TeacherViewController implements Initializable {
     @FXML
     private AnchorPane root;
     @FXML
-    private TableColumn<StudentCheckIn, Double> colTotalAbsence;
+    private TableColumn<Student, Double> colTotalAbsence;
     @FXML
     private Button btnAdd;
     @FXML
@@ -73,10 +77,8 @@ public class TeacherViewController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         dataBind();
 //        int i = 0;
-teacherTblClicked2();
-        
+        teacherTblClicked2();
 
-        
     }
 
     /**
@@ -84,11 +86,24 @@ teacherTblClicked2();
      * Absence through Student. Runs the checkBoxMethod.
      */
     private void dataBind() {
-        //I define the mapping of the table's columns to the objects that are added to it.
-        colStudents.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
-//        colTotalAbsence.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getIsAttendance()));
-        tblStudents.setItems(studentModel.getAllStudents());
-    
+      
+            LocalDateTime ldt = LocalDateTime.now();
+            colStudents.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
+            colTotalAbsence.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Student, Double>, ObservableValue<Double>>() {
+                @Override
+                public ObservableValue<Double> call(TableColumn.CellDataFeatures<Student, Double> param) {
+                    try {
+                        double abs = checkInModel.calcAttendance(ldt, param.getValue()).getIsAttendance();
+                        return new SimpleDoubleProperty(abs).asObject();
+                    } catch (SQLException ex) {
+                       ex.printStackTrace();
+                    }
+                 return new SimpleDoubleProperty().asObject();
+                }
+            });
+            tblStudents.setItems(studentModel.getAllStudents());
+        
+
     }
 
     public void setModel(StudentModel studentModel) {
@@ -104,9 +119,9 @@ teacherTblClicked2();
     //adds a student to the class
     @FXML
     private void handleAddAction(ActionEvent event) throws SQLException {
-        
+
 //First I create a new Student:
-        String name =("Esbjerg - CS2016A - ") + txtName.getText().trim();
+        String name = ("Esbjerg - CS2016A - ") + txtName.getText().trim();
         studentModel.addStudent(new Student(name));
 
         //I reset the GUI for adding new persons
@@ -114,6 +129,7 @@ teacherTblClicked2();
         txtName.requestFocus();
     }
 //closes the TeacherWindow
+
     @FXML
     private void signOutBtn(ActionEvent event) {
         try {
@@ -123,6 +139,7 @@ teacherTblClicked2();
         }
     }
 //deletes the selected student and removes him from the database
+
     @FXML
     private void handleDeleteAction(ActionEvent event) throws SQLException {
         Student selectedItem = tblStudents.getSelectionModel().getSelectedItem();
@@ -130,10 +147,11 @@ teacherTblClicked2();
         checkInModel.deleteAttendanceByStudentId(tmpStudent);
         studentModel.deleteStudent(tmpStudent);
         tblStudents.getItems().remove(selectedItem);
-        
+
         tblStudents.getSelectionModel().clearSelection();
     }
 //checks for double clicks and if a tablerow is clicked twice then it use the method createInfoView and opens the StudentInfoTeacherView
+
     private void teacherTblClicked2() {
         tblStudents.setRowFactory(tv -> {
             TableRow<Student> row = new TableRow<>();
@@ -153,14 +171,14 @@ teacherTblClicked2();
         });
     }
 //Method that opens the StudentInfoTeacherView
+
     private void createInfoView(TableRow row) {
-          try 
-        {
+        try {
             Stage mainViewStage = (Stage) row.getScene().getWindow();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/View/StudentInfoTeacher.fxml"));
             Parent Login = loader.load();
             StudentInfoTeacherController sic = loader.getController();
-            sic.setStudent((Student)row.getItem());
+            sic.setStudent((Student) row.getItem());
             Stage stage = new Stage();
             stage.setTitle(tblStudents.getSelectionModel().getSelectedItem().getName());
             stage.setScene(new Scene(Login));
@@ -168,8 +186,7 @@ teacherTblClicked2();
             stage.initOwner(mainViewStage);
             stage.show();
 
-        } catch (Exception e) 
-        {
+        } catch (Exception e) {
             System.out.println("Something went wrong");
         }
     }
