@@ -14,6 +14,7 @@ import javafx.collections.ObservableList;
 import BE.Calendar;
 import BE.Student;
 import BLL.CalendarManager;
+import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 
 /**
@@ -139,5 +140,13 @@ public class CheckInModel {
             
             StudentCheckIn studCheckIn = new StudentCheckIn(sqlDate, studentId, isAttendance);
         return studCheckIn;
+    }
+    
+    public String showStudentAbsence() throws SQLException
+    {
+        String pattern = "#.##";
+        DecimalFormat myFormatter = new DecimalFormat(pattern);
+        String output = myFormatter.format(getStudentAbsence());
+        return output;
     }
 }

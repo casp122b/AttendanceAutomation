@@ -14,11 +14,15 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.ResourceBundle;
+import java.util.concurrent.CountDownLatch;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Platform;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ObservableValue;
+import javafx.concurrent.Service;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -62,6 +66,8 @@ public class TeacherViewController implements Initializable {
     private StudentModel studentModel;
     private Student tmpStudent;
     private CheckInModel checkInModel;
+    private Task<Void> task;
+    private Thread th;
     @FXML
     private TableView<Student> tblStudents;
     @FXML
@@ -86,24 +92,35 @@ public class TeacherViewController implements Initializable {
      * Absence through Student. Runs the checkBoxMethod.
      */
     private void dataBind() {
-      
-            LocalDateTime ldt = LocalDateTime.now();
-            colStudents.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
-            colTotalAbsence.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Student, Double>, ObservableValue<Double>>() {
-                @Override
-                public ObservableValue<Double> call(TableColumn.CellDataFeatures<Student, Double> param) {
-                    try {
-                        double abs = checkInModel.teacherViewAttendance(ldt, param.getValue()).getIsAttendance();
-                        return new SimpleDoubleProperty(abs).asObject();
-                    } catch (SQLException ex) {
-                       ex.printStackTrace();
-                    }
-                 return new SimpleDoubleProperty().asObject();
-                }
-            });
-            tblStudents.setItems(studentModel.getAllStudents());
         
+        task = new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                            LocalDateTime ldt = LocalDateTime.now();
+                            colStudents.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
+                            colTotalAbsence.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Student, Double>, ObservableValue<Double>>() {
+                                @Override
+                                public ObservableValue<Double> call(TableColumn.CellDataFeatures<Student, Double> param) {
+                                    try {
+                                        double abs = checkInModel.teacherViewAttendance(ldt, param.getValue()).getIsAttendance();
+                                        return new SimpleDoubleProperty(abs).asObject();
+                                        
+                                    } catch (SQLException ex) {
+                                        ex.printStackTrace();
+                                    }
+                                    return new SimpleDoubleProperty().asObject();
+                                    
+                                }
+                            });                        
+            return null;
+            }
+            
+        };
+        
+        th = new Thread(task);
+        th.start();
 
+        tblStudents.setItems(studentModel.getAllStudents());
     }
 
     public void setModel(StudentModel studentModel) {
@@ -174,7 +191,7 @@ public class TeacherViewController implements Initializable {
 
     private void createInfoView(TableRow row) {
         try {
-            
+
             Stage mainViewStage = (Stage) row.getScene().getWindow();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/View/StudentInfoTeacher.fxml"));
             Parent Login = loader.load();
@@ -189,6 +206,19 @@ public class TeacherViewController implements Initializable {
 
         } catch (Exception e) {
             System.out.println("Something went wrong");
+        }
+
+        {
+//            @Override
+//            protected Task<Void> createTask() {
+//                return new Task<Void>() {
+//                    @Override
+//                    protected Void call() throws Exception {
+//
+//                    }
+//                };
+//            }
+//        };
         }
     }
 }
