@@ -5,7 +5,6 @@
  */
 package BLL;
 
-import BE.Calendar;
 import BE.StudentCheckIn;
 import DAL.CheckInDAO;
 import java.io.IOException;
@@ -13,7 +12,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 /**
- *
  * @author Jens, Patrick, Casper, Kasper
  */
 public class CheckInManager {
@@ -41,11 +39,6 @@ public class CheckInManager {
     {
         return checkInDAO.getAllCheckIns();
     }
-    
-//    public int getStudentIdFromManager()
-//    {
-//        return checkInDAO.getStudentId();
-//    }
 
     public void delete(StudentCheckIn studCheckIn) throws SQLException {
         checkInDAO.delete(studCheckIn);

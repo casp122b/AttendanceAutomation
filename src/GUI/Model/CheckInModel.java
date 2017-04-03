@@ -18,7 +18,6 @@ import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 
 /**
- *
  * @author Jens, Patrick, Casper, Kasper
  */
 public class CheckInModel {

@@ -13,7 +13,6 @@ import java.sql.Connection;
 import java.util.Properties;
 
 /**
- *
  * @author Jens, Patrick, Casper, Kasper
  */
 public class ConnectionManager

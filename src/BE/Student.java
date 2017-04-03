@@ -6,7 +6,6 @@
 package BE;
 
 /**
- *
  * @author Jens, Patrick, Casper, Kasper
  */
 public class Student 

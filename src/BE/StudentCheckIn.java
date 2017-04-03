@@ -8,7 +8,6 @@ package BE;
 import java.sql.Timestamp;
 
 /**
- *
  * @author Jens, Patrick, Casper, Kasper
  */
 public class StudentCheckIn{

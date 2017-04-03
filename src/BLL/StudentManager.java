@@ -12,7 +12,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 /**
- *
  * @author Jens, Patrick, Casper, Kasper
  */
 public class StudentManager {

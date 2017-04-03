@@ -18,7 +18,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
  * @author Jens, Patrick, Casper, Kasper
  */
 public class CheckInDAO

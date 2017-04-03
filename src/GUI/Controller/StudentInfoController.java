@@ -1,6 +1,5 @@
 package GUI.Controller;
 
-//import  BE.ClassSchedule.time;
 import BE.Student;
 import BE.StudentCheckIn;
 import GUI.Model.CheckInModel;
@@ -29,8 +28,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
 /**
- * FXML Controller class
- *
  * @author Jens, Patrick, Casper, Kasper
  */
 public class StudentInfoController implements Initializable {

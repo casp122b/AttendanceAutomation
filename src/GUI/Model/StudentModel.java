@@ -11,8 +11,8 @@ import java.io.IOException;
 import java.sql.SQLException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
 /**
- *
  * @author Jens, Patrick, Casper, Kasper
  */
 public class StudentModel {
@@ -45,9 +45,6 @@ public class StudentModel {
      */
     private StudentModel() throws IOException, SQLException
     {
-        
-        
-        
         studentManager = new StudentManager();
         allStudents = FXCollections.observableArrayList();
         
@@ -66,7 +63,6 @@ public class StudentModel {
     
     public void addStudent(Student s) throws SQLException
     {
-        
         Student stud = studentManager.add(s);
         allStudents.add(stud);
     }

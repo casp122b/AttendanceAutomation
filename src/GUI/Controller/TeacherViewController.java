@@ -6,7 +6,6 @@
 package GUI.Controller;
 
 import BE.Student;
-import BE.StudentCheckIn;
 import GUI.Model.CheckInModel;
 import GUI.Model.StudentModel;
 import java.io.IOException;
@@ -14,14 +13,11 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.ResourceBundle;
-import java.util.concurrent.CountDownLatch;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.application.Platform;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ObservableValue;
-import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -42,8 +38,6 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 
 /**
- * FXML Controller class
- *
  * @author Jens, Patrick, Casper, Kasper
  */
 public class TeacherViewController implements Initializable {

@@ -33,8 +33,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
 /**
- * FXML Controller class
- *
  * @author Jens, Patrick, Casper, Kasper
  */
 public class StudentInfoTeacherController implements Initializable {

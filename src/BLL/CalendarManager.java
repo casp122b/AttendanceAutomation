@@ -7,14 +7,12 @@ package BLL;
 
 import BE.Calendar;
 import DAL.CalendarDAO;
-import DAL.CheckInDAO;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
 /**
- *
- * @author Casper
+ * @author Jens, Patrick, Casper, Kasper
  */
 public class CalendarManager {
     
