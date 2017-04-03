@@ -38,8 +38,6 @@ public class StudentInfoController implements Initializable {
     @FXML
     private TableColumn<StudentCheckIn, Timestamp> colTimeStamp;
     @FXML
-    private TableColumn<StudentCheckIn, Double> colAttendance;
-    @FXML
     private Button btnDidAttend;
     @FXML
     private DatePicker datePicker;

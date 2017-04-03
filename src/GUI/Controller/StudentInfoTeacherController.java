@@ -126,6 +126,7 @@ public class StudentInfoTeacherController implements Initializable {
 
             tblStudentInfo.getItems().remove(selectedItem);
             tblStudentInfo.getSelectionModel().clearSelection();
+            currentAbsence();
             MakePieChart();
         }
     }

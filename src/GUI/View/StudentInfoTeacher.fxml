@@ -28,6 +28,7 @@
       <Label fx:id="studPieChart" layoutX="383.0" layoutY="14.0" prefHeight="261.0" prefWidth="170.0" stylesheets="@css/Style.css" />
       <Label layoutX="22.0" layoutY="286.0" text="Current absence:" />
       <Label fx:id="absenceLbl" layoutX="119.0" layoutY="286.0" prefHeight="17.0" prefWidth="40.0" />
+      <Label layoutX="150.0" layoutY="287.0" text="\%" />
    </children>
    <stylesheets>
        <URL value="@css/Style.css" />
