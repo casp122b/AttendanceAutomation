@@ -56,61 +56,61 @@ public class TeacherViewController implements Initializable {
     private Button btnClose;
     @FXML
     private Button btnDelete;
-
+    @FXML
+    private TableView<Student> tblStudents;
+    @FXML
+    private TableColumn<Student, String> colStudents;
+    
     private StudentModel studentModel;
     private Student tmpStudent;
     private CheckInModel checkInModel;
     private Task<Void> task;
     private Thread th;
-    @FXML
-    private TableView<Student> tblStudents;
-    @FXML
-    private TableColumn<Student, String> colStudents;
 
     public TeacherViewController() throws IOException, SQLException {
         studentModel = StudentModel.getInstance();
         checkInModel = CheckInModel.getInstance();
-
     }
 
+    /**
+     * Override of the initialize method, uses the databind and
+     * teacherTblClicked2 methods to bind the data to the tableview
+     * @param url
+     * @param rb
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         dataBind();
-
         teacherTblClicked2();
-
     }
 
     /**
      * Sets instance variables from Student. Takes instance variables from
      * Absence through Student. Runs the checkBoxMethod.
+     * Fills in the absence column with data from the checkInModel
      */
     private void dataBind() {
-        
         task = new Task<Void>() {
             @Override
             protected Void call() throws Exception {
-                            LocalDateTime ldt = LocalDateTime.now();
-                            colStudents.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
-                            colTotalAbsence.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Student, Double>, ObservableValue<Double>>() {
-                                @Override
-                                public ObservableValue<Double> call(TableColumn.CellDataFeatures<Student, Double> param) {
-                                    try {
-                                        double abs = checkInModel.teacherViewAttendance(ldt, param.getValue()).getIsAttendance();
-                                        return new SimpleDoubleProperty(abs).asObject();
-                                        
-                                    } catch (SQLException ex) {
-                                        ex.printStackTrace();
-                                    }
-                                    return new SimpleDoubleProperty().asObject();
-                                    
-                                }
-                            });                        
-            return null;
+                LocalDateTime ldt = LocalDateTime.now();
+                colStudents.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
+                colTotalAbsence.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Student, Double>, ObservableValue<Double>>() {
+                    @Override
+                    public ObservableValue<Double> call(TableColumn.CellDataFeatures<Student, Double> param) {
+                        try {
+                            double abs = checkInModel.teacherViewAttendance(ldt, param.getValue()).getIsAttendance();
+                            return new SimpleDoubleProperty(abs).asObject();
+                        } catch (SQLException ex) {
+                            ex.printStackTrace();
+                        }
+                        return new SimpleDoubleProperty().asObject();
+                    }
+                });
+                return null;
             }
-            
         };
-        
+
         th = new Thread(task);
         th.start();
 
@@ -122,25 +122,22 @@ public class TeacherViewController implements Initializable {
     }
 
     /**
-     * Takes user input from txtName and txtCurrentClass. Adds the input to the
-     * observable arraylist Student through studentModel.
-     *
+     * Handles the adding of new students, uses the data in the txtName field.
+     * adds the "Esbjerg - CS2016A - " in front, this is supposed to be a temporary fix for classes/school
+     * after adding a student, it resets the textfield
      * @param event
      */
-    //adds a student to the class
     @FXML
     private void handleAddAction(ActionEvent event) throws SQLException {
-
-//First I create a new Student:
         String name = ("Esbjerg - CS2016A - ") + txtName.getText().trim();
         studentModel.addStudent(new Student(name));
-
-        //I reset the GUI for adding new persons
         txtName.clear();
         txtName.requestFocus();
     }
-//closes the TeacherWindow
-
+    
+    /*
+    * closes the TeacherWindow
+    */
     @FXML
     private void signOutBtn(ActionEvent event) {
         try {
@@ -149,8 +146,10 @@ public class TeacherViewController implements Initializable {
             System.out.println("Something went wrong");
         }
     }
-//deletes the selected student and removes him from the database
-
+    
+    /*
+    * deletes the selected student and removes him from the database
+    */
     @FXML
     private void handleDeleteAction(ActionEvent event) throws SQLException {
         Student selectedItem = tblStudents.getSelectionModel().getSelectedItem();
@@ -161,8 +160,10 @@ public class TeacherViewController implements Initializable {
 
         tblStudents.getSelectionModel().clearSelection();
     }
-//checks for double clicks and if a tablerow is clicked twice then it use the method createInfoView and opens the StudentInfoTeacherView
-
+    
+    /* checks for double clicks and if a tablerow is clicked twice then it use
+    * the method createInfoView and opens the StudentInfoTeacherView
+    */
     private void teacherTblClicked2() {
         tblStudents.setRowFactory(tv -> {
             TableRow<Student> row = new TableRow<>();
@@ -181,8 +182,10 @@ public class TeacherViewController implements Initializable {
             return row;
         });
     }
-//Method that opens the StudentInfoTeacherView
-
+    
+    /*Method that opens the StudentInfoTeacherView
+    *
+    */
     private void createInfoView(TableRow row) {
         try {
 
@@ -200,19 +203,6 @@ public class TeacherViewController implements Initializable {
 
         } catch (Exception e) {
             System.out.println("Something went wrong");
-        }
-
-        {
-//            @Override
-//            protected Task<Void> createTask() {
-//                return new Task<Void>() {
-//                    @Override
-//                    protected Void call() throws Exception {
-//
-//                    }
-//                };
-//            }
-//        };
         }
     }
 }
