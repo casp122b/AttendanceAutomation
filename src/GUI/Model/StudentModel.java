@@ -16,7 +16,6 @@ import javafx.collections.ObservableList;
  * @author Jens, Patrick, Casper, Kasper
  */
 public class StudentModel {
-    
     //local variables for StudentManager and StudentModel.
     private static StudentModel INSTANCE;
     private final StudentManager studentManager;
