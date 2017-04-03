@@ -42,19 +42,20 @@ public class MainViewController implements Initializable
     private TableColumn<Student, String> colStudents;
     @FXML
     private Button btnTeacher;
+    
     private TableColumn<Student, Integer> colTotalAbsence;
-    
     private StudentModel studentModel;
-    
     private CheckInModel checkInModel;
 
     public MainViewController() throws IOException, SQLException 
     {
         studentModel = StudentModel.getInstance();
-         
         checkInModel = CheckInModel.getInstance();
     }
     
+    /*
+    * overrides the initialize method, binds the data to the tableview
+    */
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
@@ -62,6 +63,7 @@ public class MainViewController implements Initializable
         teacherTblDoubleClick();
 //        colTotalAbsence.setVisible(false);
     }
+    
     /**
      * Sets the value of the instance variables name and currentClass from the
      * class Student to colPresent and colClass. Binds tblPresent to the
@@ -86,7 +88,6 @@ public class MainViewController implements Initializable
     private void btnTeacherLogin(ActionEvent event) 
     {
         try {
-            
             Stage mainViewStage = (Stage) btnTeacher.getScene().getWindow();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/View/Login.fxml"));
             Parent Login = loader.load();
@@ -96,26 +97,28 @@ public class MainViewController implements Initializable
             stage.initModality(Modality.WINDOW_MODAL);
             stage.initOwner(mainViewStage);
             stage.show();
-
         } catch (Exception e) {
             System.out.println("Something went wrong");
         }
     }
+    
+    /*
+    * checks if there is a doubleclick and if there is it opens the studentinfoview for selected student
+    */
     private void teacherTblDoubleClick() 
     {
         tblStudents.setRowFactory(tv -> 
         {
-        TableRow<Student> row = new TableRow<>();
-        row.setOnMouseClicked(event -> 
-        {
-            if (event.getClickCount() == 2 && (!row.isEmpty())) 
+            TableRow<Student> row = new TableRow<>();
+            row.setOnMouseClicked(event -> 
             {
-                Student rowData = row.getItem();
-                try 
+                if (event.getClickCount() == 2 && (!row.isEmpty())) 
                 {
-                    checkInModel.setCheckInListById(rowData.getId());
-                    createInfoView(row);
-
+                    Student rowData = row.getItem();
+                    try 
+                    {
+                        checkInModel.setCheckInListById(rowData.getId());
+                        createInfoView(row);
                     } catch (SQLException ex) 
                     {
                         Logger.getLogger(StudentInfoController.class.getName()).log(Level.SEVERE, null, ex);
@@ -125,12 +128,15 @@ public class MainViewController implements Initializable
             return row;
         });
     }
-//
+    
+    /*
+    * creates info view for selected student when called from the teacherTblDoubleClick method
+    */
     private void createInfoView(TableRow row) 
     {
         try 
         {
-                Stage mainViewStage = (Stage) row.getScene().getWindow();
+            Stage mainViewStage = (Stage) row.getScene().getWindow();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/View/StudentInfo.fxml"));
             Parent Login = loader.load();
             StudentInfoController sic = loader.getController();
@@ -141,7 +147,6 @@ public class MainViewController implements Initializable
             stage.initModality(Modality.WINDOW_MODAL);
             stage.initOwner(mainViewStage);
             stage.show();
-
         } catch (Exception e) 
         {
             System.out.println("Something went wrong");
