@@ -38,26 +38,27 @@ public class StudentInfoController implements Initializable {
     private Button btnDidAttend;
     @FXML
     private DatePicker datePicker;
-//    private ObservableList<StudentCheckIn> checkIn;
     @FXML
     private TableView<StudentCheckIn> tblStudentInfo;
-
-    private StudentModel studentModel;
-    private StudentCheckIn studCheckIn;
-    private CheckInModel checkInModel;
-    private Student student;
     @FXML
     private Label pieChart;
     @FXML
     private Label absenceLbl;
+    
+    private StudentModel studentModel;
+    private StudentCheckIn studCheckIn;
+    private CheckInModel checkInModel;
+    private Student student;
+//    private ObservableList<StudentCheckIn> checkIn;    
 
     public StudentInfoController() throws IOException, SQLException {
         studentModel = StudentModel.getInstance();
         checkInModel = CheckInModel.getInstance();
-
     }
 
-//makes a Piechart that contains the student´s total attended and all the school Days from 01-02-2017, that we set on a label called pieChart.
+    /*makes a Piechart that contains the student´s total attended and 
+    * all the school Days from 01-02-2017, that we set on a label called pieChart.
+    */
     public void MakePieChart() throws SQLException {
         checkInModel.setTest();
         double Attendsize = checkInModel.getStudentCheckIn().size();
@@ -76,13 +77,14 @@ public class StudentInfoController implements Initializable {
 
     /**
      * Initializes the controller class.
-     *
+     * calls the piechart method and updates the absence
+     * sets the data of the tableview
+     * hides the datePicker so that it can't be changed from current date
      * @param url
      * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
         try {
             MakePieChart();
             tblStudentInfo.setItems(CheckInModel.getInstance().getStudentCheckIn());
@@ -93,8 +95,6 @@ public class StudentInfoController implements Initializable {
         databind();
         datePicker.setValue(LocalDate.now());
         datePicker.setVisible(false);
-
-//        start();
     }
 
     void setStudent(Student student) {
