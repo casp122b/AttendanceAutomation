@@ -81,16 +81,13 @@ public class TeacherViewController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-<<<<<<< HEAD
+
         try {
             dataBind();
         } catch (SQLException ex) {
             Logger.getLogger(TeacherViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-=======
-        dataBind();
->>>>>>> origin/master
         teacherTblClicked2();
     }
 
@@ -99,7 +96,7 @@ public class TeacherViewController implements Initializable {
      * Absence through Student. Runs the checkBoxMethod.
      * Fills in the absence column with data from the checkInModel
      */
-<<<<<<< HEAD
+
     private void dataBind() throws SQLException {
         LocalDateTime ldt = LocalDateTime.now();
         for (Student s : studentModel.getAllStudents()) 
@@ -120,27 +117,7 @@ public class TeacherViewController implements Initializable {
                                 }
                             });                        
             return null;
-=======
-    private void dataBind() {
-        task = new Task<Void>() {
-            @Override
-            protected Void call() throws Exception {
-                LocalDateTime ldt = LocalDateTime.now();
-                colStudents.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
-                colTotalAbsence.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Student, Double>, ObservableValue<Double>>() {
-                    @Override
-                    public ObservableValue<Double> call(TableColumn.CellDataFeatures<Student, Double> param) {
-                        try {
-                            double abs = checkInModel.teacherViewAttendance(ldt, param.getValue()).getIsAttendance();
-                            return new SimpleDoubleProperty(abs).asObject();
-                        } catch (SQLException ex) {
-                            ex.printStackTrace();
-                        }
-                        return new SimpleDoubleProperty().asObject();
-                    }
-                });
-                return null;
->>>>>>> origin/master
+
             }
         };
 
