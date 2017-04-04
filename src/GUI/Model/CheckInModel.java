@@ -70,6 +70,9 @@ public class CheckInModel {
         calendar.addAll(calendarMgr.getDays());
     }
 
+    /*
+    * adds the check ins for students
+    */
     public boolean addStudentCheckIn(StudentCheckIn sCheckIn) throws SQLException {
         boolean dateExists = false;
         for (StudentCheckIn sci : studentCheckIn) {
@@ -99,6 +102,10 @@ public class CheckInModel {
         }
     }
 
+    /*
+    * calculates the attendance % for a student from the start of the semester 
+    * until current date
+    */
     public StudentCheckIn calcAttendance(LocalDateTime time, Student s) throws SQLException {
         java.sql.Timestamp sqlDate = java.sql.Timestamp.valueOf(time);
         int studentId = s.getId();
@@ -115,6 +122,9 @@ public class CheckInModel {
 
     }
 
+    /*
+    * returns the absence of a specific student
+    */
     public double getStudentAbsence() throws SQLException 
     {
         double getArraySize = getStudentCheckIn().size(); //Number of timeStamps on a specific student.
@@ -126,6 +136,9 @@ public class CheckInModel {
         return absence;
     }
     
+    /*
+    * returns the absence of a specific student
+    */
     public StudentCheckIn teacherViewAttendance (LocalDateTime time, Student s) throws SQLException{
         java.sql.Timestamp sqlDate = java.sql.Timestamp.valueOf(time);
         int studentId = s.getId();
@@ -141,6 +154,9 @@ public class CheckInModel {
         return studCheckIn;
     }
     
+    /*
+    * formats the absence so that is has the correct amount of decimals
+    */
     public String showStudentAbsence() throws SQLException
     {
         String pattern = "#.##";

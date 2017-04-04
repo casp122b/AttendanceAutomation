@@ -40,7 +40,6 @@ public class LoginController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
     }
 
     /**
@@ -54,7 +53,6 @@ public class LoginController implements Initializable {
     private void loginUser(ActionEvent event) throws IOException {
         String username = user.getText();
         String pass = password.getText();
-
         if (username.equals("Peter") && (pass.equals("1"))) {
             try {
                 ((Node) (event.getSource())).getScene().getWindow().hide();               
@@ -65,7 +63,7 @@ public class LoginController implements Initializable {
                 stage.setScene(new Scene(Login));
                 stage.show();
             } catch (Exception e) {
-e.printStackTrace();
+                e.printStackTrace();
             }
         } else {
             incorrect.setText("Incorrect Username or Password");
