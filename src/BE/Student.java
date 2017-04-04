@@ -12,7 +12,15 @@ public class Student
 {
     private int id;
     private String name;
+    private double absence;
 
+    public double getAbsence() {
+        return absence;
+    }
+
+    public void setAbsence(double absence) {
+        this.absence = absence;
+    }
     /**
      * Constructor for the Student class
      * @param name 

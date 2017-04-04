@@ -6,6 +6,7 @@
 package GUI.Controller;
 
 import BE.Student;
+import BE.StudentCheckIn;
 import GUI.Model.CheckInModel;
 import GUI.Model.StudentModel;
 import java.io.IOException;
@@ -75,7 +76,11 @@ public class TeacherViewController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        dataBind();
+        try {
+            dataBind();
+        } catch (SQLException ex) {
+            Logger.getLogger(TeacherViewController.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         teacherTblClicked2();
 
@@ -85,25 +90,23 @@ public class TeacherViewController implements Initializable {
      * Sets instance variables from Student. Takes instance variables from
      * Absence through Student. Runs the checkBoxMethod.
      */
-    private void dataBind() {
+    private void dataBind() throws SQLException {
+        LocalDateTime ldt = LocalDateTime.now();
+        for (Student s : studentModel.getAllStudents()) 
+        {
+            double abs = checkInModel.teacherViewAttendance(ldt, s).getIsAttendance();
+            s.setAbsence(abs);
+        }
         
         task = new Task<Void>() {
             @Override
             protected Void call() throws Exception {
-                            LocalDateTime ldt = LocalDateTime.now();
+                            
                             colStudents.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
                             colTotalAbsence.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Student, Double>, ObservableValue<Double>>() {
                                 @Override
                                 public ObservableValue<Double> call(TableColumn.CellDataFeatures<Student, Double> param) {
-                                    try {
-                                        double abs = checkInModel.teacherViewAttendance(ldt, param.getValue()).getIsAttendance();
-                                        return new SimpleDoubleProperty(abs).asObject();
-                                        
-                                    } catch (SQLException ex) {
-                                        ex.printStackTrace();
-                                    }
-                                    return new SimpleDoubleProperty().asObject();
-                                    
+                                    return new SimpleDoubleProperty(param.getValue().getAbsence()).asObject();
                                 }
                             });                        
             return null;
