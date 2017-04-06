@@ -24,13 +24,18 @@ public class CheckInDAO
 {
 
     private final ConnectionManager cm;
-//    private int studentId;
 
     public CheckInDAO() throws IOException
     {
         cm = new ConnectionManager();
     }
 
+    /**
+     * Adds a student object to database table StudentCheckIn containing timeStamp, studentId and absence percentage.
+     * @param ts
+     * @return
+     * @throws SQLException 
+     */
     public StudentCheckIn add(StudentCheckIn ts) throws SQLException
     {
         String sql = "INSERT INTO StudentCheckIn(studentCheckIn, studentId, isAttendance) VALUES(?, ?, ?)";
@@ -45,11 +50,15 @@ public class CheckInDAO
             ResultSet generatedKey = ps.getGeneratedKeys();
             generatedKey.next();
             int id = generatedKey.getInt(1);
-            return new StudentCheckIn(id, ts);
-            
+            return new StudentCheckIn(id, ts);   
         }
     }
 
+    /**
+     * Updates database table StudentCheckIn.
+     * @param ts
+     * @throws SQLException 
+     */
     public void update(StudentCheckIn ts) throws SQLException
     {
         String sql = "UPDATE StudentCheckIn "
@@ -67,6 +76,11 @@ public class CheckInDAO
         }
     }
 
+    /**
+     * Deletes a timeStamp from StudentCheckIn.
+     * @param ts
+     * @throws SQLException 
+     */
     public void delete(StudentCheckIn ts) throws SQLException
     {
         String sql = "DELETE FROM StudentCheckIn where id = ?";
@@ -79,6 +93,11 @@ public class CheckInDAO
         }
     }
 
+    /**
+     * Populates an ArrayList of BE class StudentCheckIn with timeStamps.
+     * @return
+     * @throws SQLException 
+     */
     public List<StudentCheckIn> getAll() throws SQLException
     {
         List<StudentCheckIn> allTimeStamps = new ArrayList<>();
@@ -96,6 +115,12 @@ public class CheckInDAO
         }
     }
 
+    /**
+     * Method for selecting a specific student by id. The data is gathered from database table StudentCheckIn.
+     * @param id
+     * @return
+     * @throws SQLException 
+     */
     public StudentCheckIn getById(int id) throws SQLException
     {
         String sql = "SELECT * FROM StudentCheckIn WHERE id = ?";
@@ -116,6 +141,12 @@ public class CheckInDAO
         }
     }
     
+    /**
+     * Populates a new ArrayList of StudentCheckIn with timeStamps for a specific student gathered from database table StudentCheckIn.
+     * @param id
+     * @return
+     * @throws SQLException 
+     */
     public List<StudentCheckIn> getByStudentId(int id) throws SQLException{
         
       List<StudentCheckIn> allTimeStamps = new ArrayList<>();
@@ -134,6 +165,12 @@ public class CheckInDAO
       
     }
     
+    /**
+     * Reflects the attributes for 1 student in the database.
+     * @param rs
+     * @return
+     * @throws SQLException 
+     */
     public StudentCheckIn getOneCheckIn(ResultSet rs) throws SQLException
     {
         int id = rs.getInt("id");
@@ -144,6 +181,11 @@ public class CheckInDAO
         return new StudentCheckIn(id, dateTime, studentId, isAttendance);
     }
 
+    /**
+     * Method for returning all timeStamps on a student.
+     * @return
+     * @throws SQLException 
+     */
     public List<StudentCheckIn> getAllCheckIns() throws SQLException {
         List<StudentCheckIn> allCheckIns = new ArrayList<>();
 
@@ -160,11 +202,11 @@ public class CheckInDAO
         }
     }
 
-//    public int getStudentId()
-//    {
-//        return studentId;
-//    }
-
+    /**
+     * Method for deleting a selected timeStamps for a specific student.
+     * @param id
+     * @throws SQLException 
+     */
     public void deleteByStudentId(int id) throws SQLException
     {
         String sql = "DELETE FROM StudentCheckIn where studentId = ?";

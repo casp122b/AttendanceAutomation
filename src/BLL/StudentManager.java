@@ -39,15 +39,31 @@ public class StudentManager {
         return new Student(name);
     }
 
+    /**
+     * Method for calling getAllStudents() in studentDAO.
+     * @return
+     * @throws SQLException 
+     */
     public List<Student> getAllStudents() throws SQLException {
         return studentDAO.getAllStudents();
     }
     
+    /**
+     * Method for calling add() in studentDAO.
+     * @param s
+     * @return
+     * @throws SQLException 
+     */
     public Student add(Student s) throws SQLException
     {
         return studentDAO.add(s);
     }
     
+    /**
+     * Method for calling delete() in studentDAO.
+     * @param s
+     * @throws SQLException 
+     */
     public void delete(Student s) throws SQLException
     {
         studentDAO.delete(s);

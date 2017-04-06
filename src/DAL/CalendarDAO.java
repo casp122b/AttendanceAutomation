@@ -28,6 +28,12 @@ public class CalendarDAO {
         cm = new ConnectionManager();
     }
     
+    /**
+     * Creates a new object containing id and schoolDate from the database.
+     * @param rs
+     * @return
+     * @throws SQLException 
+     */
     public Calendar getOneSchoolDay(ResultSet rs) throws SQLException
     {
         int id = rs.getInt("id");
@@ -36,9 +42,13 @@ public class CalendarDAO {
         return new Calendar(id, schoolDate);
     }
     
+    /**
+     * An ArrayList is populated with dates from 02-01-2017 to current date. Dates are taken from database table SchoolDays.
+     * @return
+     * @throws SQLException 
+     */
     public List<Calendar> getDays() throws SQLException
 {
-        
       List<Calendar> allSchoolDays = new ArrayList<>();
       String sql = "SELECT * FROM SchoolDays WHERE schoolDate > '2017-01-02' and schoolDate < GETDATE();";
       

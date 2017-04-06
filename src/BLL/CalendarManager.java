@@ -22,6 +22,11 @@ public class CalendarManager {
         calendarDAO = new CalendarDAO();
     }
     
+    /**
+     * ArrayList of BE class Calendar.
+     * @return
+     * @throws SQLException 
+     */
     public List<Calendar> getDays() throws SQLException
     {
         return calendarDAO.getDays();

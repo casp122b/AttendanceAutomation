@@ -51,20 +51,37 @@ public class CheckInModel {
         return INSTANCE;
     }
 
+    /**
+     * This method returns an observable list of BE class StudentCheckIn.
+     * @return 
+     */
     public ObservableList<StudentCheckIn> getStudentCheckIn() {
         return studentCheckIn;
     }
 
+    /**
+     * This method returns an observable list of BE class Calendar.
+     * @return 
+     */
     public ObservableList<Calendar> getSchoolDate() {
         return calendar;
     }
 
+    /**
+     * Creates an observable list of StudentCheckIn and adds all timeStamps on the specific student by id into CheckInManager.
+     * @param id
+     * @throws SQLException 
+     */
     public void setCheckInListById(int id) throws SQLException {
 
         studentCheckIn = FXCollections.observableArrayList();
         studentCheckIn.addAll(checkInMgr.getAllCheckInsById(id));
     }
 
+    /**
+     * Creates an observable list of Calendar, adds all items of the array into getDays() in CalendarManager.
+     * @throws SQLException 
+     */
     public void setTest() throws SQLException {
         calendar = FXCollections.observableArrayList();
         calendar.addAll(calendarMgr.getDays());

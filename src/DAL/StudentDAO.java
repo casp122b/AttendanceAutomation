@@ -27,6 +27,11 @@ public class StudentDAO
         cm = new ConnectionManager();
     }
 
+    /**
+     * Method for selecting all students in database table Student.
+     * @return
+     * @throws SQLException 
+     */
     public List<Student> getAllStudents() throws SQLException {
         List<Student> allStudents = new ArrayList<>();
 
@@ -44,6 +49,12 @@ public class StudentDAO
         }
     }
     
+    /**
+     * Method for adding a new student to database table Student.
+     * @param s
+     * @return
+     * @throws SQLException 
+     */
     public Student add(Student s) throws SQLException
     {
         String sql = "INSERT INTO Student(name) VALUES(?)";
@@ -60,6 +71,12 @@ public class StudentDAO
         }
     }
     
+    
+    /**
+     * Updates database table Student.
+     * @param s
+     * @throws SQLException 
+     */
     public void update(Student s) throws SQLException
     {
         String sql = "UPDATE Student "
@@ -75,6 +92,11 @@ public class StudentDAO
         }
     }
 
+    /**
+     * Deletes a selected student from database table Student.
+     * @param s
+     * @throws SQLException 
+     */
     public void delete(Student s) throws SQLException
     {
         String sql = "DELETE FROM Student where id = ?";
@@ -87,26 +109,12 @@ public class StudentDAO
         }
     }
 
-//    public Student getById(int id) throws SQLException
-//    {
-//        String sql = "SELECT * FROM Student WHERE id = ?";
-//        try (Connection con = cm.getConnection())
-//        {
-//            PreparedStatement ps = con.prepareStatement(sql);
-//            ps.setInt(1, id);
-//
-//            ResultSet rs = ps.executeQuery();
-//            if (rs.next())
-//            {
-//                return getOneStudent(rs);
-//            }
-//            else
-//            {
-//                return null;
-//            }
-//        }
-//    }
-
+    /**
+     * Reflects attributes for a student in database table Student.
+     * @param rs
+     * @return
+     * @throws SQLException 
+     */
     private Student getOneStudent(ResultSet rs) throws SQLException
     {
         int id = rs.getInt("id");

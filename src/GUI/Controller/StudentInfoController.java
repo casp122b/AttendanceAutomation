@@ -48,8 +48,7 @@ public class StudentInfoController implements Initializable {
     private StudentModel studentModel;
     private StudentCheckIn studCheckIn;
     private CheckInModel checkInModel;
-    private Student student;
-//    private ObservableList<StudentCheckIn> checkIn;    
+    private Student student;  
 
     public StudentInfoController() throws IOException, SQLException {
         studentModel = StudentModel.getInstance();
@@ -104,7 +103,6 @@ public class StudentInfoController implements Initializable {
     //gets the timeStamps and Total Attendance on the student from StudentCheckIn
     private void databind() {
         colTimeStamp.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getDateTime()));
-//        colAttendance.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getIsAttendance()));
     }
 
     //sets a Timestamp and the Total Attendance into the Tableview and into the Database 
